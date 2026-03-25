@@ -1,6 +1,6 @@
 {
   "project": "Freedom App 2.0",
-  "active_phase": 0,
+  "active_phase": 3,
   "modules": [
     {
       "name": "scaffold",
@@ -12,49 +12,106 @@
       "name": "auth",
       "status": "not-started",
       "spec": "specs/auth_spec.md",
-      "tables": ["organizations", "profiles", "org_members", "org_settings"]
+      "tables": [
+        "organizations",
+        "profiles",
+        "org_members",
+        "org_settings"
+      ]
     },
     {
       "name": "orgs",
       "status": "not-started",
       "spec": "specs/auth_spec.md",
-      "tables": ["organizations", "org_members", "org_settings"]
+      "tables": [
+        "organizations",
+        "org_members",
+        "org_settings"
+      ]
     },
     {
       "name": "employees",
-      "status": "not-started",
+      "status": "complete",
       "spec": "specs/employees_spec.md",
-      "tables": ["roles", "role_permissions", "employees", "employee_permission_overrides", "employee_compensation", "employee_invites", "employee_preferences", "custom_field_definitions", "custom_field_values"]
+      "tables": [
+        "roles",
+        "role_permissions",
+        "employees",
+        "employee_permission_overrides",
+        "employee_compensation",
+        "employee_invites",
+        "employee_preferences",
+        "custom_field_definitions",
+        "custom_field_values"
+      ]
     },
     {
       "name": "clients",
       "status": "not-started",
       "spec": "specs/clients_spec.md",
-      "tables": ["clients", "client_addresses", "client_contacts", "client_tags", "client_types", "tags", "referral_funnels", "referral_sources", "payment_terms", "notes", "note_attachments", "tasks", "task_followers", "communications", "communication_attachments"]
+      "tables": [
+        "clients",
+        "client_addresses",
+        "client_contacts",
+        "client_tags",
+        "client_types",
+        "tags",
+        "referral_funnels",
+        "referral_sources",
+        "payment_terms",
+        "notes",
+        "note_attachments",
+        "tasks",
+        "task_followers",
+        "communications",
+        "communication_attachments"
+      ]
     },
     {
       "name": "crews",
       "status": "not-started",
       "spec": "specs/fleet_spec.md",
-      "tables": ["crews"]
+      "tables": [
+        "crews"
+      ]
     },
     {
       "name": "fleet",
       "status": "not-started",
       "spec": "specs/fleet_spec.md",
-      "tables": ["equipment", "equipment_assignments", "equipment_schedule", "equipment_requests", "equipment_maintenance", "vehicle_inspections"]
+      "tables": [
+        "equipment",
+        "equipment_assignments",
+        "equipment_schedule",
+        "equipment_requests",
+        "equipment_maintenance",
+        "vehicle_inspections"
+      ]
     },
     {
       "name": "item_catalog",
-      "status": "not-started",
+      "status": "complete",
       "spec": "specs/catalog_spec.md",
-      "tables": ["catalog_items", "catalog_item_specs", "suppliers", "supplier_locations", "catalog_item_suppliers", "partners"]
+      "tables": [
+        "catalog_items",
+        "catalog_item_specs",
+        "suppliers",
+        "supplier_locations",
+        "catalog_item_suppliers",
+        "partners"
+      ]
     },
     {
       "name": "product_catalog",
-      "status": "not-started",
+      "status": "complete",
       "spec": "specs/catalog_spec.md",
-      "tables": ["material_configurations", "material_configuration_roles", "product_catalog", "product_catalog_inputs", "product_catalog_components"]
+      "tables": [
+        "material_configurations",
+        "material_configuration_roles",
+        "product_catalog",
+        "product_catalog_inputs",
+        "product_catalog_components"
+      ]
     }
   ],
   "tasks": [
@@ -63,10 +120,12 @@
       "phase": 0,
       "module": "scaffold",
       "description": "Flutter project scaffold — flutter create, pubspec.yaml, flutter pub get, build_runner",
-      "status": "needs-review",
+      "status": "done",
       "parallel_safe": false,
       "depends_on": [],
-      "blocks": ["TASK-002"],
+      "blocks": [
+        "TASK-002"
+      ],
       "spec": null,
       "tables": [],
       "branch": ""
@@ -76,168 +135,283 @@
       "phase": 0,
       "module": "scaffold",
       "description": "Core lib/ folder structure — scaffold all folders and placeholder files per architecture.md",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-001"],
-      "blocks": ["TASK-003"],
+      "depends_on": [
+        "TASK-001"
+      ],
+      "blocks": [
+        "TASK-003"
+      ],
       "spec": null,
       "tables": [],
-      "branch": ""
+      "branch": "dev"
     },
     {
       "id": "TASK-003",
       "phase": 1,
       "module": "auth",
       "description": "Supabase schema — organizations, profiles, org_members, org_settings + RLS + triggers",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-001", "TASK-002"],
-      "blocks": ["TASK-004", "TASK-005", "TASK-006"],
+      "depends_on": [
+        "TASK-001",
+        "TASK-002"
+      ],
+      "blocks": [
+        "TASK-004",
+        "TASK-005",
+        "TASK-006"
+      ],
       "spec": "specs/auth_spec.md",
-      "tables": ["organizations", "profiles", "org_members", "org_settings"],
-      "branch": ""
+      "tables": [
+        "organizations",
+        "profiles",
+        "org_members",
+        "org_settings"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-004",
       "phase": 1,
       "module": "auth",
       "description": "Seed data Edge Function — roles, payment_terms, estimate_types, expense_buckets on org creation",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-003"],
-      "blocks": ["TASK-006"],
+      "depends_on": [
+        "TASK-003"
+      ],
+      "blocks": [
+        "TASK-006"
+      ],
       "spec": "specs/auth_spec.md",
-      "tables": ["roles", "role_permissions", "payment_terms", "estimate_types", "expense_buckets"],
-      "branch": ""
+      "tables": [
+        "roles",
+        "role_permissions",
+        "payment_terms",
+        "estimate_types",
+        "expense_buckets"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-005",
       "phase": 1,
       "module": "auth",
       "description": "Auth flow — sign up, sign in, sign out, password reset screens + providers + AuthService",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-003"],
-      "blocks": ["TASK-006"],
+      "depends_on": [
+        "TASK-003"
+      ],
+      "blocks": [
+        "TASK-006"
+      ],
       "spec": "specs/auth_spec.md",
-      "tables": ["profiles"],
-      "branch": ""
+      "tables": [
+        "profiles"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-006",
       "phase": 1,
       "module": "orgs",
       "description": "Org creation + onboarding flow — OrgService, OrgNotifier, org setup screen, RouterNotifier guards",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-004", "TASK-005"],
-      "blocks": ["TASK-007"],
+      "depends_on": [
+        "TASK-004",
+        "TASK-005"
+      ],
+      "blocks": [
+        "TASK-007"
+      ],
       "spec": "specs/auth_spec.md",
-      "tables": ["organizations", "org_members", "org_settings"],
-      "branch": ""
+      "tables": [
+        "organizations",
+        "org_members",
+        "org_settings"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-007",
       "phase": 1,
       "module": "scaffold",
       "description": "App shell — bottom nav, placeholder screens, GoRouter shell route, full route table",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-006"],
-      "blocks": ["TASK-008", "TASK-024"],
+      "depends_on": [
+        "TASK-006"
+      ],
+      "blocks": [
+        "TASK-008",
+        "TASK-024"
+      ],
       "spec": null,
       "tables": [],
-      "branch": ""
+      "branch": "dev"
     },
     {
       "id": "TASK-008",
       "phase": 2,
       "module": "employees",
       "description": "Supabase schema — roles, employees, permissions, compensation, invites, custom fields + RLS",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-007"],
-      "blocks": ["TASK-009"],
+      "depends_on": [
+        "TASK-007"
+      ],
+      "blocks": [
+        "TASK-009"
+      ],
       "spec": "specs/employees_spec.md",
-      "tables": ["roles", "role_permissions", "employees", "employee_permission_overrides", "employee_compensation", "employee_invites", "employee_preferences", "custom_field_definitions", "custom_field_values"],
-      "branch": ""
+      "tables": [
+        "roles",
+        "role_permissions",
+        "employees",
+        "employee_permission_overrides",
+        "employee_compensation",
+        "employee_invites",
+        "employee_preferences",
+        "custom_field_definitions",
+        "custom_field_values"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-009",
       "phase": 2,
       "module": "employees",
       "description": "Employee service + providers — EmployeeService, CurrentEmployeeNotifier, PermissionService, Freezed models",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-008"],
-      "blocks": ["TASK-010", "TASK-011", "TASK-012", "TASK-013"],
+      "depends_on": [
+        "TASK-008"
+      ],
+      "blocks": [
+        "TASK-010",
+        "TASK-011",
+        "TASK-012",
+        "TASK-013"
+      ],
       "spec": "specs/employees_spec.md",
-      "tables": ["employees", "roles", "role_permissions", "employee_permission_overrides", "employee_compensation"],
-      "branch": ""
+      "tables": [
+        "employees",
+        "roles",
+        "role_permissions",
+        "employee_permission_overrides",
+        "employee_compensation"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-010",
       "phase": 2,
       "module": "employees",
       "description": "Employee list + detail screens — list with filter, detail with all fields, compensation section permission-gated",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-009"],
+      "depends_on": [
+        "TASK-009"
+      ],
       "blocks": [],
       "spec": "specs/employees_spec.md",
-      "tables": ["employees"],
-      "branch": ""
+      "tables": [
+        "employees"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-011",
       "phase": 2,
       "module": "employees",
       "description": "Employee create + edit screens — all fields, display_name auto-suggest, status transitions, compensation entry",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-009"],
+      "depends_on": [
+        "TASK-009"
+      ],
       "blocks": [],
       "spec": "specs/employees_spec.md",
-      "tables": ["employees", "employee_compensation"],
-      "branch": ""
+      "tables": [
+        "employees",
+        "employee_compensation"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-012",
       "phase": 2,
       "module": "employees",
       "description": "Employee invite flow — InviteService, send-invite-email Edge Function, accept screen, invite status UI",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-009"],
+      "depends_on": [
+        "TASK-009"
+      ],
       "blocks": [],
       "spec": "specs/employees_spec.md",
-      "tables": ["employee_invites"],
-      "branch": ""
+      "tables": [
+        "employee_invites"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-013",
       "phase": 2,
       "module": "employees",
       "description": "Role + permission management UI — role list, role detail with permissions, per-employee override panel",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-009"],
-      "blocks": ["TASK-014", "TASK-019"],
+      "depends_on": [
+        "TASK-009"
+      ],
+      "blocks": [
+        "TASK-014",
+        "TASK-019"
+      ],
       "spec": "specs/employees_spec.md",
-      "tables": ["roles", "role_permissions", "employee_permission_overrides"],
-      "branch": ""
+      "tables": [
+        "roles",
+        "role_permissions",
+        "employee_permission_overrides"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-014",
       "phase": 3,
       "module": "clients",
       "description": "Supabase schema — clients, addresses, contacts, lookup tables, notes, tasks, communications + RLS",
-      "status": "blocked",
+      "status": "ready",
       "parallel_safe": false,
-      "depends_on": ["TASK-013"],
-      "blocks": ["TASK-015"],
+      "depends_on": [
+        "TASK-013"
+      ],
+      "blocks": [
+        "TASK-015"
+      ],
       "spec": "specs/clients_spec.md",
-      "tables": ["clients", "client_addresses", "client_contacts", "client_tags", "client_types", "tags", "referral_funnels", "referral_sources", "payment_terms", "notes", "note_attachments", "tasks", "task_followers", "communications", "communication_attachments"],
+      "tables": [
+        "clients",
+        "client_addresses",
+        "client_contacts",
+        "client_tags",
+        "client_types",
+        "tags",
+        "referral_funnels",
+        "referral_sources",
+        "payment_terms",
+        "notes",
+        "note_attachments",
+        "tasks",
+        "task_followers",
+        "communications",
+        "communication_attachments"
+      ],
       "branch": ""
     },
     {
@@ -247,10 +421,21 @@
       "description": "Client service + providers — ClientService, ClientListNotifier, is_incomplete logic, display_name helpers, Freezed models",
       "status": "blocked",
       "parallel_safe": false,
-      "depends_on": ["TASK-014"],
-      "blocks": ["TASK-016", "TASK-017", "TASK-018"],
+      "depends_on": [
+        "TASK-014"
+      ],
+      "blocks": [
+        "TASK-016",
+        "TASK-017",
+        "TASK-018"
+      ],
       "spec": "specs/clients_spec.md",
-      "tables": ["clients", "client_addresses", "client_contacts", "client_tags"],
+      "tables": [
+        "clients",
+        "client_addresses",
+        "client_contacts",
+        "client_tags"
+      ],
       "branch": ""
     },
     {
@@ -260,10 +445,17 @@
       "description": "Client list + detail screens — list with search/filter, incomplete flag, detail with all sections",
       "status": "blocked",
       "parallel_safe": true,
-      "depends_on": ["TASK-015"],
+      "depends_on": [
+        "TASK-015"
+      ],
       "blocks": [],
       "spec": "specs/clients_spec.md",
-      "tables": ["clients", "client_addresses", "client_contacts", "client_tags"],
+      "tables": [
+        "clients",
+        "client_addresses",
+        "client_contacts",
+        "client_tags"
+      ],
       "branch": ""
     },
     {
@@ -273,10 +465,16 @@
       "description": "Client create + edit screens — type toggle, all fields, display_name auto-suggest, address/contact inline",
       "status": "blocked",
       "parallel_safe": true,
-      "depends_on": ["TASK-015"],
+      "depends_on": [
+        "TASK-015"
+      ],
       "blocks": [],
       "spec": "specs/clients_spec.md",
-      "tables": ["clients", "client_addresses", "client_contacts"],
+      "tables": [
+        "clients",
+        "client_addresses",
+        "client_contacts"
+      ],
       "branch": ""
     },
     {
@@ -286,10 +484,15 @@
       "description": "Communications log UI — log form, method/direction/result, chronological list, file attachment",
       "status": "blocked",
       "parallel_safe": true,
-      "depends_on": ["TASK-015"],
+      "depends_on": [
+        "TASK-015"
+      ],
       "blocks": [],
       "spec": "specs/clients_spec.md",
-      "tables": ["communications", "communication_attachments"],
+      "tables": [
+        "communications",
+        "communication_attachments"
+      ],
       "branch": ""
     },
     {
@@ -297,12 +500,25 @@
       "phase": 4,
       "module": "crews",
       "description": "Supabase schema — crews, equipment, all fleet tables + RLS",
-      "status": "blocked",
+      "status": "ready",
       "parallel_safe": false,
-      "depends_on": ["TASK-013"],
-      "blocks": ["TASK-020", "TASK-021"],
+      "depends_on": [
+        "TASK-013"
+      ],
+      "blocks": [
+        "TASK-020",
+        "TASK-021"
+      ],
       "spec": "specs/fleet_spec.md",
-      "tables": ["crews", "equipment", "equipment_assignments", "equipment_schedule", "equipment_requests", "equipment_maintenance", "vehicle_inspections"],
+      "tables": [
+        "crews",
+        "equipment",
+        "equipment_assignments",
+        "equipment_schedule",
+        "equipment_requests",
+        "equipment_maintenance",
+        "vehicle_inspections"
+      ],
       "branch": ""
     },
     {
@@ -312,10 +528,14 @@
       "description": "Crews service + UI — CrewService, list/detail/create/edit screens",
       "status": "blocked",
       "parallel_safe": true,
-      "depends_on": ["TASK-019"],
+      "depends_on": [
+        "TASK-019"
+      ],
       "blocks": [],
       "spec": "specs/fleet_spec.md",
-      "tables": ["crews"],
+      "tables": [
+        "crews"
+      ],
       "branch": ""
     },
     {
@@ -325,10 +545,19 @@
       "description": "Equipment service + providers — EquipmentService, availability check, expiry alerts, Freezed models",
       "status": "blocked",
       "parallel_safe": true,
-      "depends_on": ["TASK-019"],
-      "blocks": ["TASK-022", "TASK-023"],
+      "depends_on": [
+        "TASK-019"
+      ],
+      "blocks": [
+        "TASK-022",
+        "TASK-023"
+      ],
       "spec": "specs/fleet_spec.md",
-      "tables": ["equipment", "equipment_assignments", "equipment_schedule"],
+      "tables": [
+        "equipment",
+        "equipment_assignments",
+        "equipment_schedule"
+      ],
       "branch": ""
     },
     {
@@ -338,10 +567,14 @@
       "description": "Equipment list, detail, create + edit screens — type filter, expiry badges, all fields",
       "status": "blocked",
       "parallel_safe": true,
-      "depends_on": ["TASK-021"],
+      "depends_on": [
+        "TASK-021"
+      ],
       "blocks": [],
       "spec": "specs/fleet_spec.md",
-      "tables": ["equipment"],
+      "tables": [
+        "equipment"
+      ],
       "branch": ""
     },
     {
@@ -351,10 +584,15 @@
       "description": "Maintenance log + DVIR screens — entry forms, history lists, receipt + signature upload",
       "status": "blocked",
       "parallel_safe": true,
-      "depends_on": ["TASK-021"],
+      "depends_on": [
+        "TASK-021"
+      ],
       "blocks": [],
       "spec": "specs/fleet_spec.md",
-      "tables": ["equipment_maintenance", "vehicle_inspections"],
+      "tables": [
+        "equipment_maintenance",
+        "vehicle_inspections"
+      ],
       "branch": ""
     },
     {
@@ -362,114 +600,394 @@
       "phase": 5,
       "module": "item_catalog",
       "description": "Supabase schema — catalog items, specs, suppliers, partners, material configs, product catalog tables + RLS",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-007"],
-      "blocks": ["TASK-025"],
+      "depends_on": [
+        "TASK-003"
+      ],
+      "blocks": [
+        "TASK-025"
+      ],
       "spec": "specs/catalog_spec.md",
-      "tables": ["catalog_items", "catalog_item_specs", "suppliers", "supplier_locations", "catalog_item_suppliers", "partners", "material_configurations", "material_configuration_roles", "product_catalog", "product_catalog_inputs", "product_catalog_components"],
-      "branch": ""
+      "tables": [
+        "catalog_items",
+        "catalog_item_specs",
+        "suppliers",
+        "supplier_locations",
+        "catalog_item_suppliers",
+        "partners",
+        "material_configurations",
+        "material_configuration_roles",
+        "product_catalog",
+        "product_catalog_inputs",
+        "product_catalog_components"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-025",
       "phase": 5,
       "module": "item_catalog",
       "description": "Item catalog service + providers — CatalogItemService, SupplierService, pricing hierarchy, price review alerts, Freezed models",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-024"],
-      "blocks": ["TASK-026", "TASK-027"],
+      "depends_on": [
+        "TASK-024"
+      ],
+      "blocks": [
+        "TASK-026",
+        "TASK-027"
+      ],
       "spec": "specs/catalog_spec.md",
-      "tables": ["catalog_items", "catalog_item_specs", "catalog_item_suppliers", "suppliers", "supplier_locations"],
-      "branch": ""
+      "tables": [
+        "catalog_items",
+        "catalog_item_specs",
+        "catalog_item_suppliers",
+        "suppliers",
+        "supplier_locations"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-026",
       "phase": 5,
       "module": "item_catalog",
       "description": "Item catalog + supplier UI — item list/detail/create/edit, supplier management, partner management, price review workflow",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-025"],
+      "depends_on": [
+        "TASK-025"
+      ],
       "blocks": [],
       "spec": "specs/catalog_spec.md",
-      "tables": ["catalog_items", "suppliers", "supplier_locations", "partners"],
-      "branch": ""
+      "tables": [
+        "catalog_items",
+        "suppliers",
+        "supplier_locations",
+        "partners"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-027",
       "phase": 5,
       "module": "product_catalog",
       "description": "Product catalog service + formula engine — ProductCatalogService, FormulaEngine (math_expressions), seeded templates",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-025"],
-      "blocks": ["TASK-028"],
+      "depends_on": [
+        "TASK-025"
+      ],
+      "blocks": [
+        "TASK-028"
+      ],
       "spec": "specs/catalog_spec.md",
-      "tables": ["product_catalog", "product_catalog_inputs", "product_catalog_components", "material_configurations", "material_configuration_roles"],
-      "branch": ""
+      "tables": [
+        "product_catalog",
+        "product_catalog_inputs",
+        "product_catalog_components",
+        "material_configurations",
+        "material_configuration_roles"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-028",
       "phase": 5,
       "module": "product_catalog",
       "description": "Product catalog builder UI — list by category, form designer for inputs + components, material config builder",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-027"],
+      "depends_on": [
+        "TASK-027"
+      ],
       "blocks": [],
       "spec": "specs/catalog_spec.md",
-      "tables": ["product_catalog", "product_catalog_inputs", "product_catalog_components"],
-      "branch": ""
+      "tables": [
+        "product_catalog",
+        "product_catalog_inputs",
+        "product_catalog_components"
+      ],
+      "branch": "dev"
     }
   ],
   "tables": [
-    { "name": "organizations", "module": "auth", "spec": "specs/auth_spec.md", "section": "data_structure.md#organizations" },
-    { "name": "profiles", "module": "auth", "spec": "specs/auth_spec.md", "section": "data_structure.md#profiles" },
-    { "name": "org_members", "module": "auth", "spec": "specs/auth_spec.md", "section": "data_structure.md#org_members" },
-    { "name": "org_settings", "module": "orgs", "spec": "specs/auth_spec.md", "section": "data_structure.md#org_settings" },
-    { "name": "roles", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#roles" },
-    { "name": "role_permissions", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#role_permissions" },
-    { "name": "employees", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#employees" },
-    { "name": "employee_permission_overrides", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#employee_permission_overrides" },
-    { "name": "employee_compensation", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#employee_compensation" },
-    { "name": "employee_invites", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#employee_invites" },
-    { "name": "employee_preferences", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#employee_preferences" },
-    { "name": "custom_field_definitions", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#custom_field_definitions" },
-    { "name": "custom_field_values", "module": "employees", "spec": "specs/employees_spec.md", "section": "data_structure.md#custom_field_values" },
-    { "name": "clients", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#clients" },
-    { "name": "client_addresses", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#client_addresses" },
-    { "name": "client_contacts", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#client_contacts" },
-    { "name": "client_tags", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#client_tags" },
-    { "name": "client_types", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#client_types" },
-    { "name": "tags", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#tags" },
-    { "name": "referral_funnels", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#referral_funnels" },
-    { "name": "referral_sources", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#referral_sources" },
-    { "name": "payment_terms", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#payment_terms" },
-    { "name": "notes", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#notes" },
-    { "name": "note_attachments", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#note_attachments" },
-    { "name": "tasks", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#tasks" },
-    { "name": "task_followers", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#task_followers" },
-    { "name": "communications", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#communications" },
-    { "name": "communication_attachments", "module": "clients", "spec": "specs/clients_spec.md", "section": "data_structure.md#communication_attachments" },
-    { "name": "crews", "module": "crews", "spec": "specs/fleet_spec.md", "section": "data_structure.md#crews" },
-    { "name": "equipment", "module": "fleet", "spec": "specs/fleet_spec.md", "section": "data_structure.md#equipment" },
-    { "name": "equipment_assignments", "module": "fleet", "spec": "specs/fleet_spec.md", "section": "data_structure.md#equipment_assignments" },
-    { "name": "equipment_schedule", "module": "fleet", "spec": "specs/fleet_spec.md", "section": "data_structure.md#equipment_schedule" },
-    { "name": "equipment_requests", "module": "fleet", "spec": "specs/fleet_spec.md", "section": "data_structure.md#equipment_requests" },
-    { "name": "equipment_maintenance", "module": "fleet", "spec": "specs/fleet_spec.md", "section": "data_structure.md#equipment_maintenance" },
-    { "name": "vehicle_inspections", "module": "fleet", "spec": "specs/fleet_spec.md", "section": "data_structure.md#vehicle_inspections" },
-    { "name": "catalog_items", "module": "item_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#catalog_items" },
-    { "name": "catalog_item_specs", "module": "item_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#catalog_item_specs" },
-    { "name": "suppliers", "module": "item_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#suppliers" },
-    { "name": "supplier_locations", "module": "item_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#supplier_locations" },
-    { "name": "catalog_item_suppliers", "module": "item_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#catalog_item_suppliers" },
-    { "name": "partners", "module": "item_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#partners" },
-    { "name": "material_configurations", "module": "product_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#material_configurations" },
-    { "name": "material_configuration_roles", "module": "product_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#material_configuration_roles" },
-    { "name": "product_catalog", "module": "product_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#product_catalog" },
-    { "name": "product_catalog_inputs", "module": "product_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#product_catalog_inputs" },
-    { "name": "product_catalog_components", "module": "product_catalog", "spec": "specs/catalog_spec.md", "section": "data_structure.md#product_catalog_components" }
+    {
+      "name": "organizations",
+      "module": "auth",
+      "spec": "specs/auth_spec.md",
+      "section": "data_structure.md#organizations"
+    },
+    {
+      "name": "profiles",
+      "module": "auth",
+      "spec": "specs/auth_spec.md",
+      "section": "data_structure.md#profiles"
+    },
+    {
+      "name": "org_members",
+      "module": "auth",
+      "spec": "specs/auth_spec.md",
+      "section": "data_structure.md#org_members"
+    },
+    {
+      "name": "org_settings",
+      "module": "orgs",
+      "spec": "specs/auth_spec.md",
+      "section": "data_structure.md#org_settings"
+    },
+    {
+      "name": "roles",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#roles"
+    },
+    {
+      "name": "role_permissions",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#role_permissions"
+    },
+    {
+      "name": "employees",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#employees"
+    },
+    {
+      "name": "employee_permission_overrides",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#employee_permission_overrides"
+    },
+    {
+      "name": "employee_compensation",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#employee_compensation"
+    },
+    {
+      "name": "employee_invites",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#employee_invites"
+    },
+    {
+      "name": "employee_preferences",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#employee_preferences"
+    },
+    {
+      "name": "custom_field_definitions",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#custom_field_definitions"
+    },
+    {
+      "name": "custom_field_values",
+      "module": "employees",
+      "spec": "specs/employees_spec.md",
+      "section": "data_structure.md#custom_field_values"
+    },
+    {
+      "name": "clients",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#clients"
+    },
+    {
+      "name": "client_addresses",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#client_addresses"
+    },
+    {
+      "name": "client_contacts",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#client_contacts"
+    },
+    {
+      "name": "client_tags",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#client_tags"
+    },
+    {
+      "name": "client_types",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#client_types"
+    },
+    {
+      "name": "tags",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#tags"
+    },
+    {
+      "name": "referral_funnels",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#referral_funnels"
+    },
+    {
+      "name": "referral_sources",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#referral_sources"
+    },
+    {
+      "name": "payment_terms",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#payment_terms"
+    },
+    {
+      "name": "notes",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#notes"
+    },
+    {
+      "name": "note_attachments",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#note_attachments"
+    },
+    {
+      "name": "tasks",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#tasks"
+    },
+    {
+      "name": "task_followers",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#task_followers"
+    },
+    {
+      "name": "communications",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#communications"
+    },
+    {
+      "name": "communication_attachments",
+      "module": "clients",
+      "spec": "specs/clients_spec.md",
+      "section": "data_structure.md#communication_attachments"
+    },
+    {
+      "name": "crews",
+      "module": "crews",
+      "spec": "specs/fleet_spec.md",
+      "section": "data_structure.md#crews"
+    },
+    {
+      "name": "equipment",
+      "module": "fleet",
+      "spec": "specs/fleet_spec.md",
+      "section": "data_structure.md#equipment"
+    },
+    {
+      "name": "equipment_assignments",
+      "module": "fleet",
+      "spec": "specs/fleet_spec.md",
+      "section": "data_structure.md#equipment_assignments"
+    },
+    {
+      "name": "equipment_schedule",
+      "module": "fleet",
+      "spec": "specs/fleet_spec.md",
+      "section": "data_structure.md#equipment_schedule"
+    },
+    {
+      "name": "equipment_requests",
+      "module": "fleet",
+      "spec": "specs/fleet_spec.md",
+      "section": "data_structure.md#equipment_requests"
+    },
+    {
+      "name": "equipment_maintenance",
+      "module": "fleet",
+      "spec": "specs/fleet_spec.md",
+      "section": "data_structure.md#equipment_maintenance"
+    },
+    {
+      "name": "vehicle_inspections",
+      "module": "fleet",
+      "spec": "specs/fleet_spec.md",
+      "section": "data_structure.md#vehicle_inspections"
+    },
+    {
+      "name": "catalog_items",
+      "module": "item_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#catalog_items"
+    },
+    {
+      "name": "catalog_item_specs",
+      "module": "item_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#catalog_item_specs"
+    },
+    {
+      "name": "suppliers",
+      "module": "item_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#suppliers"
+    },
+    {
+      "name": "supplier_locations",
+      "module": "item_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#supplier_locations"
+    },
+    {
+      "name": "catalog_item_suppliers",
+      "module": "item_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#catalog_item_suppliers"
+    },
+    {
+      "name": "partners",
+      "module": "item_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#partners"
+    },
+    {
+      "name": "material_configurations",
+      "module": "product_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#material_configurations"
+    },
+    {
+      "name": "material_configuration_roles",
+      "module": "product_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#material_configuration_roles"
+    },
+    {
+      "name": "product_catalog",
+      "module": "product_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#product_catalog"
+    },
+    {
+      "name": "product_catalog_inputs",
+      "module": "product_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#product_catalog_inputs"
+    },
+    {
+      "name": "product_catalog_components",
+      "module": "product_catalog",
+      "spec": "specs/catalog_spec.md",
+      "section": "data_structure.md#product_catalog_components"
+    }
   ],
   "specs": [
     {

@@ -88,7 +88,7 @@ Claude scopes every task before Codex touches anything. Claude diagnoses every e
 5. **Branch rules:** Never commit to `main`. All work on `dev` or feature branches.
 6. **Secrets:** Never commit `.env` or any file with real keys.
 7. **AuthException clash:** `import 'package:supabase_flutter/supabase_flutter.dart' as supa;` in auth files.
-8. **Task review:** Codex marks tasks `needs-review` — Claude moves to `done` after review and moves task to Completed Summary in `tasks.md`.
+8. **Task review:** Codex marks tasks `needs-review` — Claude reviews, marks `done` in `index.json`, removes the full task entry from the Active Tasks section of `tasks.md`, and appends a one-line summary row to the Completed Tasks table at the bottom.
 9. **Doc maintenance:** `architecture.md` and `index.json` must reflect current project state after every task. A task is not done until both are updated.
 10. **Plaid:** Raw transaction data is read-only. Never mutate Plaid data.
 11. **Module boundaries:** Never import directly from another feature's internals. Cross-feature data flows through shared providers or services only.

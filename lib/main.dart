@@ -1,14 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import 'app.dart';
+import 'core/constants/app_constants.dart';
 
 Future<void> main() async {
-  runApp(const FreedomApp());
-}
+  WidgetsFlutterBinding.ensureInitialized();
 
-class FreedomApp extends StatelessWidget {
-  const FreedomApp({super.key});
+  await dotenv.load(fileName: '.env');
+  await Supabase.initialize(
+    url: AppConstants.supabaseUrl,
+    anonKey: AppConstants.supabaseAnonKey,
+  );
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(home: Scaffold(body: SizedBox.expand()));
-  }
+  runApp(const ProviderScope(child: FreedomApp()));
 }

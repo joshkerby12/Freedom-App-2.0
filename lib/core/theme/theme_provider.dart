@@ -19,8 +19,8 @@ class ThemeModeNotifier extends _$ThemeModeNotifier {
   }
 
   String get currentLabel => switch (state) {
-        ThemeMode.light => 'Light',
-        ThemeMode.dark => 'Dark',
-        ThemeMode.system => 'System',
-      };
+    ThemeMode.light => 'Light',
+    ThemeMode.dark => 'Dark',
+    ThemeMode.system => 'System',
+  };
 }

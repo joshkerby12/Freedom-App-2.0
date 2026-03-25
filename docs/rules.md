@@ -58,7 +58,7 @@
 - Always update the spec sheet Code Map when adding, moving, or renaming functions
 - Always update `architecture.md` doc tree and spec sheet index after every task — no exceptions
 - Always update `index.json` after every task (status, branch)
-- Always update `tasks.md` when a task is completed
+- Always update `tasks.md` when a task is completed — remove the full entry from Active Tasks, append a one-line row to the Completed Tasks table at the bottom
 - A task is not complete until `architecture.md` and `index.json` reflect the current state of the codebase
 
 ---

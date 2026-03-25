@@ -123,3 +123,27 @@ Entry format:
 - **What was tried:** Set `platform :ios, '15.0'` in Podfile, reran iOS launch, then replaced `lib/main.dart` with a minimal blank-screen app entrypoint and reran `flutter run`.
 - **Resolution:** iOS simulator build and launch succeeded with the scaffold blank screen.
 - **Docs updated as result:** `docs/tasks.md`
+
+### ERR-002 · Phase 5 blocked by unresolved dependency and missing spec
+- **Date:** 2026-03-25
+- **Status:** Resolved
+- **Feature area:** Item catalog / product catalog phase execution
+- **Module:** item_catalog, product_catalog
+- **What was reported:** Run `@CODEX.md phase 5`.
+- **Clarifying questions asked / answers received:** N/A (direct phase invocation)
+- **Root cause:** Initial preflight failed because upstream dependency state and spec availability were out of sync with the phase invocation requirements.
+- **What was tried:** Re-ran phase preflight after dependency/state updates, then executed TASK-024 through TASK-028 (migrations, services/providers, UI flows, router wiring), regenerated Riverpod/Freezed code, and fixed analyzer errors.
+- **Resolution:** Phase 5 implementation completed and task statuses moved to `needs-review`.
+- **Docs updated as result:** `docs/tasks.md`, `index.json`, `docs/log.md`, `docs/errors.md`
+
+### ERR-003 · Supabase db push failed during Phase 1 migration apply
+- **Date:** 2026-03-25
+- **Status:** Blocked
+- **Feature area:** Auth schema migration deployment
+- **Module:** auth
+- **What was reported:** `supabase db push` failed while applying Phase 1 migration.
+- **Clarifying questions asked / answers received:** N/A (execution task)
+- **Root cause:** Supabase CLI login role authentication failed for remote Postgres user `cli_login_postgres` (`SQLSTATE 28P01`), so migration could not be applied to the remote database from this environment.
+- **What was tried:** Ran `supabase migration list` (migration detected locally), then ran `supabase db push`; command failed with password authentication error.
+- **Resolution:** Code/migration implementation completed locally; remote migration apply is pending credential fix or re-link by director.
+- **Docs updated as result:** `docs/errors.md`

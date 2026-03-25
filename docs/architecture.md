@@ -17,9 +17,9 @@
 **AI:** Anthropic Claude API
 **Voice:** Deepgram (STT) + flutter_tts (TTS)
 **Push Notifications:** Firebase Cloud Messaging (FCM)
-**Supabase Project Ref:** _pending — see Pre-Launch Dependencies_
-**Supabase URL:** _pending_
-**Supabase Anon Key:** _pending_
+**Supabase Project Ref:** `dhkqhctriihbdzprxqnk`
+**Supabase URL:** `https://dhkqhctriihbdzprxqnk.supabase.co`
+**Supabase Anon Key:** in `.env` — `SUPABASE_ANON_KEY`
 
 **Core Principles:**
 - Every table is org-scoped — `org_id` on every row, no exceptions
@@ -196,9 +196,9 @@ These items are not blocking scaffold but must be completed before launch:
 
 | Item | Owner | Notes |
 |---|---|---|
-| Supabase project creation | Director | Create at supabase.com — provide project ref, URL, anon key |
-| `supabase login && supabase link` | Director + Claude | Run after project exists |
-| Remote git repository | Director | Create on GitHub, then `git remote add origin <url>` |
+| Supabase project creation | Director | ✅ Done — `dhkqhctriihbdzprxqnk` |
+| `supabase login && supabase link` | Director + Claude | ✅ Done — linked 2026-03-25 |
+| Remote git repository | Director | ✅ Done — https://github.com/joshkerby12/Freedom-App-2.0.git |
 | Apple Developer account | Director | Required for iOS App Store / TestFlight |
 | Google Play Console account | Director | Required for Android distribution |
 | Firebase project + FCM setup | Director + Claude | Create Firebase project, add `google-services.json` and `GoogleService-Info.plist` before any notification work |

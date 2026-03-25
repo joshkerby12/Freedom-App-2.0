@@ -6,6 +6,53 @@
 
 ---
 
+## 2026-03-25 · Phase 2 and Phase 5 Reviewed and Approved
+
+**Done:** TASK-008 through TASK-013 (Phase 2) and TASK-024 through TASK-028 (Phase 5) all reviewed and marked done. Key findings: permission override logic correct — override-first → role → deny implemented at both DB layer (`has_employee_permission` function) and app layer (PermissionService); 27 permission keys defined in `kPermissionKeys`; compensation always INSERTs (never updates history); display_name shown as hint text, never auto-populated; invite token is 64 hex chars from `Random.secure()`, 7-day expiry; Edge Function verifies JWT + org membership before sending; catalog pricing hierarchy correct (default_sell_price → preferred_supplier × markup → default_cost × markup → 0); formula engine handles missing variables via FormulaResult.failure before parse (no crash); 48 product templates seeded idempotently across 7 categories, trigger fires on new org + DO block seeds existing orgs; `ON CONFLICT DO NOTHING` ensures safe re-run. Minor non-blocking flag: date fields in employee form are plain text — future polish for date picker. Done-task convention established: remove full entry from Active Tasks, append one-line row to Completed Tasks table.
+**Next:** Hand Phase 3 and Phase 4 to Codex — `@CODEX.md phase 3` (TASK-014) and `@CODEX.md phase 4` (TASK-019) — both are `ready` and can run in parallel.
+**Errors:** no
+
+---
+
+## 2026-03-25 · Phase 1 Reviewed and Approved
+
+**Done:** TASK-003 through TASK-007 reviewed and marked done. Code clean across all Phase 1 tasks: migration correct, RLS policies correct, seed function uses service role with user verification, AuthService uses `as supa` import (no clash), RouterNotifier redirect logic matches spec exactly, app shell uses Material 3 NavigationBar with correct icons and named routes. TASK-008 marked ready — Phase 2 is fully unblocked.
+**Next:** Hand Phase 2 to Codex — `@CODEX.md phase 2`
+**Errors:** no
+
+---
+
+## 2026-03-25 · All Spec Sheets Complete
+
+**Done:** All five spec sheets written — `specs/auth_spec.md`, `specs/employees_spec.md`, `specs/clients_spec.md`, `specs/fleet_spec.md`, `specs/catalog_spec.md`. All phases now fully specced. TASK-024 dependency corrected to TASK-003 and marked ready (unblocks Codex B running Phase 5). Every active Codex instance has spec coverage for its phase.
+**Next:** Review Phase 1 output (Codex A: TASK-003–007) and Phase 5 output (Codex B: TASK-024–028) when complete. Then hand Phase 2 to Codex C (`@CODEX.md phase 2`). Phases 3 and 4 follow after Phase 2 is done.
+**Errors:** no
+
+---
+
+## 2026-03-25 · Phase 0 Complete
+**Done:** TASK-002 reviewed and approved. Full lib/ scaffold in place across all feature modules. dart analyze clean. Both Phase 0 tasks done. TASK-003 marked ready — Phase 1 is fully unblocked.
+**Next:** Hand Phase 1 to Codex — `@CODEX.md phase 1`
+**Errors:** no
+
+---
+
+## 2026-03-25 · Phase 0 · TASK-001 Reviewed and Closed
+**Done:** Director confirmed flutter run boots cleanly to blank screen on iPhone 17 Pro simulator. TASK-001 marked done. TASK-002 marked ready.
+**Next:** Hand TASK-002 to Codex — `@CODEX.md task 2`
+**Errors:** no (SdkRoot warning is Xcode noise, not an error)
+
+---
+
+## 2026-03-25 · Phase 0 · Infrastructure Connected
+**Done:** GitHub repo created and linked (https://github.com/joshkerby12/Freedom-App-2.0.git). Initial commit pushed to main. Dev branch created and pushed. Supabase project FreedomApp2.0 created (ref: dhkqhctriihbdzprxqnk), CLI linked, .env populated with URL and anon key. architecture.md pre-launch dependencies updated to reflect completed items.
+**Decided:** All Phase 0 infrastructure prerequisites are now complete except TASK-001 director review.
+**Pending:** Director review of TASK-001 (flutter create output). Once approved, TASK-002 can run, then Phase 1 is fully unblocked.
+**Next:** Director reviews TASK-001 acceptance criteria — confirm app boots to blank screen on iOS simulator. Then mark TASK-001 done and hand TASK-002 to Codex.
+**Errors:** no
+
+---
+
 ## 2026-03-25 · Phase 0 · Task Scoping — Phases 1–5
 **Done:** Scoped all tasks for Phases 1–5. TASK-003 through TASK-028 fully written to tasks.md with What to Build, Acceptance Criteria, depends_on, blocks, and parallel-safe fields. index.json seeded with all 28 tasks, 9 modules, 47 tables, and 5 spec references. architecture.md Module Registry updated with phase assignments and spec files. implementation_plan.md Phases 1–5 rewritten with parallelism maps and task references.
 **Decided:** Phase 5 (catalog) can run in parallel with Phases 3 and 4 — only depends on Phase 1. Phases 3 and 4 can also run in parallel with each other — both only depend on Phase 2. TASK-013 (role/permissions UI) is the gate that unblocks both Phase 3 and Phase 4 schema tasks.
@@ -23,3 +70,20 @@
 **Errors:** no
 
 ---
+[2026-03-25] · TASK-002 · Core lib scaffold completed (folders + placeholder files, analyzer clean) · needs-review
+[2026-03-25] · TASK-003 · Core auth migration created (tables, triggers, RLS) · needs-review
+[2026-03-25] · TASK-004 · seed-org-data Edge Function implemented with org seed sets · needs-review
+[2026-03-25] · TASK-005 · Auth service/notifier and sign in/up/reset flows implemented · needs-review
+[2026-03-25] · TASK-006 · Org service/notifier and org setup flow implemented · needs-review
+[2026-03-25] · TASK-007 · App router, guards, and shell navigation placeholders implemented · needs-review
+[2026-03-25] · TASK-008 · Employees schema migration + RLS policies implemented (roles, permissions, compensation, invites, custom fields) · needs-review
+[2026-03-25] · TASK-009 · EmployeeService, PermissionService, InviteService, Freezed models, and Riverpod providers implemented · needs-review
+[2026-03-25] · TASK-010 · Employee list/detail screens with status filters, routing, and compensation visibility gating implemented · needs-review
+[2026-03-25] · TASK-011 · Employee create/edit form with status transitions and compensation entry flow implemented · needs-review
+[2026-03-25] · TASK-012 · Employee invite flow implemented with send-employee-invite Edge Function and invite accept screen · needs-review
+[2026-03-25] · TASK-013 · Role list/detail permission matrix and per-employee override panel implemented · needs-review
+[2026-03-25] · TASK-024 · Catalog/schema migration + RLS + triggers implemented for item/product catalog domain · needs-review
+[2026-03-25] · TASK-025 · Item catalog services, helpers, models, and Riverpod providers implemented · needs-review
+[2026-03-25] · TASK-026 · Item catalog, supplier, partner, and price review mobile screens implemented · needs-review
+[2026-03-25] · TASK-027 · Product catalog services, formula engine, material config logic, and template seed migration implemented · needs-review
+[2026-03-25] · TASK-028 · Product catalog and material configuration builder mobile screens implemented · needs-review

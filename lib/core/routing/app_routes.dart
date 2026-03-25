@@ -1,55 +1,35 @@
 class AppRoutes {
   AppRoutes._();
 
-  // Auth
-  static const String login = '/auth/login';
-  static const String register = '/auth/register';
-  static const String forgotPassword = '/auth/forgot-password';
-
-  // Org
+  static const String signIn = '/auth/sign-in';
+  static const String signUp = '/auth/sign-up';
+  static const String resetPassword = '/auth/reset-password';
   static const String orgSetup = '/orgs/setup';
 
-  // Main
   static const String dashboard = '/dashboard';
-
-  // Clients
   static const String clients = '/clients';
-  static const String clientDetail = '/clients/:id';
-  static const String clientCreate = '/clients/new';
-
-  // Estimates
   static const String estimates = '/estimates';
-  static const String estimateDetail = '/estimates/:id';
-  static const String estimateCreate = '/estimates/new';
-
-  // Jobs
-  static const String jobs = '/jobs';
-  static const String jobDetail = '/jobs/:id';
-
-  // Scheduling
   static const String schedule = '/schedule';
+  static const String menu = '/menu';
 
-  // Employees
   static const String employees = '/employees';
+  static const String employeeNew = '/employees/new';
   static const String employeeDetail = '/employees/:id';
+  static const String employeeEdit = '/employees/:id/edit';
 
-  // Fleet
-  static const String fleet = '/fleet';
-  static const String equipmentDetail = '/fleet/:id';
+  static const String roles = '/settings/roles';
+  static const String roleDetail = '/settings/roles/:id';
 
-  // Catalog
-  static const String catalog = '/catalog';
+  static const String inviteAccept = '/invite/accept';
 
-  // EOS
-  static const String eos = '/eos';
-  static const String eosScorecard = '/eos/scorecard';
-  static const String eosRocks = '/eos/rocks';
-  static const String eosIssues = '/eos/issues';
-  static const String eosMeeting = '/eos/meeting/:id';
+  static const String catalogItems = '/catalog/items';
+  static const String catalogItemCreate = '/catalog/items/new';
+  static const String catalogSuppliers = '/catalog/suppliers';
+  static const String catalogSupplierCreate = '/catalog/suppliers/new';
+  static const String catalogPartners = '/catalog/partners';
+  static const String catalogPriceReview = '/catalog/price-review';
 
-  // Reports
-  static const String reports = '/reports';
-
-  // Settings
-  static const String settings = '/settings';
+  static const String catalogProducts = '/catalog/products';
+  static const String catalogProductCreate = '/catalog/products/new';
+  static const String catalogMaterialConfigs = '/catalog/material-configs';
 }
