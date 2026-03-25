@@ -1,0 +1,41 @@
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+*.g.dart
+*.freezed.dart
+
+# Environment
+.env
+*.env
+.env.local
+.env.production
+
+# Supabase
+.supabase/
+supabase/.temp/
+
+# Firebase / FCM
+google-services.json
+GoogleService-Info.plist
+firebase_app_id_file.json
+
+# macOS
+.DS_Store
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+ios/Pods/
+macos/Pods/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Misc
+*.log
+coverage/
