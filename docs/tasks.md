@@ -39,79 +39,15 @@
 
 ---
 
-## Phase 3 · Next.js Scaffold ← CURRENT
+## Phase 3 · Next.js Scaffold
 
-> Track: Web
-> Depends on: Phase 2 complete.
-> This phase must complete before any web UI tasks (Phase 4+) can begin.
-
----
-
-### TASK-029 · Next.js scaffold — web/ project, Supabase SSR auth, app shell
-- **Status:** done
-- **Phase:** 3
-- **Track:** web
-- **Module:** next_js_scaffold
-- **Parallel-safe:** no
-- **Depends on:** TASK-007
-- **Blocks:** TASK-016W, TASK-017W, TASK-018W, TASK-020W, TASK-022W, TASK-023W
-- **Spec:** none
-- **What to build:**
-  - Initialize `web/` Next.js project (App Router, TypeScript, Tailwind)
-  - Install and configure `@supabase/ssr` — session via HTTP-only cookies
-  - `middleware.ts` — route protection: unauthenticated → `/login`, no org → `/onboarding`
-  - Design system scaffold — Montserrat font, brand color tokens (from design_guidelines.md), base component set (Button, Input, Card)
-  - App shell — top nav + sidebar layout, responsive breakpoints matching design_guidelines.md
-  - `/login` and `/sign-up` pages wired to Supabase Auth
-  - `/dashboard` placeholder (authenticated landing page)
-- **Acceptance criteria:**
-  - [ ] `cd web && npm run dev` starts without errors
-  - [ ] Sign in with a Supabase account, land on `/dashboard`
-  - [ ] Unauthenticated users redirected to `/login`
-  - [ ] Brand colors and Montserrat font applied
-- **Files to create/modify:** `web/`
+> **Status: COMPLETE** — TASK-029 done. See Completed Tasks table.
 
 ---
 
 ## Phase 4 · Web — Clients
 
-> Track: Web
-> Depends on: Phase 3 (Next.js scaffold) complete.
-> Schema (TASK-014) and service (TASK-015) are shared — unblock web UI tasks in parallel.
-
----
-
-### TASK-014 · Supabase schema — clients, addresses, contacts, lookup tables + RLS
-- **Status:** done
-- **Phase:** 3
-- **Module:** clients
-- **Parallel-safe:** no
-- **Depends on:** TASK-013
-- **Blocks:** TASK-015, TASK-016, TASK-017, TASK-018
-- **Spec:** specs/clients_spec.md
-- **What to build:**
-  Full schema migration for clients and all supporting lookup tables.
-  - `clients` table (full column set from history.md) + RLS
-  - `client_addresses` table + RLS
-  - `client_contacts` table + RLS
-  - `client_tags` join table + RLS
-  - `client_types` lookup table + RLS
-  - `tags` lookup table + RLS
-  - `referral_funnels` lookup table + RLS
-  - `referral_sources` lookup table + RLS
-  - `payment_terms` table (already seeded in TASK-004 — confirm exists, add RLS if missing)
-  - `notes` table (global — entity_type enum, entity_id) + RLS
-  - `note_attachments` table + RLS
-  - `tasks` table (global — entity_type enum) + RLS
-  - `task_followers` join table + RLS
-  - `communications` table + RLS
-  - `communication_attachments` table + RLS
-  - `updated_at` trigger on all new tables
-- **Acceptance criteria:**
-  - [ ] Migration runs clean
-  - [ ] RLS enforces org scoping on all tables
-  - [ ] `client_tags` join correctly links clients to tags within same org
-- **Files to create/modify:** `supabase/migrations/`
+> **Status: COMPLETE** — TASK-014, TASK-015, TASK-016W, TASK-017W, TASK-018W done. See Completed Tasks table.
 
 ---
 
@@ -124,36 +60,7 @@
 
 ## Phase 5 · Web — Crews & Fleet
 
-> Track: Web
-> Depends on: Phase 2 complete (employees for crew leads), Phase 3 complete (Next.js scaffold).
-> Can run in parallel with Phase 4 — no cross-dependency.
-> Schema (TASK-019) unblocks everything in this phase.
-
----
-
-### TASK-019 · Supabase schema — crews, equipment, fleet tables + RLS
-- **Status:** done
-- **Phase:** 4
-- **Module:** crews
-- **Parallel-safe:** no
-- **Depends on:** TASK-013
-- **Blocks:** TASK-020, TASK-021, TASK-022, TASK-023
-- **Spec:** specs/fleet_spec.md
-- **What to build:**
-  Full schema migration for crews and fleet management.
-  - `crews` table + RLS
-  - `equipment` table (full column set from history.md) + RLS
-  - `equipment_assignments` table + RLS
-  - `equipment_schedule` table + RLS
-  - `equipment_requests` table + RLS
-  - `equipment_maintenance` table + RLS
-  - `vehicle_inspections` table + RLS
-  - `updated_at` trigger on all new tables
-- **Acceptance criteria:**
-  - [ ] Migration runs clean
-  - [ ] RLS enforces org scoping
-  - [ ] `equipment_schedule` overlap queries work correctly (test conflicting assignments)
-- **Files to create/modify:** `supabase/migrations/`
+> **Status: COMPLETE** — TASK-019, TASK-020W, TASK-021W, TASK-022W, TASK-023W done. See Completed Tasks table.
 
 ---
 
@@ -164,7 +71,7 @@
 
 ---
 
-## Phase 6 · Web — Item Catalog, Suppliers & Product Catalog
+## Phase 6 · Web — Item Catalog, Suppliers & Product Catalog ← CURRENT
 
 > Track: Web
 > Depends on: Phase 5 schema already live (catalog tables on remote).

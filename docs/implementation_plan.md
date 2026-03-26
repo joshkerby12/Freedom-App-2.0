@@ -33,7 +33,7 @@
 
 ---
 
-## Phase 3 · Next.js Scaffold ← CURRENT
+## Phase 3 · Next.js Scaffold
 
 **Track:** Web
 **Depends on:** Phase 2 complete, Supabase project linked
