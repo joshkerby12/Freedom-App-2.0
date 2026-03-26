@@ -48,6 +48,8 @@ export async function getSessionSnapshot(
     .limit(1)
     .maybeSingle();
 
+  // membershipError here is typically the self-referential RLS recursion on
+  // org_members — treat any error as "no org found" so the user stays blocked.
   const hasOrg = !membershipError && Boolean(membership?.org_id);
 
   return { response, user, hasOrg };

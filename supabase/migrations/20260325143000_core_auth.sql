@@ -184,14 +184,9 @@ drop policy if exists "org_members_select_member" on public.org_members;
 create policy "org_members_select_member"
 on public.org_members
 for select
-using (
-  exists (
-    select 1
-    from public.org_members om
-    where om.org_id = org_members.org_id
-      and om.profile_id = auth.uid()
-  )
-);
+-- Simple direct check — the original subquery into org_members was
+-- self-referential and caused infinite recursion during org creation.
+using (profile_id = auth.uid());
 
 drop policy if exists "org_members_insert_owner_or_self_owner" on public.org_members;
 create policy "org_members_insert_owner_or_self_owner"
