@@ -201,9 +201,9 @@ _Track: S = Shared, W = Web (Next.js), M = Mobile (Flutter)_
 | fleet_mobile | M | placeholder | specs/fleet_spec.md | 1002 |
 | item_catalog | S+M | complete (Flutter) · web pending | specs/catalog_spec.md | 6 |
 | product_catalog | S+M | complete (Flutter) · web pending | specs/catalog_spec.md | 6 |
-| catalog_web | W | not started | specs/catalog_spec.md | 6 |
+| catalog_web | W | in progress | specs/catalog_spec.md | 6 |
 | catalog_mobile | M | placeholder | specs/catalog_spec.md | 1003 |
-| employees_web | W | not started | specs/employees_spec.md | 7 |
+| employees_web | W | in progress | specs/employees_spec.md | 7 |
 | employees_mobile | M | placeholder | specs/employees_spec.md | 1004 |
 | estimates | S+W | not started | — | 8 |
 | estimates_mobile | M | placeholder | — | 1005 |

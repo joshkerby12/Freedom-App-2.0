@@ -4,7 +4,7 @@
     "0-999": "Shared (schema + services) + Web (Next.js UI)",
     "1000-1999": "Mobile (Flutter UI) — placeholder until director signs off on corresponding web phase"
   },
-  "active_phase": 3,
+  "active_phase": 6,
   "modules": [
     {
       "name": "scaffold",
@@ -167,6 +167,14 @@
       ]
     },
     {
+      "name": "catalog_web",
+      "track": "web",
+      "status": "in-progress",
+      "phase": 6,
+      "spec": "specs/catalog_spec.md",
+      "tables": []
+    },
+    {
       "name": "catalog_mobile",
       "track": "mobile",
       "status": "placeholder",
@@ -178,7 +186,7 @@
     {
       "name": "employees_web",
       "track": "web",
-      "status": "not-started",
+      "status": "in-progress",
       "phase": 7,
       "spec": "specs/employees_spec.md",
       "tables": []
@@ -965,6 +973,132 @@
         "product_catalog_components"
       ],
       "branch": "dev"
+    },
+    {
+      "id": "TASK-029W",
+      "phase": 6,
+      "track": "web",
+      "module": "item_catalog",
+      "description": "Item catalog service + list/detail + price review workflow — Next.js",
+      "status": "ready",
+      "parallel_safe": false,
+      "depends_on": ["TASK-029"],
+      "blocks": ["TASK-030W", "TASK-031W", "TASK-032W", "TASK-033W"],
+      "spec": "specs/catalog_spec.md",
+      "tables": ["catalog_items", "catalog_item_specs", "catalog_item_suppliers"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-030W",
+      "phase": 6,
+      "track": "web",
+      "module": "item_catalog",
+      "description": "Item catalog create + edit — full form, specs section, supplier links, preferred supplier enforcement — Next.js",
+      "status": "ready",
+      "parallel_safe": true,
+      "depends_on": ["TASK-029W"],
+      "blocks": [],
+      "spec": "specs/catalog_spec.md",
+      "tables": ["catalog_items", "catalog_item_specs", "catalog_item_suppliers"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-031W",
+      "phase": 6,
+      "track": "web",
+      "module": "item_catalog",
+      "description": "Suppliers + Partners — list/detail/create/edit, location management — Next.js",
+      "status": "ready",
+      "parallel_safe": true,
+      "depends_on": ["TASK-029W"],
+      "blocks": [],
+      "spec": "specs/catalog_spec.md",
+      "tables": ["suppliers", "supplier_locations", "partners"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-032W",
+      "phase": 6,
+      "track": "web",
+      "module": "product_catalog",
+      "description": "Material Configurations — list grouped by type, create/edit with role assignment — Next.js",
+      "status": "ready",
+      "parallel_safe": true,
+      "depends_on": ["TASK-029W"],
+      "blocks": [],
+      "spec": "specs/catalog_spec.md",
+      "tables": ["material_configurations", "material_configuration_roles"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-033W",
+      "phase": 6,
+      "track": "web",
+      "module": "product_catalog",
+      "description": "Product Catalog — list by category, detail, form designer (inputs + components builder) — Next.js",
+      "status": "ready",
+      "parallel_safe": true,
+      "depends_on": ["TASK-029W"],
+      "blocks": [],
+      "spec": "specs/catalog_spec.md",
+      "tables": ["product_catalog", "product_catalog_inputs", "product_catalog_components"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-034W",
+      "phase": 7,
+      "track": "web",
+      "module": "employees_web",
+      "description": "Employee service + list/detail — all sections, compensation gated, invite status block — Next.js",
+      "status": "ready",
+      "parallel_safe": false,
+      "depends_on": ["TASK-029"],
+      "blocks": ["TASK-035W", "TASK-036W", "TASK-037W"],
+      "spec": "specs/employees_spec.md",
+      "tables": ["employees", "roles", "employee_compensation", "employee_invites", "custom_field_definitions", "custom_field_values"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-035W",
+      "phase": 7,
+      "track": "web",
+      "module": "employees_web",
+      "description": "Employee create + edit — all fields, display_name auto-suggest, compensation insert, status transitions — Next.js",
+      "status": "ready",
+      "parallel_safe": true,
+      "depends_on": ["TASK-034W"],
+      "blocks": [],
+      "spec": "specs/employees_spec.md",
+      "tables": ["employees", "employee_compensation"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-036W",
+      "phase": 7,
+      "track": "web",
+      "module": "employees_web",
+      "description": "Employee invite flow — deploy Edge Function, send/revoke actions, accept invite page — Next.js",
+      "status": "ready",
+      "parallel_safe": true,
+      "depends_on": ["TASK-034W"],
+      "blocks": [],
+      "spec": "specs/employees_spec.md",
+      "tables": ["employee_invites", "employees"],
+      "branch": ""
+    },
+    {
+      "id": "TASK-037W",
+      "phase": 7,
+      "track": "web",
+      "module": "employees_web",
+      "description": "Roles + Permission matrix — role list/detail, 27-key permission matrix, per-employee override panel — Next.js",
+      "status": "ready",
+      "parallel_safe": true,
+      "depends_on": ["TASK-034W"],
+      "blocks": [],
+      "spec": "specs/employees_spec.md",
+      "tables": ["roles", "role_permissions", "employee_permission_overrides"],
+      "branch": ""
     }
   ],
   "tables": [
