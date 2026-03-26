@@ -1,16 +1,22 @@
 {
   "project": "Freedom App 2.0",
+  "phase_convention": {
+    "0-999": "Shared (schema + services) + Web (Next.js UI)",
+    "1000-1999": "Mobile (Flutter UI) — placeholder until director signs off on corresponding web phase"
+  },
   "active_phase": 3,
   "modules": [
     {
       "name": "scaffold",
-      "status": "in-progress",
+      "track": "shared",
+      "status": "complete",
       "spec": null,
       "tables": []
     },
     {
       "name": "auth",
-      "status": "not-started",
+      "track": "shared+mobile",
+      "status": "complete-flutter-web-pending",
       "spec": "specs/auth_spec.md",
       "tables": [
         "organizations",
@@ -21,7 +27,8 @@
     },
     {
       "name": "orgs",
-      "status": "not-started",
+      "track": "shared+mobile",
+      "status": "complete-flutter-web-pending",
       "spec": "specs/auth_spec.md",
       "tables": [
         "organizations",
@@ -30,8 +37,17 @@
       ]
     },
     {
-      "name": "employees",
+      "name": "next_js_scaffold",
+      "track": "web",
       "status": "complete",
+      "spec": null,
+      "tables": [],
+      "phase": 3
+    },
+    {
+      "name": "employees",
+      "track": "shared+mobile",
+      "status": "complete-flutter-web-pending",
       "spec": "specs/employees_spec.md",
       "tables": [
         "roles",
@@ -47,7 +63,9 @@
     },
     {
       "name": "clients",
-      "status": "not-started",
+      "track": "shared+web",
+      "status": "complete",
+      "phase": 4,
       "spec": "specs/clients_spec.md",
       "tables": [
         "clients",
@@ -68,8 +86,19 @@
       ]
     },
     {
+      "name": "clients_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1001,
+      "spec": "specs/clients_spec.md",
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 4 web"
+    },
+    {
       "name": "crews",
-      "status": "not-started",
+      "track": "shared+web",
+      "status": "complete",
+      "phase": 5,
       "spec": "specs/fleet_spec.md",
       "tables": [
         "crews"
@@ -77,7 +106,9 @@
     },
     {
       "name": "fleet",
-      "status": "not-started",
+      "track": "shared+web",
+      "status": "complete",
+      "phase": 5,
       "spec": "specs/fleet_spec.md",
       "tables": [
         "equipment",
@@ -89,8 +120,28 @@
       ]
     },
     {
+      "name": "crews_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1002,
+      "spec": "specs/fleet_spec.md",
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 5 web"
+    },
+    {
+      "name": "fleet_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1002,
+      "spec": "specs/fleet_spec.md",
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 5 web"
+    },
+    {
       "name": "item_catalog",
-      "status": "complete",
+      "track": "shared+mobile",
+      "status": "complete-flutter-web-pending",
+      "phase": 6,
       "spec": "specs/catalog_spec.md",
       "tables": [
         "catalog_items",
@@ -103,7 +154,9 @@
     },
     {
       "name": "product_catalog",
-      "status": "complete",
+      "track": "shared+mobile",
+      "status": "complete-flutter-web-pending",
+      "phase": 6,
       "spec": "specs/catalog_spec.md",
       "tables": [
         "material_configurations",
@@ -112,6 +165,176 @@
         "product_catalog_inputs",
         "product_catalog_components"
       ]
+    },
+    {
+      "name": "catalog_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1003,
+      "spec": "specs/catalog_spec.md",
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 6 web"
+    },
+    {
+      "name": "employees_web",
+      "track": "web",
+      "status": "not-started",
+      "phase": 7,
+      "spec": "specs/employees_spec.md",
+      "tables": []
+    },
+    {
+      "name": "employees_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1004,
+      "spec": "specs/employees_spec.md",
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 7 web"
+    },
+    {
+      "name": "estimates",
+      "track": "shared+web",
+      "status": "not-started",
+      "phase": 8,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "estimates_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1005,
+      "spec": null,
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 8 web"
+    },
+    {
+      "name": "jobs",
+      "track": "shared+web",
+      "status": "not-started",
+      "phase": 9,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "scheduling",
+      "track": "shared+web",
+      "status": "not-started",
+      "phase": 9,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "jobs_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1006,
+      "spec": null,
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 9 web"
+    },
+    {
+      "name": "expense_buckets",
+      "track": "shared+web",
+      "status": "not-started",
+      "phase": 10,
+      "spec": null,
+      "tables": [
+        "expense_buckets",
+        "expense_splits"
+      ]
+    },
+    {
+      "name": "expenses_plaid",
+      "track": "shared+web",
+      "status": "not-started",
+      "phase": 10,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "timesheets",
+      "track": "shared+web",
+      "status": "not-started",
+      "phase": 10,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "expenses_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1007,
+      "spec": null,
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 10 web"
+    },
+    {
+      "name": "eos",
+      "track": "shared+web",
+      "status": "not-started",
+      "phase": 11,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "eos_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1008,
+      "spec": null,
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 11 web"
+    },
+    {
+      "name": "reporting",
+      "track": "web",
+      "status": "not-started",
+      "phase": 12,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "reporting_mobile",
+      "track": "mobile",
+      "status": "placeholder",
+      "phase": 1009,
+      "spec": null,
+      "tables": [],
+      "note": "Tasks not written — pending director sign-off on Phase 12 web"
+    },
+    {
+      "name": "ai",
+      "track": "shared",
+      "status": "not-started",
+      "phase": 13,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "voice",
+      "track": "mobile",
+      "status": "not-started",
+      "phase": 13,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "client_portal",
+      "track": "web",
+      "status": "not-started",
+      "phase": 14,
+      "spec": null,
+      "tables": []
+    },
+    {
+      "name": "settings",
+      "track": "shared",
+      "status": "not-started",
+      "phase": null,
+      "spec": null,
+      "tables": []
     }
   ],
   "tasks": [
@@ -382,11 +605,35 @@
       "branch": "dev"
     },
     {
-      "id": "TASK-014",
+      "id": "TASK-029",
       "phase": 3,
+      "track": "web",
+      "module": "next_js_scaffold",
+      "description": "Next.js scaffold — web/ project init, @supabase/ssr auth, middleware, design system, app shell, login/signup pages",
+      "status": "done",
+      "parallel_safe": false,
+      "depends_on": [
+        "TASK-007"
+      ],
+      "blocks": [
+        "TASK-016W",
+        "TASK-017W",
+        "TASK-018W",
+        "TASK-020W",
+        "TASK-022W",
+        "TASK-023W"
+      ],
+      "spec": null,
+      "tables": [],
+      "branch": "dev"
+    },
+    {
+      "id": "TASK-014",
+      "phase": 4,
+      "track": "shared",
       "module": "clients",
       "description": "Supabase schema — clients, addresses, contacts, lookup tables, notes, tasks, communications + RLS",
-      "status": "ready",
+      "status": "done",
       "parallel_safe": false,
       "depends_on": [
         "TASK-013"
@@ -412,22 +659,23 @@
         "communications",
         "communication_attachments"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
       "id": "TASK-015",
-      "phase": 3,
+      "phase": 4,
+      "track": "shared",
       "module": "clients",
       "description": "Client service + providers — ClientService, ClientListNotifier, is_incomplete logic, display_name helpers, Freezed models",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": false,
       "depends_on": [
         "TASK-014"
       ],
       "blocks": [
-        "TASK-016",
-        "TASK-017",
-        "TASK-018"
+        "TASK-016W",
+        "TASK-017W",
+        "TASK-018W"
       ],
       "spec": "specs/clients_spec.md",
       "tables": [
@@ -436,14 +684,15 @@
         "client_contacts",
         "client_tags"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
-      "id": "TASK-016",
-      "phase": 3,
+      "id": "TASK-016W",
+      "phase": 4,
+      "track": "web",
       "module": "clients",
-      "description": "Client list + detail screens — list with search/filter, incomplete flag, detail with all sections",
-      "status": "blocked",
+      "description": "Client list + detail — Next.js — list with search/filter, incomplete flag, detail with all sections",
+      "status": "done",
       "parallel_safe": true,
       "depends_on": [
         "TASK-015"
@@ -456,14 +705,15 @@
         "client_contacts",
         "client_tags"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
-      "id": "TASK-017",
-      "phase": 3,
+      "id": "TASK-017W",
+      "phase": 4,
+      "track": "web",
       "module": "clients",
-      "description": "Client create + edit screens — type toggle, all fields, display_name auto-suggest, address/contact inline",
-      "status": "blocked",
+      "description": "Client create + edit — Next.js — type toggle, all fields, display_name auto-suggest, address/contact inline",
+      "status": "done",
       "parallel_safe": true,
       "depends_on": [
         "TASK-015"
@@ -475,14 +725,15 @@
         "client_addresses",
         "client_contacts"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
-      "id": "TASK-018",
-      "phase": 3,
+      "id": "TASK-018W",
+      "phase": 4,
+      "track": "web",
       "module": "clients",
-      "description": "Communications log UI — log form, method/direction/result, chronological list, file attachment",
-      "status": "blocked",
+      "description": "Communications log — Next.js — log form, method/direction/result, chronological list, file attachment",
+      "status": "done",
       "parallel_safe": true,
       "depends_on": [
         "TASK-015"
@@ -493,21 +744,22 @@
         "communications",
         "communication_attachments"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
       "id": "TASK-019",
-      "phase": 4,
+      "phase": 5,
+      "track": "shared",
       "module": "crews",
       "description": "Supabase schema — crews, equipment, all fleet tables + RLS",
-      "status": "ready",
+      "status": "done",
       "parallel_safe": false,
       "depends_on": [
         "TASK-013"
       ],
       "blocks": [
-        "TASK-020",
-        "TASK-021"
+        "TASK-020W",
+        "TASK-021W"
       ],
       "spec": "specs/fleet_spec.md",
       "tables": [
@@ -519,14 +771,15 @@
         "equipment_maintenance",
         "vehicle_inspections"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
-      "id": "TASK-020",
-      "phase": 4,
+      "id": "TASK-020W",
+      "phase": 5,
+      "track": "web",
       "module": "crews",
-      "description": "Crews service + UI — CrewService, list/detail/create/edit screens",
-      "status": "blocked",
+      "description": "Crews service + UI — Next.js — CrewService, list/detail/create/edit",
+      "status": "done",
       "parallel_safe": true,
       "depends_on": [
         "TASK-019"
@@ -536,21 +789,22 @@
       "tables": [
         "crews"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
-      "id": "TASK-021",
-      "phase": 4,
+      "id": "TASK-021W",
+      "phase": 5,
+      "track": "shared+web",
       "module": "fleet",
       "description": "Equipment service + providers — EquipmentService, availability check, expiry alerts, Freezed models",
-      "status": "blocked",
+      "status": "done",
       "parallel_safe": true,
       "depends_on": [
         "TASK-019"
       ],
       "blocks": [
-        "TASK-022",
-        "TASK-023"
+        "TASK-022W",
+        "TASK-023W"
       ],
       "spec": "specs/fleet_spec.md",
       "tables": [
@@ -558,34 +812,36 @@
         "equipment_assignments",
         "equipment_schedule"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
-      "id": "TASK-022",
-      "phase": 4,
+      "id": "TASK-022W",
+      "phase": 5,
+      "track": "web",
       "module": "fleet",
-      "description": "Equipment list, detail, create + edit screens — type filter, expiry badges, all fields",
-      "status": "blocked",
+      "description": "Equipment list, detail, create + edit — Next.js — type filter, expiry badges, all fields",
+      "status": "done",
       "parallel_safe": true,
       "depends_on": [
-        "TASK-021"
+        "TASK-021W"
       ],
       "blocks": [],
       "spec": "specs/fleet_spec.md",
       "tables": [
         "equipment"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
-      "id": "TASK-023",
-      "phase": 4,
+      "id": "TASK-023W",
+      "phase": 5,
+      "track": "web",
       "module": "fleet",
-      "description": "Maintenance log + DVIR screens — entry forms, history lists, receipt + signature upload",
-      "status": "blocked",
+      "description": "Maintenance log + DVIR — Next.js — entry forms, history lists, receipt + signature upload",
+      "status": "done",
       "parallel_safe": true,
       "depends_on": [
-        "TASK-021"
+        "TASK-021W"
       ],
       "blocks": [],
       "spec": "specs/fleet_spec.md",
@@ -593,7 +849,7 @@
         "equipment_maintenance",
         "vehicle_inspections"
       ],
-      "branch": ""
+      "branch": "dev"
     },
     {
       "id": "TASK-024",

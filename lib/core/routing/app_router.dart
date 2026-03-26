@@ -7,12 +7,20 @@ import '../../features/auth/auth_notifier.dart';
 import '../../features/auth/auth_reset_password_screen.dart';
 import '../../features/auth/auth_sign_in_screen.dart';
 import '../../features/auth/auth_sign_up_screen.dart';
+import '../../features/crews/crew_detail_screen.dart';
+import '../../features/crews/crew_form_screen.dart';
+import '../../features/crews/crew_list_screen.dart';
 import '../../features/employees/employee_detail_screen.dart';
 import '../../features/employees/employee_form_screen.dart';
 import '../../features/employees/employee_list_screen.dart';
 import '../../features/employees/invite_accept_screen.dart';
 import '../../features/employees/role_detail_screen.dart';
 import '../../features/employees/role_list_screen.dart';
+import '../../features/fleet/dvir_form_screen.dart';
+import '../../features/fleet/equipment_detail_screen.dart';
+import '../../features/fleet/equipment_form_screen.dart';
+import '../../features/fleet/equipment_list_screen.dart';
+import '../../features/fleet/maintenance_form_screen.dart';
 import '../../features/item_catalog/layouts/mobile/item_catalog_detail_screen_mobile.dart';
 import '../../features/item_catalog/layouts/mobile/item_catalog_edit_screen_mobile.dart';
 import '../../features/item_catalog/layouts/mobile/item_catalog_list_screen_mobile.dart';
@@ -181,6 +189,57 @@ GoRouter appRouter(Ref ref) {
             path: AppRoutes.catalogMaterialConfigs,
             builder: (context, state) => const MaterialConfigEditScreenMobile(),
           ),
+          GoRoute(
+            path: AppRoutes.crews,
+            builder: (context, state) => const CrewListScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.crewNew,
+            builder: (context, state) => const CrewFormScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.crewEdit,
+            builder: (context, state) =>
+                CrewFormScreen(crewId: state.pathParameters['id']),
+          ),
+          GoRoute(
+            path: AppRoutes.crewDetail,
+            builder: (context, state) =>
+                CrewDetailScreen(crewId: state.pathParameters['id'] ?? ''),
+          ),
+          GoRoute(
+            path: AppRoutes.equipment,
+            builder: (context, state) => const EquipmentListScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.equipmentNew,
+            builder: (context, state) => const EquipmentFormScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.equipmentEdit,
+            builder: (context, state) =>
+                EquipmentFormScreen(equipmentId: state.pathParameters['id']),
+          ),
+          GoRoute(
+            path: AppRoutes.equipmentDetail,
+            builder: (context, state) => EquipmentDetailScreen(
+              equipmentId: state.pathParameters['id'] ?? '',
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.equipmentMaintenanceNew,
+            builder: (context, state) => MaintenanceFormScreen(
+              equipmentId: state.pathParameters['id'] ?? '',
+            ),
+          ),
+          GoRoute(
+            path: AppRoutes.equipmentDvirNew,
+            builder: (context, state) => DvirFormScreen(
+              equipmentId: state.pathParameters['id'] ?? '',
+              inspectionType:
+                  state.uri.queryParameters['type'] ?? 'pre_trip',
+            ),
+          ),
         ],
       ),
     ],
@@ -315,6 +374,18 @@ class _MenuScreen extends ConsumerWidget {
               onPressed: () => context.push(AppRoutes.catalogProducts),
               icon: const Icon(Icons.widgets_outlined),
               label: const Text('Product Catalog'),
+            ),
+            const SizedBox(height: 8),
+            FilledButton.tonalIcon(
+              onPressed: () => context.push(AppRoutes.crews),
+              icon: const Icon(Icons.groups_outlined),
+              label: const Text('Crews'),
+            ),
+            const SizedBox(height: 8),
+            FilledButton.tonalIcon(
+              onPressed: () => context.push(AppRoutes.equipment),
+              icon: const Icon(Icons.precision_manufacturing_outlined),
+              label: const Text('Fleet Equipment'),
             ),
             const SizedBox(height: 16),
             FilledButton(

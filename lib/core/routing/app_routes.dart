@@ -32,4 +32,17 @@ class AppRoutes {
   static const String catalogProducts = '/catalog/products';
   static const String catalogProductCreate = '/catalog/products/new';
   static const String catalogMaterialConfigs = '/catalog/material-configs';
+
+  static const String crews = '/fleet/crews';
+  static const String crewNew = '/fleet/crews/new';
+  static const String crewDetail = '/fleet/crews/:id';
+  static const String crewEdit = '/fleet/crews/:id/edit';
+
+  static const String equipment = '/fleet/equipment';
+  static const String equipmentNew = '/fleet/equipment/new';
+  static const String equipmentDetail = '/fleet/equipment/:id';
+  static const String equipmentEdit = '/fleet/equipment/:id/edit';
+  static const String equipmentMaintenanceNew =
+      '/fleet/equipment/:id/maintenance/new';
+  static const String equipmentDvirNew = '/fleet/equipment/:id/dvir/new';
 }

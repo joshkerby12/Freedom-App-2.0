@@ -8,9 +8,9 @@
 
 **App Name:** Freedom App 2.0
 **Company:** Freedom Landscapes
-**Platform:** iOS + Android (Flutter/Dart) · Web (Next.js — future phase)
-**State Management:** Riverpod (@riverpod annotation only)
-**Navigation:** GoRouter
+**Platform:** iOS + Android (Flutter/Dart) · Web (Next.js — `web/` subfolder, active)
+**State Management:** Riverpod (@riverpod annotation only) — Flutter only
+**Navigation:** GoRouter (Flutter) · Next.js App Router (web)
 **Backend:** Supabase (Auth + Postgres + Storage + Edge Functions)
 **Bank Integration:** Plaid (expense tracking / transaction import)
 **QB Integration:** QuickBooks API (customer, payment terms, invoice sync)
@@ -20,6 +20,12 @@
 **Supabase Project Ref:** `dhkqhctriihbdzprxqnk`
 **Supabase URL:** `https://dhkqhctriihbdzprxqnk.supabase.co`
 **Supabase Anon Key:** in `.env` — `SUPABASE_ANON_KEY`
+
+**Build Track Convention:**
+- Phases 0–999: Shared (schema + services) + Web (Next.js UI)
+- Phases 1000–1999: Mobile (Flutter UI)
+- Web is built first. Mobile phases are placeholders until director signs off on web and confirms mobile direction.
+- Next.js auth: `@supabase/ssr` (App Router) — sessions via HTTP-only cookies, same Supabase project as Flutter.
 
 **Core Principles:**
 - Every table is org-scoped — `org_id` on every row, no exceptions
@@ -75,6 +81,7 @@ RouterNotifier listens to auth state changes and redirects automatically. GoRout
 | Supabase RLS silent failures | RLS blocks inserts/updates silently — always check RLS first on any DB write failure |
 | Flutter → Edge Function auth | Always include `headers: {'Authorization': 'Bearer ${session.accessToken}'}` |
 | `@riverpod` / `@freezed` changes | Always run `flutter pub run build_runner build --delete-conflicting-outputs` after any change |
+| Next.js `"use server"` non-async exports | `"use server"` files may only export async functions — never export types, constants, or plain objects. Move types + initial state to a sibling `*-types.ts` file (no `"use server"` directive) and import from there |
 
 ---
 
@@ -121,10 +128,16 @@ _Updated as specs are created. One line per spec — read this before deciding w
 | Spec | Module | Phase | Description |
 |---|---|---|---|
 | `specs/auth_spec.md` | auth, orgs | 1 | Auth flow, org creation, RouterNotifier, app shell, seed data |
+| `specs/employees_spec.md` | employees | 2 | Employees, roles, permissions system — CRUD, invite flow, permission resolution |
+| `specs/clients_spec.md` | clients | 4 | Clients, addresses, contacts, lookup tables, communications log |
+| `specs/fleet_spec.md` | fleet | 5 | Crews, equipment, fleet management — scheduling, maintenance, DVIR, expiry alerts |
+| `specs/catalog_spec.md` | item_catalog, product_catalog | 6 | Item catalog, suppliers, partners, material configurations, product catalog, formula engine |
 
 ---
 
 ## Folder Conventions
+
+### Flutter (`lib/`)
 
 ```
 lib/features/[feature]/
@@ -133,10 +146,30 @@ lib/features/[feature]/
 ├── models/        — data models specific to this feature
 ├── layouts/
 │   ├── mobile/    — mobile UI screens
-│   ├── tablet/    — tablet UI screens
-│   └── web/       — web UI screens (future — Next.js owns web, but placeholder here)
+│   └── tablet/    — tablet UI screens
 ├── [feature]_[page]_screen.dart     — layout router (entry point)
 └── [feature]_[page]_provider.dart   — Riverpod state (shared across all layouts)
+```
+
+### Next.js (`web/`)
+
+```
+web/
+├── app/
+│   ├── (auth)/        — login, sign-up, password reset
+│   ├── (app)/         — authenticated shell
+│   │   ├── dashboard/
+│   │   ├── clients/
+│   │   ├── employees/
+│   │   └── [feature]/
+│   └── layout.tsx
+├── components/
+│   ├── ui/            — base design system components
+│   └── [feature]/     — feature-specific components
+├── lib/
+│   ├── supabase/      — client + server Supabase helpers (@supabase/ssr)
+│   └── [feature]/     — service layer (mirrors Flutter services)
+└── middleware.ts       — route protection
 ```
 
 **Naming conventions:**
@@ -151,42 +184,64 @@ lib/features/[feature]/
 ## Module Registry
 
 _Updated as modules are added. One row per module — must match `index.json`._
+_Track: S = Shared, W = Web (Next.js), M = Mobile (Flutter)_
 
-| Module | Status | Spec | Tables | Phase |
+| Module | Track | Status | Spec | Phase |
 |---|---|---|---|---|
-| scaffold | in-progress | — | — | 0 |
-| auth | not started | specs/auth_spec.md | organizations, profiles, org_members, org_settings | 1 |
-| orgs | not started | specs/auth_spec.md | organizations, org_members, org_settings | 1 |
-| employees | not started | specs/employees_spec.md | roles, role_permissions, employees, employee_permission_overrides, employee_compensation, employee_invites, employee_preferences, custom_field_definitions, custom_field_values | 2 |
-| clients | not started | specs/clients_spec.md | clients, client_addresses, client_contacts, client_tags, client_types, tags, referral_funnels, referral_sources, payment_terms, notes, note_attachments, tasks, task_followers, communications, communication_attachments | 3 |
-| crews | not started | specs/fleet_spec.md | crews | 4 |
-| fleet | not started | specs/fleet_spec.md | equipment, equipment_assignments, equipment_schedule, equipment_requests, equipment_maintenance, vehicle_inspections | 4 |
-| item_catalog | not started | specs/catalog_spec.md | catalog_items, catalog_item_specs, suppliers, supplier_locations, catalog_item_suppliers, partners | 5 |
-| product_catalog | not started | specs/catalog_spec.md | material_configurations, material_configuration_roles, product_catalog, product_catalog_inputs, product_catalog_components | 5 |
-| estimates | not started | — | — | 6 |
-| jobs | not started | — | — | 7 |
-| scheduling | not started | — | — | 7 |
-| expense_buckets | not started | — | expense_buckets, expense_splits | 8 |
-| expenses_plaid | not started | — | — | 8 |
-| timesheets | not started | — | — | 8 |
-| eos | not started | — | — | 9 |
-| reporting | not started | — | — | 10 |
-| ai | not started | — | — | 11 |
-| voice | not started | — | — | 11 |
-| push_notifications | not started | — | — | 7 |
-| settings | not started | — | — | TBD |
+| scaffold | S | complete | — | 0 |
+| auth | S+M | complete (Flutter) · web pending | specs/auth_spec.md | 1 / 3 |
+| orgs | S+M | complete (Flutter) · web pending | specs/auth_spec.md | 1 / 3 |
+| employees | S+M | complete (Flutter) · web pending | specs/employees_spec.md | 2 / 7 |
+| next_js_scaffold | W | complete | — | 3 |
+| clients | S+W | complete (web) · mobile pending | specs/clients_spec.md | 4 |
+| clients_mobile | M | placeholder | specs/clients_spec.md | 1001 |
+| crews | S+W | complete (web) · mobile pending | specs/fleet_spec.md | 5 |
+| fleet | S+W | complete (web) · mobile pending | specs/fleet_spec.md | 5 |
+| crews_mobile | M | placeholder | specs/fleet_spec.md | 1002 |
+| fleet_mobile | M | placeholder | specs/fleet_spec.md | 1002 |
+| item_catalog | S+M | complete (Flutter) · web pending | specs/catalog_spec.md | 6 |
+| product_catalog | S+M | complete (Flutter) · web pending | specs/catalog_spec.md | 6 |
+| catalog_web | W | not started | specs/catalog_spec.md | 6 |
+| catalog_mobile | M | placeholder | specs/catalog_spec.md | 1003 |
+| employees_web | W | not started | specs/employees_spec.md | 7 |
+| employees_mobile | M | placeholder | specs/employees_spec.md | 1004 |
+| estimates | S+W | not started | — | 8 |
+| estimates_mobile | M | placeholder | — | 1005 |
+| jobs | S+W | not started | — | 9 |
+| scheduling | S+W | not started | — | 9 |
+| jobs_mobile | M | placeholder | — | 1006 |
+| expense_buckets | S+W | not started | — | 10 |
+| expenses_plaid | S+W | not started | — | 10 |
+| timesheets | S+W | not started | — | 10 |
+| expenses_mobile | M | placeholder | — | 1007 |
+| eos | S+W | not started | — | 11 |
+| eos_mobile | M | placeholder | — | 1008 |
+| reporting | W | not started | — | 12 |
+| reporting_mobile | M | placeholder | — | 1009 |
+| ai | S | not started | — | 13 |
+| voice | M | not started | — | 13 |
+| push_notifications | S | not started | — | 9 |
+| client_portal | W | not started | — | 14 |
+| settings | S | not started | — | TBD |
 
 ---
 
 ## What's Working
 
-_Nothing yet — project scaffold in progress._
+- Flutter app boots, auth flow, org creation, RouterNotifier guards
+- Employee CRUD, roles, permissions, invite flow (Flutter mobile)
+- Item catalog, supplier management, product catalog + formula engine (Flutter mobile)
+- Supabase schema: all tables through Phase 2 + catalog (Phase 5) + clients (Phase 4) + fleet (Phase 5) live and RLS-enabled
+- Next.js `web/` scaffold: @supabase/ssr auth, middleware route guards, design system (Montserrat + brand tokens), app shell, login/sign-up pages (Phase 3 complete)
+- Phase 4 clients web: service (list, detail, save, communications), list/detail/create/edit, communications log — complete (TASK-015–018W)
+- Phase 5 fleet web flows: crews (list/detail/create/edit) + equipment (list/detail/create/edit, maintenance log, DVIR) — complete (TASK-020W/021W/022W/023W)
 
 ---
 
 ## What Still Needs Building
 
-_Everything. See implementation_plan.md for phase breakdown._
+- All mobile phases — placeholders, pending director sign-off on web versions
+- See `docs/implementation_plan.md` for full phase breakdown
 
 ---
 

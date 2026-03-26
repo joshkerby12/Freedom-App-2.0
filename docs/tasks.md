@@ -21,29 +21,68 @@
 
 ---
 
+## Phase 0 · Project Setup
+
+> **Status: COMPLETE** — See Completed Tasks table.
+
+---
+
 ## Phase 1 · Foundation — Auth, Orgs, Core Shell
 
-> Depends on: Phase 0 done, Supabase project linked.
 > **Status: COMPLETE** — TASK-001 through TASK-007 done. See Completed Tasks table.
 
 ---
 
 ## Phase 2 · Employees, Roles & Permissions
 
-> Depends on: Phase 1 complete.
 > **Status: COMPLETE** — TASK-008 through TASK-013 done. See Completed Tasks table.
 
 ---
 
-## Phase 3 · Clients, Addresses & Contacts
+## Phase 3 · Next.js Scaffold ← CURRENT
 
+> Track: Web
 > Depends on: Phase 2 complete.
-> Schema (TASK-014) unblocks all. UI tracks can run in parallel after schema + service layer done.
+> This phase must complete before any web UI tasks (Phase 4+) can begin.
+
+---
+
+### TASK-029 · Next.js scaffold — web/ project, Supabase SSR auth, app shell
+- **Status:** done
+- **Phase:** 3
+- **Track:** web
+- **Module:** next_js_scaffold
+- **Parallel-safe:** no
+- **Depends on:** TASK-007
+- **Blocks:** TASK-016W, TASK-017W, TASK-018W, TASK-020W, TASK-022W, TASK-023W
+- **Spec:** none
+- **What to build:**
+  - Initialize `web/` Next.js project (App Router, TypeScript, Tailwind)
+  - Install and configure `@supabase/ssr` — session via HTTP-only cookies
+  - `middleware.ts` — route protection: unauthenticated → `/login`, no org → `/onboarding`
+  - Design system scaffold — Montserrat font, brand color tokens (from design_guidelines.md), base component set (Button, Input, Card)
+  - App shell — top nav + sidebar layout, responsive breakpoints matching design_guidelines.md
+  - `/login` and `/sign-up` pages wired to Supabase Auth
+  - `/dashboard` placeholder (authenticated landing page)
+- **Acceptance criteria:**
+  - [ ] `cd web && npm run dev` starts without errors
+  - [ ] Sign in with a Supabase account, land on `/dashboard`
+  - [ ] Unauthenticated users redirected to `/login`
+  - [ ] Brand colors and Montserrat font applied
+- **Files to create/modify:** `web/`
+
+---
+
+## Phase 4 · Web — Clients
+
+> Track: Web
+> Depends on: Phase 3 (Next.js scaffold) complete.
+> Schema (TASK-014) and service (TASK-015) are shared — unblock web UI tasks in parallel.
 
 ---
 
 ### TASK-014 · Supabase schema — clients, addresses, contacts, lookup tables + RLS
-- **Status:** ready
+- **Status:** done
 - **Phase:** 3
 - **Module:** clients
 - **Parallel-safe:** no
@@ -76,108 +115,24 @@
 
 ---
 
-### TASK-015 · Client service + providers
-- **Status:** blocked — waiting on TASK-014
-- **Phase:** 3
-- **Module:** clients
-- **Parallel-safe:** no
-- **Depends on:** TASK-014
-- **Blocks:** TASK-016, TASK-017, TASK-018
-- **Spec:** specs/clients_spec.md
-- **What to build:**
-  Data/service layer for clients. No UI yet.
-  - `ClientService` — CRUD, list (org-scoped, paginated), search by name/phone/email, get by id
-  - `ClientListNotifier` (`@riverpod`) — paginated + filterable client list
-  - `ClientDetailNotifier` (`@riverpod`) — single client with addresses, contacts, tags loaded
-  - `is_incomplete` flag logic — computed in service on create/update: true if `referral_funnel_id`, `client_type_id`, or `sales_lead` is null
-  - `display_name` auto-suggest helper in `lib/features/clients/helpers/client_helpers.dart`
-  - Freezed models: `Client`, `ClientAddress`, `ClientContact`, `ClientTag`, `ClientType`, `Tag`, `ReferralFunnel`, `ReferralSource`
-- **Acceptance criteria:**
-  - [ ] `ClientListNotifier` returns paginated, org-scoped results
-  - [ ] `is_incomplete` flag computed correctly on create and update
-  - [ ] `display_name` auto-suggest logic matches all four cases from history.md
-  - [ ] `build_runner` clean
-- **Files to create/modify:** `lib/features/clients/`
+## Phase 1001 · Mobile — Clients
+
+> Track: Mobile (Flutter)
+> **Status: PLACEHOLDER** — Tasks not written. Pending director sign-off on Phase 4 web and mobile direction.
 
 ---
 
-### TASK-016 · Client list + detail screens
-- **Status:** blocked — waiting on TASK-015
-- **Phase:** 3
-- **Module:** clients
-- **Parallel-safe:** yes
-- **Depends on:** TASK-015
-- **Blocks:** none
-- **Spec:** specs/clients_spec.md
-- **What to build:**
-  Client browse and detail UI.
-  - Client list screen — search bar, filter by client_type/tag/is_incomplete, sort by name/last_contacted
-  - Incomplete flag badge — surfaces clients missing required fields
-  - Client detail screen — all info sections: info, addresses, contacts, tags, notes, communications, tasks
-  - Each section collapsible; each can navigate to its own manage screen
-- **Acceptance criteria:**
-  - [ ] List loads and searches correctly
-  - [ ] Incomplete clients flagged visually
-  - [ ] Detail screen loads all related data
-  - [ ] Navigation between list and detail works
-- **Files to create/modify:** `lib/features/clients/layouts/mobile/`, `lib/features/clients/widgets/`
+## Phase 5 · Web — Crews & Fleet
 
----
-
-### TASK-017 · Client create + edit screens
-- **Status:** blocked — waiting on TASK-015
-- **Phase:** 3
-- **Module:** clients
-- **Parallel-safe:** yes
-- **Depends on:** TASK-015
-- **Blocks:** none
-- **Spec:** specs/clients_spec.md
-- **What to build:**
-  Create and edit flows for client records.
-  - Create screen — type toggle (Residential / Organization), all required fields, `display_name` auto-suggest, client_type picker, tag multi-select, referral funnel picker (shows source picker if `requires_source = true`), sales lead picker (employees filtered to `is_sales = true`), payment terms picker
-  - Edit screen — same form pre-populated
-  - Address create/edit inline (at least one address required)
-  - Contact create/edit inline
-- **Acceptance criteria:**
-  - [ ] Residential and org clients create correctly with different field behavior
-  - [ ] `display_name` auto-suggests and user can override
-  - [ ] Referral source shows/hides based on funnel's `requires_source`
-  - [ ] `is_incomplete` recalculates correctly on save
-- **Files to create/modify:** `lib/features/clients/layouts/mobile/`, `lib/features/clients/helpers/`
-
----
-
-### TASK-018 · Communications log UI
-- **Status:** blocked — waiting on TASK-015
-- **Phase:** 3
-- **Module:** clients
-- **Parallel-safe:** yes
-- **Depends on:** TASK-015
-- **Blocks:** none
-- **Spec:** specs/clients_spec.md
-- **What to build:**
-  Log and view client communications.
-  - Communications list on client detail — chronological, shows method + direction + result
-  - Log communication form — method (phone/email/text/in_person/portal_message), direction (inbound/outbound), result enum, notes, occurred_at datetime, optional file attachment
-  - `CommunicationService` — create, list by client_id, attach file to Supabase storage
-- **Acceptance criteria:**
-  - [ ] Communication can be logged from client detail screen
-  - [ ] List shows all logged communications in chronological order
-  - [ ] File attachment uploads to Supabase storage and URL saves to `communication_attachments`
-- **Files to create/modify:** `lib/features/clients/`, `lib/features/clients/widgets/`
-
----
-
-## Phase 4 · Crews & Equipment / Fleet
-
-> Depends on: Phase 2 complete (employees must exist for crew_lead_id and driver assignments).
-> Can run in parallel with Phase 3 — no cross-dependency.
+> Track: Web
+> Depends on: Phase 2 complete (employees for crew leads), Phase 3 complete (Next.js scaffold).
+> Can run in parallel with Phase 4 — no cross-dependency.
 > Schema (TASK-019) unblocks everything in this phase.
 
 ---
 
 ### TASK-019 · Supabase schema — crews, equipment, fleet tables + RLS
-- **Status:** ready
+- **Status:** done
 - **Phase:** 4
 - **Module:** crews
 - **Parallel-safe:** no
@@ -202,103 +157,24 @@
 
 ---
 
-### TASK-020 · Crews service + UI
-- **Status:** blocked — waiting on TASK-019
-- **Phase:** 4
-- **Module:** crews
-- **Parallel-safe:** yes
-- **Depends on:** TASK-019
-- **Blocks:** none
-- **Spec:** specs/fleet_spec.md
-- **What to build:**
-  Full crews module — service + UI.
-  - `CrewService` — CRUD, list org-scoped, get members (employees where `crew_id` = this crew)
-  - `CrewListNotifier` (`@riverpod`)
-  - Crew list screen — active crews, member count, crew lead name
-  - Crew detail screen — crew lead, member list (read from employees), notes
-  - Crew create/edit screen — name, crew lead picker (employee dropdown)
-  - Freezed model: `Crew`
-- **Acceptance criteria:**
-  - [ ] Crews list loads correctly
-  - [ ] Crew detail shows correct members (pulled from employees.crew_id)
-  - [ ] Create/edit saves correctly
-- **Files to create/modify:** `lib/features/crews/`
+## Phase 1002 · Mobile — Crews & Fleet
+
+> Track: Mobile (Flutter)
+> **Status: PLACEHOLDER** — Tasks not written. Pending director sign-off on Phase 5 web and mobile direction.
 
 ---
 
-### TASK-021 · Equipment service + providers
-- **Status:** blocked — waiting on TASK-019
-- **Phase:** 4
-- **Module:** fleet
-- **Parallel-safe:** yes
-- **Depends on:** TASK-019
-- **Blocks:** TASK-022, TASK-023
-- **Spec:** specs/fleet_spec.md
-- **What to build:**
-  Data/service layer for equipment. No UI yet.
-  - `EquipmentService` — CRUD, list, get with assignments/schedule, check availability for date range
-  - `EquipmentListNotifier` (`@riverpod`)
-  - `EquipmentDetailNotifier` (`@riverpod`) — single equipment with maintenance log, schedule, current assignment
-  - Expiry alert logic: surface equipment where `registration_expiry`, `insurance_expiry`, or `annual_inspection_due` is within 30 days or past
-  - Freezed models: `Equipment`, `EquipmentAssignment`, `EquipmentSchedule`, `EquipmentMaintenance`, `VehicleInspection`
-- **Acceptance criteria:**
-  - [ ] Equipment list loads org-scoped
-  - [ ] Availability check correctly identifies conflicts for non-shareable equipment
-  - [ ] Expiry alerts surface overdue and near-due records
-  - [ ] `build_runner` clean
-- **Files to create/modify:** `lib/features/fleet/`
+## Phases 6–14 (Web) + Phases 1003–1009 (Mobile)
+
+> See `docs/implementation_plan.md` for full phase breakdown.
+> Web phases 6–14 tasks will be written as each phase is reached.
+> Mobile phases 1003–1009 are placeholders — tasks not written until corresponding web phase is director-approved.
 
 ---
 
-### TASK-022 · Equipment list, detail, create + edit screens
-- **Status:** blocked — waiting on TASK-021
-- **Phase:** 4
-- **Module:** fleet
-- **Parallel-safe:** yes
-- **Depends on:** TASK-021
-- **Blocks:** none
-- **Spec:** specs/fleet_spec.md
-- **What to build:**
-  Equipment browse and management UI.
-  - Equipment list screen — filter by type (truck/trailer/equipment/attachment), status badges for expiring docs
-  - Equipment detail screen — all fields, maintenance log list, DVIR history, current assignment
-  - Equipment create/edit screen — all fields from history.md schema
-  - Expiry alert banners on detail screen and list badges
-- **Acceptance criteria:**
-  - [ ] List loads all equipment with correct type filter
-  - [ ] Expiry alerts visible on list and detail
-  - [ ] Create/edit saves correctly
-- **Files to create/modify:** `lib/features/fleet/layouts/mobile/`
+## Previously Phase 5 · Item Catalog, Suppliers & Product Catalog
 
----
-
-### TASK-023 · Maintenance log + DVIR screens
-- **Status:** blocked — waiting on TASK-021
-- **Phase:** 4
-- **Module:** fleet
-- **Parallel-safe:** yes
-- **Depends on:** TASK-021
-- **Blocks:** none
-- **Spec:** specs/fleet_spec.md
-- **What to build:**
-  Maintenance logging and daily vehicle inspection UI.
-  - `MaintenanceService` / `DVIRService` — create entries, list by equipment
-  - Maintenance log entry form — type, performed_date, mileage, next_service_date, cost, performed_by, receipt upload
-  - DVIR form — pre_trip / post_trip toggle, odometer, defects list (checkboxes), pass/fail, signature pad (image capture), notes
-  - Maintenance history list on equipment detail
-  - DVIR history list on equipment detail
-- **Acceptance criteria:**
-  - [ ] Maintenance entry saves with receipt URL in Supabase storage
-  - [ ] DVIR saves with signature image URL
-  - [ ] Both history lists load correctly on equipment detail
-- **Files to create/modify:** `lib/features/fleet/layouts/mobile/`, `lib/features/fleet/widgets/`
-
----
-
-## Phase 5 · Item Catalog, Suppliers & Product Catalog
-
-> Depends on: Phase 1 complete (only needs org context — can run parallel to Phases 3 and 4).
-> **Status: COMPLETE** — TASK-024 through TASK-028 done. See Completed Tasks table.
+> **Status: COMPLETE** — TASK-024 through TASK-028 done (Flutter mobile, pre-web-decision). Web UI backtrack scheduled as Phase 6. See Completed Tasks table.
 
 ---
 
@@ -324,6 +200,17 @@
 | TASK-026 | Item catalog + supplier UI — list/detail/create/edit, supplier management, price review workflow | item_catalog | 5 | 2026-03-25 |
 | TASK-027 | Product catalog service + formula engine — ProductCatalogService, FormulaEngine, 48 seeded templates | product_catalog | 5 | 2026-03-25 |
 | TASK-028 | Product catalog builder UI — list by category, form designer, material config builder | product_catalog | 5 | 2026-03-25 |
+| TASK-029 | Next.js scaffold — web/ init, @supabase/ssr auth, middleware, design system, app shell, login/sign-up pages | next_js_scaffold | 3 | 2026-03-26 |
+| TASK-014 | Clients schema — clients, addresses, contacts, lookup tables, notes, tasks, communications + RLS | clients | 4 | 2026-03-26 |
+| TASK-019 | Fleet schema — crews, equipment, all fleet tables, conflict function, RLS | crews/fleet | 5 | 2026-03-26 |
+| TASK-020W | Crews service + UI — Next.js — CrewService, list/detail/create/edit, member counts | crews | 5 | 2026-03-26 |
+| TASK-021W | Equipment service — EquipmentService, availability check, expiry alerts, maintenance + DVIR services | fleet | 5 | 2026-03-26 |
+| TASK-022W | Equipment list, detail, create + edit — Next.js — type filter, expiry badges, all fields | fleet | 5 | 2026-03-26 |
+| TASK-023W | Maintenance log + DVIR — Next.js — entry forms, history lists, receipt + signature upload | fleet | 5 | 2026-03-26 |
+| TASK-015 | Client web service — listClients, getClientDetail, saveClient, createCommunication, lookups | clients | 4 | 2026-03-26 |
+| TASK-016W | Client list + detail — Next.js — search, filter, incomplete badge, all detail sections | clients | 4 | 2026-03-26 |
+| TASK-017W | Client create + edit — Next.js — form, lookups, referral source conditional, is_incomplete | clients | 4 | 2026-03-26 |
+| TASK-018W | Communications log — Next.js — log form, attachment upload, last_contacted update | clients | 4 | 2026-03-26 |
 
 ---
 
@@ -337,31 +224,39 @@
 
 ## Task Ordering — Full View
 
-| Task | Description | Phase | Depends On | Parallel Safe | Status |
-|---|---|---|---|---|---|
-| TASK-001 | Flutter project scaffold | 0 | none | no | done |
-| TASK-002 | Core lib/ folder structure | 0 | TASK-001 | no | done |
-| TASK-003 | Schema — core auth tables + RLS | 1 | TASK-001, TASK-002 | no | done |
-| TASK-004 | Seed data — org creation | 1 | TASK-003 | no | done |
-| TASK-005 | Auth flow — sign up/in/out/reset | 1 | TASK-003 | no | done |
-| TASK-006 | Org creation + onboarding | 1 | TASK-004, TASK-005 | no | done |
-| TASK-007 | App shell — bottom nav + routes | 1 | TASK-006 | no | done |
-| TASK-008 | Schema — employees, roles, permissions | 2 | TASK-007 | no | done |
-| TASK-009 | Employee service + providers | 2 | TASK-008 | no | done |
-| TASK-010 | Employee list + detail screens | 2 | TASK-009 | yes | done |
-| TASK-011 | Employee create + edit screens | 2 | TASK-009 | yes | done |
-| TASK-012 | Employee invite flow | 2 | TASK-009 | yes | done |
-| TASK-013 | Role + permission management UI | 2 | TASK-009 | yes | done |
-| TASK-014 | Schema — clients, addresses, contacts, lookups | 3 | TASK-013 | no | ready |
-| TASK-015 | Client service + providers | 3 | TASK-014 | no | blocked |
-| TASK-016 | Client list + detail screens | 3 | TASK-015 | yes | blocked |
-| TASK-017 | Client create + edit screens | 3 | TASK-015 | yes | blocked |
-| TASK-018 | Communications log UI | 3 | TASK-015 | yes | blocked |
-| TASK-019 | Schema — crews, equipment, fleet | 4 | TASK-013 | no | ready |
-| TASK-020 | Crews service + UI | 4 | TASK-019 | yes | blocked |
-| TASK-021 | Equipment service + providers | 4 | TASK-019 | yes | blocked |
-| TASK-022 | Equipment list, detail, create + edit | 4 | TASK-021 | yes | blocked |
-| TASK-023 | Maintenance log + DVIR screens | 4 | TASK-021 | yes | blocked |
+| Task | Description | Phase | Track | Depends On | Parallel Safe | Status |
+|---|---|---|---|---|---|---|
+| TASK-001 | Flutter project scaffold | 0 | shared | none | no | done |
+| TASK-002 | Core lib/ folder structure | 0 | shared | TASK-001 | no | done |
+| TASK-003 | Schema — core auth tables + RLS | 1 | shared | TASK-001, TASK-002 | no | done |
+| TASK-004 | Seed data — org creation | 1 | shared | TASK-003 | no | done |
+| TASK-005 | Auth flow — sign up/in/out/reset | 1 | mobile | TASK-003 | no | done |
+| TASK-006 | Org creation + onboarding | 1 | mobile | TASK-004, TASK-005 | no | done |
+| TASK-007 | App shell — bottom nav + routes | 1 | mobile | TASK-006 | no | done |
+| TASK-008 | Schema — employees, roles, permissions | 2 | shared | TASK-007 | no | done |
+| TASK-009 | Employee service + providers | 2 | shared | TASK-008 | no | done |
+| TASK-010 | Employee list + detail screens | 2 | mobile | TASK-009 | yes | done |
+| TASK-011 | Employee create + edit screens | 2 | mobile | TASK-009 | yes | done |
+| TASK-012 | Employee invite flow | 2 | mobile | TASK-009 | yes | done |
+| TASK-013 | Role + permission management UI | 2 | mobile | TASK-009 | yes | done |
+| TASK-029 | Next.js scaffold — web/ init, Supabase SSR, app shell | 3 | web | TASK-007 | no | done |
+| TASK-014 | Schema — clients, addresses, contacts, lookups | 4 | shared | TASK-013 | no | done |
+| TASK-015 | Client service + providers | 4 | shared | TASK-014 | no | done |
+| TASK-016W | Client list + detail — Next.js | 4 | web | TASK-015 | yes | done |
+| TASK-017W | Client create + edit — Next.js | 4 | web | TASK-015 | yes | done |
+| TASK-018W | Communications log — Next.js | 4 | web | TASK-015 | yes | done |
+| Phase 1001 | Mobile — Clients | 1001 | mobile | Phase 4 sign-off | — | placeholder |
+| TASK-019 | Schema — crews, equipment, fleet | 5 | shared | TASK-013 | no | done |
+| TASK-020W | Crews service + UI — Next.js | 5 | web | TASK-019 | yes | done |
+| TASK-021W | Equipment service + providers | 5 | shared | TASK-019 | yes | done |
+| TASK-022W | Equipment list, detail, create + edit — Next.js | 5 | web | TASK-021W | yes | done |
+| TASK-023W | Maintenance log + DVIR — Next.js | 5 | web | TASK-021W | yes | done |
+| Phase 1002 | Mobile — Crews & Fleet | 1002 | mobile | Phase 5 sign-off | — | placeholder |
+| TASK-024 | Catalog schema | 5 (pre-decision) | shared | TASK-003 | no | done |
+| TASK-025 | Item catalog service + providers | 5 (pre-decision) | shared | TASK-024 | no | done |
+| TASK-026 | Item catalog + supplier UI (Flutter) | 5 (pre-decision) | mobile | TASK-025 | yes | done |
+| TASK-027 | Product catalog service + formula engine | 5 (pre-decision) | shared | TASK-025 | no | done |
+| TASK-028 | Product catalog builder UI (Flutter) | 5 (pre-decision) | mobile | TASK-027 | no | done |
 | TASK-024 | Schema — catalog, suppliers, product catalog | 5 | TASK-003 | no | done |
 | TASK-025 | Item catalog service + providers | 5 | TASK-024 | no | done |
 | TASK-026 | Item catalog + supplier UI | 5 | TASK-025 | yes | done |

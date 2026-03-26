@@ -87,3 +87,13 @@
 [2026-03-25] · TASK-026 · Item catalog, supplier, partner, and price review mobile screens implemented · needs-review
 [2026-03-25] · TASK-027 · Product catalog services, formula engine, material config logic, and template seed migration implemented · needs-review
 [2026-03-25] · TASK-028 · Product catalog and material configuration builder mobile screens implemented · needs-review
+[2026-03-26] · TASK-014 · Clients/CRM schema migration + RLS implemented (clients, lookups, notes/tasks, communications) · needs-review
+[2026-03-26] · TASK-019 · Fleet schema migration implemented (crews/equipment tables, org-scoped RLS, overlap conflict checks) · needs-review
+[2026-03-26] · TASK-029 · Next.js web scaffold implemented with Supabase SSR auth, route guards, design system primitives, and responsive app shell · needs-review
+[2026-03-26] · TASK-020W · Crews service + UI web module implemented (CrewService + list/detail/create/edit pages) · needs-review
+[2026-03-26] · TASK-021W · Equipment web service layer implemented (org-scoped CRUD/list/detail, availability conflict check, expiry alert logic) · needs-review
+[2026-03-26] · TASK-022W · Equipment web UI implemented (list/filter, detail, create/edit with expiry badges and full schema fields) · needs-review
+[2026-03-26] · TASK-023W · Maintenance + DVIR web flows implemented (entry forms, history lists, receipt/signature storage upload) · needs-review
+[2026-03-26] · TASK-016W · Clients web list + detail flows implemented (search/filter/sort, incomplete badges, full sectioned detail with manage links) · needs-review
+[2026-03-26] · TASK-017W · Clients web create/edit flows implemented (residential/commercial form logic, display-name suggestion, inline addresses/contacts, lookup pickers) · needs-review
+[2026-03-26] · TASK-018W · Clients communications log implemented (chronological feed, server action logging, optional attachment upload to Supabase storage, next-contact recalculation) · needs-review

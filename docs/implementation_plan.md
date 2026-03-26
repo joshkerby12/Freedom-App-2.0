@@ -5,174 +5,193 @@
 
 ---
 
-## Phase 0 · Project Setup ← CURRENT
+## Phase Numbering Convention
 
-**What gets built:**
-- [x] Git repo initialized (main + dev branches)
-- [x] .gitignore created
-- [ ] Flutter project created (`flutter create --org com.freedomlandscapes --project-name freedom_app --platforms ios,android .`)
-- [ ] `pubspec.yaml` seeded with full dependency stack
-- [ ] `flutter pub get` successful
-- [ ] `build_runner` confirmed working
-- [ ] All framework docs generated (architecture.md, master_plan.md, this file, etc.)
-- [ ] Supabase project created and linked (pre-launch dependency — unblocks Phase 1)
-- [ ] Firebase project created, FCM configured (pre-launch dependency — unblocks Phase 7)
+| Range | Track | Description |
+|---|---|---|
+| 0–999 | Shared + Web | Schema, services, and Next.js web UI |
+| 1000–1999 | Mobile | Flutter mobile UI |
 
-**Acceptance:** Repo is clean, `flutter run` boots to a blank screen on iOS simulator, all docs exist and are populated.
+**Build order:** Web-first. Each mobile phase is a placeholder until the corresponding web phase is director-approved and direction for mobile is confirmed. Mobile tasks are not written until the web phase is signed off.
+
+**Next.js project location:** `web/` subfolder in this repo.
+
+**Auth strategy:** Supabase Auth via `@supabase/ssr` (Next.js App Router). Same Supabase project, same users, same RLS. Flutter and Next.js share one backend.
 
 ---
 
-## Phase 1 · Foundation — Auth, Orgs, Core Shell
+## Completed Phases
 
-**Depends on:** Phase 0 complete, Supabase project linked
+| Phase | Track | Description | Completed |
+|---|---|---|---|
+| 0 | Shared | Project setup — Flutter scaffold, repo, Supabase linked | 2026-03-25 |
+| 1 | Shared | Foundation — auth, orgs, core shell (Flutter) | 2026-03-25 |
+| 2 | Shared | Employees, roles & permissions (Flutter) | 2026-03-25 |
+| 5 | Shared | Item catalog, suppliers & product catalog (Flutter) | 2026-03-25 |
 
-**Tasks:** TASK-003, TASK-004, TASK-005, TASK-006, TASK-007
-
-**Parallelism map:**
-```
-TASK-003 (schema)
-  ├── TASK-004 (seed data)  ─┐
-  └── TASK-005 (auth flow)  ─┴── TASK-006 (org creation) ── TASK-007 (app shell)
-```
-All sequential. Core identity must be fully wired before anything branches.
-
-**What gets built:**
-- [ ] TASK-003 — Supabase schema: `organizations`, `profiles`, `org_members`, `org_settings`, triggers, RLS
-- [ ] TASK-004 — Seed data Edge Function: roles, payment_terms, estimate_types, expense_buckets on org creation
-- [ ] TASK-005 — Auth flow: sign up, sign in, sign out, password reset + AuthService + AuthNotifier
-- [ ] TASK-006 — Org creation + onboarding: OrgService, OrgNotifier, setup screen, RouterNotifier guards
-- [ ] TASK-007 — App shell: bottom nav, placeholder screens, GoRouter shell route, full route table
-
-**Acceptance:** User can sign up, create an org, be redirected to dashboard with correct bottom nav. Sign out and sign back in redirects correctly. Unauthenticated and no-org users are guarded at routing level.
+> Phases 0–2 and 5 were completed pre-web-decision. Flutter mobile UI was built as part of those phases. Web UI for these modules will be scheduled as backtrack phases once the forward web track is established.
 
 ---
 
-## Phase 2 · Employees, Roles & Permissions
+## Phase 3 · Next.js Scaffold ← CURRENT
 
-**Depends on:** Phase 1 complete
-
-**Tasks:** TASK-008, TASK-009, TASK-010, TASK-011, TASK-012, TASK-013
-
-**Parallelism map:**
-```
-TASK-008 (schema)
-  └── TASK-009 (service + providers)
-        ├── TASK-010 (list + detail UI)      ← parallel-safe
-        ├── TASK-011 (create + edit UI)      ← parallel-safe
-        ├── TASK-012 (invite flow)           ← parallel-safe
-        └── TASK-013 (role + perms UI)       ← parallel-safe, blocks Phase 3 + 4
-```
+**Track:** Web
+**Depends on:** Phase 2 complete, Supabase project linked
 
 **What gets built:**
-- [ ] TASK-008 — Schema: roles, role_permissions, employees, overrides, compensation, invites, preferences, custom fields + RLS
-- [ ] TASK-009 — EmployeeService, CurrentEmployeeNotifier, PermissionService, Freezed models
-- [ ] TASK-010 — Employee list + detail screens (permission-gated compensation section)
-- [ ] TASK-011 — Employee create + edit screens, status transitions, compensation entry
-- [ ] TASK-012 — Invite flow: send invite, Edge Function email, accept screen, link to auth user
-- [ ] TASK-013 — Role list + detail, permission matrix UI, per-employee override panel
+- [ ] `web/` Next.js project initialized (App Router, TypeScript)
+- [ ] `@supabase/ssr` auth configured — session via HTTP-only cookies
+- [ ] Middleware for route protection (unauthenticated → /login, no org → /onboarding)
+- [ ] Design system scaffold — Montserrat font, brand color tokens, base component set
+- [ ] App shell — top nav / sidebar layout, responsive breakpoints
+- [ ] Login + sign-up pages wired to Supabase Auth
+- [ ] Dashboard placeholder (authenticated landing page)
+- [ ] Deployment config (Vercel or equivalent) — TBD by director
 
-**Acceptance:** Owner can create an employee record, assign a role, send an invite. Invited user can accept and log in with correct permissions. Permission overrides resolve correctly.
+**Acceptance:** Developer can `cd web && npm run dev`, sign in with a Supabase account, and land on a dashboard placeholder. Unauthenticated users are redirected to /login.
 
 ---
 
-## Phase 3 · Clients, Addresses & Contacts
+## Phase 4 · Web — Clients
 
-**Depends on:** Phase 2 complete (needs employees for sales_lead)
+**Track:** Web
+**Depends on:** Phase 3 complete, TASK-014 schema done
 
-**Tasks:** TASK-014, TASK-015, TASK-016, TASK-017, TASK-018
+**Tasks:** TASK-014 (schema — shared), TASK-015 (service — shared), TASK-016W, TASK-017W, TASK-018W
 
 **Parallelism map:**
 ```
-TASK-014 (schema)
-  └── TASK-015 (service + providers)
-        ├── TASK-016 (list + detail UI)      ← parallel-safe
-        ├── TASK-017 (create + edit UI)      ← parallel-safe
-        └── TASK-018 (communications log)   ← parallel-safe
+TASK-014 (schema — shared)
+  └── TASK-015 (service + providers — shared)
+        ├── TASK-016W (client list + detail — web)    ← parallel-safe
+        ├── TASK-017W (client create + edit — web)    ← parallel-safe
+        └── TASK-018W (communications log — web)      ← parallel-safe
 ```
 
 **What gets built:**
 - [ ] TASK-014 — Schema: clients, addresses, contacts, all lookup tables, notes, tasks, communications + RLS
 - [ ] TASK-015 — ClientService, ClientListNotifier, is_incomplete logic, display_name helper, Freezed models
-- [ ] TASK-016 — Client list (search/filter/incomplete flag) + detail (all sections)
-- [ ] TASK-017 — Client create + edit (type toggle, all fields, inline address/contact)
-- [ ] TASK-018 — Communications log: entry form, chronological list, file attachments
+- [ ] TASK-016W — Client list (search/filter/incomplete flag) + detail (all sections) — Next.js
+- [ ] TASK-017W — Client create + edit (type toggle, all fields, inline address/contact) — Next.js
+- [ ] TASK-018W — Communications log: entry form, chronological list, file attachments — Next.js
 
-**Acceptance:** Estimator can create a residential and org client, add addresses and contacts, log a communication, and see the client detail page fully populated. Incomplete clients are flagged.
+**Acceptance:** Estimator can create a residential and org client, add addresses and contacts, log a communication, and see the client detail page fully populated on web. Incomplete clients are flagged.
 
 ---
 
-## Phase 4 · Crews & Equipment / Fleet
+## Phase 1001 · Mobile — Clients
 
-**Depends on:** Phase 2 complete (needs employees for crew leads and drivers)
-**Note:** Phases 3 and 4 can run in parallel — no cross-dependency between them.
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 4 complete + director sign-off on web version + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
 
-**Tasks:** TASK-019, TASK-020, TASK-021, TASK-022, TASK-023
+> Tasks will be scoped after director reviews Phase 4 web and confirms mobile scope and UX direction.
+
+---
+
+## Phase 5 · Web — Crews & Fleet
+
+**Track:** Web
+**Depends on:** Phase 2 complete (needs employees for crew leads), TASK-019 schema done
+
+**Tasks:** TASK-019 (schema — shared), TASK-020W, TASK-021W, TASK-022W, TASK-023W
 
 **Parallelism map:**
 ```
-TASK-019 (schema)
-  ├── TASK-020 (crews service + UI)          ← parallel-safe after schema
-  └── TASK-021 (equipment service)
-        ├── TASK-022 (equipment UI)          ← parallel-safe
-        └── TASK-023 (maintenance + DVIR)   ← parallel-safe
+TASK-019 (schema — shared)
+  ├── TASK-020W (crews service + UI — web)            ← parallel-safe
+  └── TASK-021W (equipment service — shared)
+        ├── TASK-022W (equipment UI — web)            ← parallel-safe
+        └── TASK-023W (maintenance + DVIR — web)      ← parallel-safe
 ```
 
 **What gets built:**
 - [ ] TASK-019 — Schema: crews, equipment, all fleet tables + RLS
-- [ ] TASK-020 — Crews: CrewService, list/detail/create/edit UI
-- [ ] TASK-021 — Equipment service, availability check, expiry alert logic, Freezed models
-- [ ] TASK-022 — Equipment list, detail, create + edit screens, expiry badges
-- [ ] TASK-023 — Maintenance log + DVIR screens, receipt + signature upload
+- [ ] TASK-020W — Crews: CrewService, list/detail/create/edit UI — Next.js
+- [ ] TASK-021W — Equipment service, availability check, expiry alert logic, Freezed models
+- [ ] TASK-022W — Equipment list, detail, create + edit screens, expiry badges — Next.js
+- [ ] TASK-023W — Maintenance log + DVIR screens, receipt + signature upload — Next.js
 
-**Acceptance:** Fleet Manager can add equipment, log maintenance, submit a DVIR, assign equipment to a crew. Expiring documents surface as alerts.
+**Acceptance:** Fleet Manager can add equipment, log maintenance, submit a DVIR, assign equipment to a crew on web. Expiring documents surface as alerts.
 
 ---
 
-## Phase 5 · Item Catalog, Suppliers & Product Catalog
+## Phase 1002 · Mobile — Crews & Fleet
 
-**Depends on:** Phase 1 complete (only needs org context)
-**Note:** Phase 5 can run in parallel with Phases 3 and 4.
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 5 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
 
-**Tasks:** TASK-024, TASK-025, TASK-026, TASK-027, TASK-028
+---
 
-**Parallelism map:**
-```
-TASK-024 (schema)
-  └── TASK-025 (item catalog service)
-        ├── TASK-026 (item catalog UI)       ← parallel-safe
-        └── TASK-027 (product catalog service + formula engine)
-              └── TASK-028 (product catalog builder UI)
-```
+## Phase 6 · Web — Item & Product Catalog (Web UI Backtrack)
+
+**Track:** Web
+**Depends on:** Phase 3 complete (Next.js scaffold)
+**Note:** Schema and service layer already complete from Phase 5 (pre-decision). This phase builds the Next.js UI only.
 
 **What gets built:**
-- [ ] TASK-024 — Schema: all catalog, supplier, and product catalog tables + RLS
-- [ ] TASK-025 — CatalogItemService, SupplierService, pricing hierarchy, price review alerts, Freezed models
-- [ ] TASK-026 — Item catalog UI, supplier management, partner management, price review workflow
-- [ ] TASK-027 — ProductCatalogService, FormulaEngine (math_expressions wrapper), seeded system templates
-- [ ] TASK-028 — Product catalog builder UI: form designer for inputs + components, material config builder
+- [ ] Item catalog list + detail + create/edit — Next.js
+- [ ] Supplier management — Next.js
+- [ ] Partner management — Next.js
+- [ ] Price review workflow — Next.js
+- [ ] Product catalog builder — Next.js
+- [ ] Material config builder — Next.js
 
-**Acceptance:** Estimator can browse the product catalog, open a product, see its inputs, and get a quantity calculation back from the formula engine. System templates are seeded and visible.
+**Acceptance:** Estimator can browse the product catalog, open a product, see its inputs, and get a quantity calculation back from the formula engine — all on web.
 
 ---
 
-## Phase 6 · Estimates
+## Phase 1003 · Mobile — Item & Product Catalog
 
-**Depends on:** Phases 3, 5 complete
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 6 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
+
+---
+
+## Phase 7 · Web — Employees (Web UI Backtrack)
+
+**Track:** Web
+**Depends on:** Phase 3 complete (Next.js scaffold)
+**Note:** Schema and service layer already complete from Phase 2. This phase builds the Next.js UI only.
+
+**What gets built:**
+- [ ] Employee list + detail — Next.js
+- [ ] Employee create + edit — Next.js
+- [ ] Invite flow — Next.js
+- [ ] Role + permission management — Next.js
+
+**Acceptance:** Owner can manage employees, roles, and permissions fully from the web interface.
+
+---
+
+## Phase 1004 · Mobile — Employees
+
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 7 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
+
+---
+
+## Phase 8 · Web — Estimates
+
+**Track:** Web
+**Depends on:** Phases 4, 6 complete
 
 **What gets built:**
 - [ ] `estimate_types`, `estimate_sub_statuses` schema + RLS
 - [ ] `estimates`, `estimate_contacts`, `estimate_product_lines`, `service_visits` schema + RLS
 - [ ] `change_orders` schema + RLS
 - [ ] `expense_buckets`, `expense_splits` schema + RLS
-- [ ] Estimate list (pipeline view) UI
-- [ ] Estimate create flow (client → type → product lines → line items)
-- [ ] Product line builder using product catalog
-- [ ] Change order flow
-- [ ] Estimate status management (lead → estimate → approved/declined)
-- [ ] E-signature UI
-- [ ] Billing / contract terms (deposit, payment schedule)
-- [ ] Discount logic (resolve line item vs estimate level)
-- [ ] Tax handling (`org_settings.charges_tax`, `is_tax_exempt`)
+- [ ] Estimate list (pipeline view) — Next.js
+- [ ] Estimate create flow (client → type → product lines → line items) — Next.js
+- [ ] Product line builder using product catalog — Next.js
+- [ ] Change order flow — Next.js
+- [ ] Estimate status management — Next.js
+- [ ] E-signature UI — Next.js
+- [ ] Billing / contract terms — Next.js
+- [ ] Discount logic + tax handling — Next.js
 - [ ] QB sync: estimate → QuickBooks estimate
 - [ ] Auto-log communications on send/approve/decline
 
@@ -180,115 +199,148 @@ TASK-024 (schema)
 - [ ] Line items table (`estimate_line_items`) fully defined
 - [ ] Billing / contract terms fully designed
 - [ ] Discount resolution (line item vs estimate level)
-- [ ] Product catalog inputs/formulas for all seeded templates (Phase 5 P2 backtrack)
+- [ ] Product catalog inputs/formulas for all seeded templates
 
-**Acceptance:** Estimator can create a full estimate, add product lines using the catalog formula engine, set status, send to client, and mark as approved. Change order can be created on an approved estimate.
+**Acceptance:** Estimator can create a full estimate, add product lines, set status, send to client, and mark as approved on web.
 
 ---
 
-## Phase 7 · Jobs & Scheduling
+## Phase 1005 · Mobile — Estimates
 
-**Depends on:** Phase 6 complete, Firebase configured
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 8 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
+
+---
+
+## Phase 9 · Web — Jobs & Scheduling
+
+**Track:** Web
+**Depends on:** Phase 8 complete, Firebase configured
 
 **What gets built:**
-- [ ] `jobs` schema + RLS (workshopping still in progress — spec required before build)
-- [ ] Estimate → Job conversion flow
-- [ ] Job list, detail, status screens
-- [ ] Scheduling calendar UI
-- [ ] Crew assignment to jobs
-- [ ] Equipment scheduling for jobs
-- [ ] Supplier run list (aggregated materials + nearest supplier routing)
+- [ ] `jobs` schema + RLS (spec required before build)
+- [ ] Estimate → Job conversion flow — Next.js
+- [ ] Job list, detail, status screens — Next.js
+- [ ] Scheduling calendar UI — Next.js
+- [ ] Crew assignment to jobs — Next.js
+- [ ] Equipment scheduling for jobs — Next.js
+- [ ] Supplier run list — Next.js
 - [ ] FCM push notifications: job assignments, schedule changes
 
-**Acceptance:** Approved estimate converts to a job. Job appears on crew schedule. Crew lead can view job details, equipment list, and supplier run from their phone.
+**Acceptance:** Approved estimate converts to a job. Job appears on crew schedule. Crew lead can view job details, equipment list, and supplier run.
 
 ---
 
-## Phase 8 · Expenses (Plaid), Timesheets & Expense Buckets
+## Phase 1006 · Mobile — Jobs & Scheduling
 
-**Depends on:** Phase 6 complete, Plaid keys configured
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 9 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
+
+---
+
+## Phase 10 · Web — Expenses, Timesheets & Expense Buckets
+
+**Track:** Web
+**Depends on:** Phase 8 complete, Plaid keys configured
 
 **What gets built:**
 - [ ] Plaid integration: bank account link, transaction import
-- [ ] Expense entry UI (manual + from Plaid transactions)
-- [ ] Expense split UI (bucket or project product line)
-- [ ] Timesheet UI (employee time logging per bucket/project)
-- [ ] Expense bucket overview UI
+- [ ] Expense entry UI (manual + from Plaid) — Next.js
+- [ ] Expense split UI (bucket or project product line) — Next.js
+- [ ] Timesheet UI — Next.js
+- [ ] Expense bucket overview — Next.js
 
-**Acceptance:** Employee can log a time entry to a project line. Admin can import bank transactions via Plaid and split an expense across buckets.
-
----
-
-## Phase 9 · EOS / Traction Module
-
-**Depends on:** Phases 2–8 substantially complete (needs real data)
-
-**What gets built:**
-- [ ] `eos_scorecard_metrics`, `eos_scorecard_entries` schema + RLS
-- [ ] `eos_rocks`, `eos_todos`, `eos_issues` schema + RLS
-- [ ] `eos_meetings`, `eos_meeting_attendees` schema + RLS
-- [ ] `eos_seats` (accountability chart) schema + RLS
-- [ ] `eos_auto_issue_rules` schema + seeded rules
-- [ ] Scorecard UI (weekly view, on-track/off-track)
-- [ ] Rocks UI (quarterly, company + individual)
-- [ ] Issues list UI (IDS workflow)
-- [ ] To-Do list UI
-- [ ] L10 Meeting runner UI (agenda segments, time-boxed)
-- [ ] Accountability Chart UI
-- [ ] Weekly automation: auto scorecard rollup + auto issue generation (Supabase scheduled function)
-
-**Acceptance:** Monday automation runs and populates the scorecard with real data from Phase 2–8 modules. Issues auto-generate for triggered rules. L10 meeting can be started, run through all segments, and closed with todos created.
+**Acceptance:** Admin can import bank transactions and split expenses. Employee can log time to a project line.
 
 ---
 
-## Phase 10 · Reporting
+## Phase 1007 · Mobile — Expenses & Timesheets
 
-**Depends on:** Phase 9 complete
-
-**What gets built:**
-- [ ] Revenue vs goal dashboard
-- [ ] Pipeline report (estimates by type, stage, value)
-- [ ] Job profitability report
-- [ ] Labor % / materials % of revenue
-- [ ] Crew utilization report
-- [ ] EOS financial metrics integrated with Reporting module
-
-**Acceptance:** Executive can open Reporting and see current week/month/quarter revenue, pipeline, and crew utilization — all from live data.
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 10 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
 
 ---
 
-## Phase 11 · AI + Voice
+## Phase 11 · Web — EOS / Traction
 
-**Depends on:** Phase 6 complete (needs estimate data)
+**Track:** Web
+**Depends on:** Phases 2–10 substantially complete
 
 **What gets built:**
-- [ ] Anthropic Claude integration (`lib/features/ai/`)
-- [ ] Voice STT via Deepgram (`lib/features/voice/`)
+- [ ] All EOS schema (scorecard, rocks, todos, issues, meetings, seats, auto-rules) + RLS
+- [ ] Scorecard UI — Next.js
+- [ ] Rocks UI — Next.js
+- [ ] Issues list (IDS workflow) — Next.js
+- [ ] To-Do list — Next.js
+- [ ] L10 Meeting runner — Next.js
+- [ ] Accountability Chart — Next.js
+- [ ] Weekly automation: auto scorecard rollup + auto issue generation
+
+**Acceptance:** Monday automation populates scorecard. L10 meeting can be run end-to-end.
+
+---
+
+## Phase 1008 · Mobile — EOS / Traction
+
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 11 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
+
+---
+
+## Phase 12 · Web — Reporting
+
+**Track:** Web
+**Depends on:** Phase 11 complete
+
+**What gets built:**
+- [ ] Revenue vs goal dashboard — Next.js
+- [ ] Pipeline report — Next.js
+- [ ] Job profitability report — Next.js
+- [ ] Labor % / materials % of revenue — Next.js
+- [ ] Crew utilization report — Next.js
+- [ ] EOS financial metrics — Next.js
+
+**Acceptance:** Executive can see current week/month/quarter revenue, pipeline, and crew utilization from live data.
+
+---
+
+## Phase 1009 · Mobile — Reporting
+
+**Track:** Mobile (Flutter)
+**Depends on:** Phase 12 complete + director sign-off + mobile direction confirmed
+**Status:** Placeholder — tasks not yet written
+
+---
+
+## Phase 13 · AI + Voice
+
+**Track:** Shared (Flutter + web)
+**Depends on:** Phase 8 complete (needs estimate data)
+
+**What gets built:**
+- [ ] Anthropic Claude integration
+- [ ] Voice STT via Deepgram
 - [ ] Voice TTS via flutter_tts
 - [ ] AI-assisted estimate notes / summaries
-- [ ] Voice input on key forms (notes, descriptions)
+- [ ] Voice input on key forms
 
-**Acceptance:** User can tap a voice button on an estimate note field, speak, and have transcription appear. AI can generate a summary of a client's estimate history.
+**Acceptance:** User can tap a voice button, speak, and have transcription appear. AI can generate a summary of a client's estimate history.
 
 ---
 
-## Phase 12 · Client Portal (Web / Next.js)
+## Phase 14 · Client Portal
 
-**Depends on:** Phase 6 complete, Next.js web project initialized
+**Track:** Web (Next.js)
+**Depends on:** Phase 8 complete
 
 **What gets built:**
-- [ ] Next.js web project scaffold
 - [ ] Client-facing portal: view estimates, approve/decline, view invoices, pay
 - [ ] Portal auth (magic link or password)
 - [ ] Branded per org (logo + colors from `org_settings`)
 - [ ] `clients.has_portal_access` flag enforcement
 
-**Acceptance:** Client with portal access can log in, view their open estimate, and approve it. Approval reflects immediately in the Flutter app.
-
----
-
-## Completed Phases
-
-| Phase | Description | Completed |
-|---|---|---|
-| — | Nothing complete yet | — |
+**Acceptance:** Client with portal access can log in, view their open estimate, and approve it.
