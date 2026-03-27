@@ -201,9 +201,9 @@ _Track: S = Shared, W = Web (Next.js), M = Mobile (Flutter)_
 | fleet_mobile | M | placeholder | specs/fleet_spec.md | 1002 |
 | item_catalog | S+M | complete (Flutter) · web pending | specs/catalog_spec.md | 6 |
 | product_catalog | S+M | complete (Flutter) · web pending | specs/catalog_spec.md | 6 |
-| catalog_web | W | in progress | specs/catalog_spec.md | 6 |
+| catalog_web | W | complete | specs/catalog_spec.md | 6 |
 | catalog_mobile | M | placeholder | specs/catalog_spec.md | 1003 |
-| employees_web | W | in progress | specs/employees_spec.md | 7 |
+| employees_web | W | complete (Edge Function deploy pending) | specs/employees_spec.md | 7 |
 | employees_mobile | M | placeholder | specs/employees_spec.md | 1004 |
 | estimates | S+W | not started | — | 8 |
 | estimates_mobile | M | placeholder | — | 1005 |
@@ -230,11 +230,12 @@ _Track: S = Shared, W = Web (Next.js), M = Mobile (Flutter)_
 
 - Flutter app boots, auth flow, org creation, RouterNotifier guards
 - Employee CRUD, roles, permissions, invite flow (Flutter mobile)
-- Item catalog, supplier management, product catalog + formula engine (Flutter mobile)
+- Item catalog, supplier management, partner management, material configurations, and product catalog + formula engine (Flutter mobile + web)
 - Supabase schema: all tables through Phase 2 + catalog (Phase 5) + clients (Phase 4) + fleet (Phase 5) live and RLS-enabled
 - Next.js `web/` scaffold: @supabase/ssr auth, middleware route guards, design system (Montserrat + brand tokens), app shell, login/sign-up pages (Phase 3 complete)
 - Phase 4 clients web: service (list, detail, save, communications), list/detail/create/edit, communications log — complete (TASK-015–018W)
 - Phase 5 fleet web flows: crews (list/detail/create/edit) + equipment (list/detail/create/edit, maintenance log, DVIR) — complete (TASK-020W/021W/022W/023W)
+- Phase 6 catalog web flows: items (list/detail/create/edit + price review), suppliers, partners, material configurations, and product catalog builder — complete (TASK-029W/030W/031W/032W/033W)
 
 ---
 

@@ -2,7 +2,7 @@
   "project": "Freedom App 2.0",
   "phase_convention": {
     "0-999": "Shared (schema + services) + Web (Next.js UI)",
-    "1000-1999": "Mobile (Flutter UI) — placeholder until director signs off on corresponding web phase"
+    "1000-1999": "Mobile (Flutter UI) \u2014 placeholder until director signs off on corresponding web phase"
   },
   "active_phase": 6,
   "modules": [
@@ -92,7 +92,7 @@
       "phase": 1001,
       "spec": "specs/clients_spec.md",
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 4 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 4 web"
     },
     {
       "name": "crews",
@@ -126,7 +126,7 @@
       "phase": 1002,
       "spec": "specs/fleet_spec.md",
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 5 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 5 web"
     },
     {
       "name": "fleet_mobile",
@@ -135,7 +135,7 @@
       "phase": 1002,
       "spec": "specs/fleet_spec.md",
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 5 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 5 web"
     },
     {
       "name": "item_catalog",
@@ -169,7 +169,7 @@
     {
       "name": "catalog_web",
       "track": "web",
-      "status": "in-progress",
+      "status": "complete",
       "phase": 6,
       "spec": "specs/catalog_spec.md",
       "tables": []
@@ -181,12 +181,12 @@
       "phase": 1003,
       "spec": "specs/catalog_spec.md",
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 6 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 6 web"
     },
     {
       "name": "employees_web",
       "track": "web",
-      "status": "in-progress",
+      "status": "complete",
       "phase": 7,
       "spec": "specs/employees_spec.md",
       "tables": []
@@ -198,7 +198,7 @@
       "phase": 1004,
       "spec": "specs/employees_spec.md",
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 7 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 7 web"
     },
     {
       "name": "estimates",
@@ -215,7 +215,7 @@
       "phase": 1005,
       "spec": null,
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 8 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 8 web"
     },
     {
       "name": "jobs",
@@ -240,7 +240,7 @@
       "phase": 1006,
       "spec": null,
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 9 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 9 web"
     },
     {
       "name": "expense_buckets",
@@ -276,7 +276,7 @@
       "phase": 1007,
       "spec": null,
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 10 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 10 web"
     },
     {
       "name": "eos",
@@ -293,7 +293,7 @@
       "phase": 1008,
       "spec": null,
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 11 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 11 web"
     },
     {
       "name": "reporting",
@@ -310,7 +310,7 @@
       "phase": 1009,
       "spec": null,
       "tables": [],
-      "note": "Tasks not written — pending director sign-off on Phase 12 web"
+      "note": "Tasks not written \u2014 pending director sign-off on Phase 12 web"
     },
     {
       "name": "ai",
@@ -350,7 +350,7 @@
       "id": "TASK-001",
       "phase": 0,
       "module": "scaffold",
-      "description": "Flutter project scaffold — flutter create, pubspec.yaml, flutter pub get, build_runner",
+      "description": "Flutter project scaffold \u2014 flutter create, pubspec.yaml, flutter pub get, build_runner",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [],
@@ -365,7 +365,7 @@
       "id": "TASK-002",
       "phase": 0,
       "module": "scaffold",
-      "description": "Core lib/ folder structure — scaffold all folders and placeholder files per architecture.md",
+      "description": "Core lib/ folder structure \u2014 scaffold all folders and placeholder files per architecture.md",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -382,7 +382,7 @@
       "id": "TASK-003",
       "phase": 1,
       "module": "auth",
-      "description": "Supabase schema — organizations, profiles, org_members, org_settings + RLS + triggers",
+      "description": "Supabase schema \u2014 organizations, profiles, org_members, org_settings + RLS + triggers",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -407,7 +407,7 @@
       "id": "TASK-004",
       "phase": 1,
       "module": "auth",
-      "description": "Seed data Edge Function — roles, payment_terms, estimate_types, expense_buckets on org creation",
+      "description": "Seed data Edge Function \u2014 roles, payment_terms, estimate_types, expense_buckets on org creation",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -430,7 +430,7 @@
       "id": "TASK-005",
       "phase": 1,
       "module": "auth",
-      "description": "Auth flow — sign up, sign in, sign out, password reset screens + providers + AuthService",
+      "description": "Auth flow \u2014 sign up, sign in, sign out, password reset screens + providers + AuthService",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -449,7 +449,7 @@
       "id": "TASK-006",
       "phase": 1,
       "module": "orgs",
-      "description": "Org creation + onboarding flow — OrgService, OrgNotifier, org setup screen, RouterNotifier guards",
+      "description": "Org creation + onboarding flow \u2014 OrgService, OrgNotifier, org setup screen, RouterNotifier guards",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -471,7 +471,7 @@
       "id": "TASK-007",
       "phase": 1,
       "module": "scaffold",
-      "description": "App shell — bottom nav, placeholder screens, GoRouter shell route, full route table",
+      "description": "App shell \u2014 bottom nav, placeholder screens, GoRouter shell route, full route table",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -489,7 +489,7 @@
       "id": "TASK-008",
       "phase": 2,
       "module": "employees",
-      "description": "Supabase schema — roles, employees, permissions, compensation, invites, custom fields + RLS",
+      "description": "Supabase schema \u2014 roles, employees, permissions, compensation, invites, custom fields + RLS",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -516,7 +516,7 @@
       "id": "TASK-009",
       "phase": 2,
       "module": "employees",
-      "description": "Employee service + providers — EmployeeService, CurrentEmployeeNotifier, PermissionService, Freezed models",
+      "description": "Employee service + providers \u2014 EmployeeService, CurrentEmployeeNotifier, PermissionService, Freezed models",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -542,7 +542,7 @@
       "id": "TASK-010",
       "phase": 2,
       "module": "employees",
-      "description": "Employee list + detail screens — list with filter, detail with all fields, compensation section permission-gated",
+      "description": "Employee list + detail screens \u2014 list with filter, detail with all fields, compensation section permission-gated",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -559,7 +559,7 @@
       "id": "TASK-011",
       "phase": 2,
       "module": "employees",
-      "description": "Employee create + edit screens — all fields, display_name auto-suggest, status transitions, compensation entry",
+      "description": "Employee create + edit screens \u2014 all fields, display_name auto-suggest, status transitions, compensation entry",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -577,7 +577,7 @@
       "id": "TASK-012",
       "phase": 2,
       "module": "employees",
-      "description": "Employee invite flow — InviteService, send-invite-email Edge Function, accept screen, invite status UI",
+      "description": "Employee invite flow \u2014 InviteService, send-invite-email Edge Function, accept screen, invite status UI",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -594,7 +594,7 @@
       "id": "TASK-013",
       "phase": 2,
       "module": "employees",
-      "description": "Role + permission management UI — role list, role detail with permissions, per-employee override panel",
+      "description": "Role + permission management UI \u2014 role list, role detail with permissions, per-employee override panel",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -617,7 +617,7 @@
       "phase": 3,
       "track": "web",
       "module": "next_js_scaffold",
-      "description": "Next.js scaffold — web/ project init, @supabase/ssr auth, middleware, design system, app shell, login/signup pages",
+      "description": "Next.js scaffold \u2014 web/ project init, @supabase/ssr auth, middleware, design system, app shell, login/signup pages",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -640,7 +640,7 @@
       "phase": 4,
       "track": "shared",
       "module": "clients",
-      "description": "Supabase schema — clients, addresses, contacts, lookup tables, notes, tasks, communications + RLS",
+      "description": "Supabase schema \u2014 clients, addresses, contacts, lookup tables, notes, tasks, communications + RLS",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -674,7 +674,7 @@
       "phase": 4,
       "track": "shared",
       "module": "clients",
-      "description": "Client service + providers — ClientService, ClientListNotifier, is_incomplete logic, display_name helpers, Freezed models",
+      "description": "Client service + providers \u2014 ClientService, ClientListNotifier, is_incomplete logic, display_name helpers, Freezed models",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -699,7 +699,7 @@
       "phase": 4,
       "track": "web",
       "module": "clients",
-      "description": "Client list + detail — Next.js — list with search/filter, incomplete flag, detail with all sections",
+      "description": "Client list + detail \u2014 Next.js \u2014 list with search/filter, incomplete flag, detail with all sections",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -720,7 +720,7 @@
       "phase": 4,
       "track": "web",
       "module": "clients",
-      "description": "Client create + edit — Next.js — type toggle, all fields, display_name auto-suggest, address/contact inline",
+      "description": "Client create + edit \u2014 Next.js \u2014 type toggle, all fields, display_name auto-suggest, address/contact inline",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -740,7 +740,7 @@
       "phase": 4,
       "track": "web",
       "module": "clients",
-      "description": "Communications log — Next.js — log form, method/direction/result, chronological list, file attachment",
+      "description": "Communications log \u2014 Next.js \u2014 log form, method/direction/result, chronological list, file attachment",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -759,7 +759,7 @@
       "phase": 5,
       "track": "shared",
       "module": "crews",
-      "description": "Supabase schema — crews, equipment, all fleet tables + RLS",
+      "description": "Supabase schema \u2014 crews, equipment, all fleet tables + RLS",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -786,7 +786,7 @@
       "phase": 5,
       "track": "web",
       "module": "crews",
-      "description": "Crews service + UI — Next.js — CrewService, list/detail/create/edit",
+      "description": "Crews service + UI \u2014 Next.js \u2014 CrewService, list/detail/create/edit",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -804,7 +804,7 @@
       "phase": 5,
       "track": "shared+web",
       "module": "fleet",
-      "description": "Equipment service + providers — EquipmentService, availability check, expiry alerts, Freezed models",
+      "description": "Equipment service + providers \u2014 EquipmentService, availability check, expiry alerts, Freezed models",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -827,7 +827,7 @@
       "phase": 5,
       "track": "web",
       "module": "fleet",
-      "description": "Equipment list, detail, create + edit — Next.js — type filter, expiry badges, all fields",
+      "description": "Equipment list, detail, create + edit \u2014 Next.js \u2014 type filter, expiry badges, all fields",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -845,7 +845,7 @@
       "phase": 5,
       "track": "web",
       "module": "fleet",
-      "description": "Maintenance log + DVIR — Next.js — entry forms, history lists, receipt + signature upload",
+      "description": "Maintenance log + DVIR \u2014 Next.js \u2014 entry forms, history lists, receipt + signature upload",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -863,7 +863,7 @@
       "id": "TASK-024",
       "phase": 5,
       "module": "item_catalog",
-      "description": "Supabase schema — catalog items, specs, suppliers, partners, material configs, product catalog tables + RLS",
+      "description": "Supabase schema \u2014 catalog items, specs, suppliers, partners, material configs, product catalog tables + RLS",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -892,7 +892,7 @@
       "id": "TASK-025",
       "phase": 5,
       "module": "item_catalog",
-      "description": "Item catalog service + providers — CatalogItemService, SupplierService, pricing hierarchy, price review alerts, Freezed models",
+      "description": "Item catalog service + providers \u2014 CatalogItemService, SupplierService, pricing hierarchy, price review alerts, Freezed models",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -916,7 +916,7 @@
       "id": "TASK-026",
       "phase": 5,
       "module": "item_catalog",
-      "description": "Item catalog + supplier UI — item list/detail/create/edit, supplier management, partner management, price review workflow",
+      "description": "Item catalog + supplier UI \u2014 item list/detail/create/edit, supplier management, partner management, price review workflow",
       "status": "done",
       "parallel_safe": true,
       "depends_on": [
@@ -936,7 +936,7 @@
       "id": "TASK-027",
       "phase": 5,
       "module": "product_catalog",
-      "description": "Product catalog service + formula engine — ProductCatalogService, FormulaEngine (math_expressions), seeded templates",
+      "description": "Product catalog service + formula engine \u2014 ProductCatalogService, FormulaEngine (math_expressions), seeded templates",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -959,7 +959,7 @@
       "id": "TASK-028",
       "phase": 5,
       "module": "product_catalog",
-      "description": "Product catalog builder UI — list by category, form designer for inputs + components, material config builder",
+      "description": "Product catalog builder UI \u2014 list by category, form designer for inputs + components, material config builder",
       "status": "done",
       "parallel_safe": false,
       "depends_on": [
@@ -979,126 +979,189 @@
       "phase": 6,
       "track": "web",
       "module": "item_catalog",
-      "description": "Item catalog service + list/detail + price review workflow — Next.js",
-      "status": "ready",
+      "description": "Item catalog service + list/detail + price review workflow \u2014 Next.js",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-029"],
-      "blocks": ["TASK-030W", "TASK-031W", "TASK-032W", "TASK-033W"],
+      "depends_on": [
+        "TASK-029"
+      ],
+      "blocks": [
+        "TASK-030W",
+        "TASK-031W",
+        "TASK-032W",
+        "TASK-033W"
+      ],
       "spec": "specs/catalog_spec.md",
-      "tables": ["catalog_items", "catalog_item_specs", "catalog_item_suppliers"],
-      "branch": ""
+      "tables": [
+        "catalog_items",
+        "catalog_item_specs",
+        "catalog_item_suppliers"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-030W",
       "phase": 6,
       "track": "web",
       "module": "item_catalog",
-      "description": "Item catalog create + edit — full form, specs section, supplier links, preferred supplier enforcement — Next.js",
-      "status": "ready",
+      "description": "Item catalog create + edit \u2014 full form, specs section, supplier links, preferred supplier enforcement \u2014 Next.js",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-029W"],
+      "depends_on": [
+        "TASK-029W"
+      ],
       "blocks": [],
       "spec": "specs/catalog_spec.md",
-      "tables": ["catalog_items", "catalog_item_specs", "catalog_item_suppliers"],
-      "branch": ""
+      "tables": [
+        "catalog_items",
+        "catalog_item_specs",
+        "catalog_item_suppliers"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-031W",
       "phase": 6,
       "track": "web",
       "module": "item_catalog",
-      "description": "Suppliers + Partners — list/detail/create/edit, location management — Next.js",
-      "status": "ready",
+      "description": "Suppliers + Partners \u2014 list/detail/create/edit, location management \u2014 Next.js",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-029W"],
+      "depends_on": [
+        "TASK-029W"
+      ],
       "blocks": [],
       "spec": "specs/catalog_spec.md",
-      "tables": ["suppliers", "supplier_locations", "partners"],
-      "branch": ""
+      "tables": [
+        "suppliers",
+        "supplier_locations",
+        "partners"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-032W",
       "phase": 6,
       "track": "web",
       "module": "product_catalog",
-      "description": "Material Configurations — list grouped by type, create/edit with role assignment — Next.js",
-      "status": "ready",
+      "description": "Material Configurations \u2014 list grouped by type, create/edit with role assignment \u2014 Next.js",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-029W"],
+      "depends_on": [
+        "TASK-029W"
+      ],
       "blocks": [],
       "spec": "specs/catalog_spec.md",
-      "tables": ["material_configurations", "material_configuration_roles"],
-      "branch": ""
+      "tables": [
+        "material_configurations",
+        "material_configuration_roles"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-033W",
       "phase": 6,
       "track": "web",
       "module": "product_catalog",
-      "description": "Product Catalog — list by category, detail, form designer (inputs + components builder) — Next.js",
-      "status": "ready",
+      "description": "Product Catalog \u2014 list by category, detail, form designer (inputs + components builder) \u2014 Next.js",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-029W"],
+      "depends_on": [
+        "TASK-029W"
+      ],
       "blocks": [],
       "spec": "specs/catalog_spec.md",
-      "tables": ["product_catalog", "product_catalog_inputs", "product_catalog_components"],
-      "branch": ""
+      "tables": [
+        "product_catalog",
+        "product_catalog_inputs",
+        "product_catalog_components"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-034W",
       "phase": 7,
       "track": "web",
       "module": "employees_web",
-      "description": "Employee service + list/detail — all sections, compensation gated, invite status block — Next.js",
-      "status": "ready",
+      "description": "Employee service + list/detail \u2014 all sections, compensation gated, invite status block \u2014 Next.js",
+      "status": "done",
       "parallel_safe": false,
-      "depends_on": ["TASK-029"],
-      "blocks": ["TASK-035W", "TASK-036W", "TASK-037W"],
+      "depends_on": [
+        "TASK-029"
+      ],
+      "blocks": [
+        "TASK-035W",
+        "TASK-036W",
+        "TASK-037W"
+      ],
       "spec": "specs/employees_spec.md",
-      "tables": ["employees", "roles", "employee_compensation", "employee_invites", "custom_field_definitions", "custom_field_values"],
-      "branch": ""
+      "tables": [
+        "employees",
+        "roles",
+        "employee_compensation",
+        "employee_invites",
+        "custom_field_definitions",
+        "custom_field_values"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-035W",
       "phase": 7,
       "track": "web",
       "module": "employees_web",
-      "description": "Employee create + edit — all fields, display_name auto-suggest, compensation insert, status transitions — Next.js",
-      "status": "ready",
+      "description": "Employee create + edit \u2014 all fields, display_name auto-suggest, compensation insert, status transitions \u2014 Next.js",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-034W"],
+      "depends_on": [
+        "TASK-034W"
+      ],
       "blocks": [],
       "spec": "specs/employees_spec.md",
-      "tables": ["employees", "employee_compensation"],
-      "branch": ""
+      "tables": [
+        "employees",
+        "employee_compensation"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-036W",
       "phase": 7,
       "track": "web",
       "module": "employees_web",
-      "description": "Employee invite flow — deploy Edge Function, send/revoke actions, accept invite page — Next.js",
-      "status": "ready",
+      "description": "Employee invite flow \u2014 deploy Edge Function, send/revoke actions, accept invite page \u2014 Next.js",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-034W"],
+      "depends_on": [
+        "TASK-034W"
+      ],
       "blocks": [],
       "spec": "specs/employees_spec.md",
-      "tables": ["employee_invites", "employees"],
-      "branch": ""
+      "tables": [
+        "employee_invites",
+        "employees"
+      ],
+      "branch": "dev"
     },
     {
       "id": "TASK-037W",
       "phase": 7,
       "track": "web",
       "module": "employees_web",
-      "description": "Roles + Permission matrix — role list/detail, 27-key permission matrix, per-employee override panel — Next.js",
-      "status": "ready",
+      "description": "Roles + Permission matrix \u2014 role list/detail, 27-key permission matrix, per-employee override panel \u2014 Next.js",
+      "status": "done",
       "parallel_safe": true,
-      "depends_on": ["TASK-034W"],
+      "depends_on": [
+        "TASK-034W"
+      ],
       "blocks": [],
       "spec": "specs/employees_spec.md",
-      "tables": ["roles", "role_permissions", "employee_permission_overrides"],
-      "branch": ""
+      "tables": [
+        "roles",
+        "role_permissions",
+        "employee_permission_overrides"
+      ],
+      "branch": "dev"
     }
   ],
   "tables": [
@@ -1384,13 +1447,13 @@
       "file": "specs/auth_spec.md",
       "module": "auth",
       "phase": 1,
-      "description": "Auth flow — sign up, sign in, org creation, RouterNotifier redirect logic, seed data"
+      "description": "Auth flow \u2014 sign up, sign in, org creation, RouterNotifier redirect logic, seed data"
     },
     {
       "file": "specs/employees_spec.md",
       "module": "employees",
       "phase": 2,
-      "description": "Employees, roles, permissions system — CRUD, invite flow, permission resolution"
+      "description": "Employees, roles, permissions system \u2014 CRUD, invite flow, permission resolution"
     },
     {
       "file": "specs/clients_spec.md",
@@ -1402,7 +1465,7 @@
       "file": "specs/fleet_spec.md",
       "module": "fleet",
       "phase": 4,
-      "description": "Crews, equipment, fleet management — scheduling, maintenance, DVIR, expiry alerts"
+      "description": "Crews, equipment, fleet management \u2014 scheduling, maintenance, DVIR, expiry alerts"
     },
     {
       "file": "specs/catalog_spec.md",
