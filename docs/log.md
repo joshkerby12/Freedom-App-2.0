@@ -97,3 +97,12 @@
 [2026-03-26] · TASK-016W · Clients web list + detail flows implemented (search/filter/sort, incomplete badges, full sectioned detail with manage links) · needs-review
 [2026-03-26] · TASK-017W · Clients web create/edit flows implemented (residential/commercial form logic, display-name suggestion, inline addresses/contacts, lookup pickers) · needs-review
 [2026-03-26] · TASK-018W · Clients communications log implemented (chronological feed, server action logging, optional attachment upload to Supabase storage, next-contact recalculation) · needs-review
+[2026-03-26] · TASK-034W · Employees web service/list/detail implemented with compensation gating, invite state block, and permission override panel · needs-review
+[2026-03-26] · TASK-035W · Employees web create/edit flows implemented (full form, compensation history insert, status transition handling) · needs-review
+[2026-03-26] · TASK-036W · Employee invite web flow implemented, but Edge Function deploy blocked in this environment (missing Supabase access token) · blocked
+[2026-03-26] · TASK-037W · Roles web list/detail + 27-key permission matrix + per-employee override actions implemented · needs-review
+[2026-03-26] · TASK-029W · Catalog item web list/detail + price review workflow implemented (search/filter, overdue review, inline cost update, mark reviewed) · needs-review
+[2026-03-26] · TASK-030W · Catalog item web create/edit flow implemented (full field set, specs, supplier links, preferred supplier enforcement) · needs-review
+[2026-03-26] · TASK-031W · Supplier + partner web CRUD implemented (list/detail/create/edit, multi-location supplier management, items carried view) · needs-review
+[2026-03-26] · TASK-032W · Material configuration web builder implemented (type-driven role assignments, required role validation, swatch preview) · needs-review
+[2026-03-26] · TASK-033W · Product catalog web module implemented (grouped list, detail, form designer with input/component reorder, system-template delete block) · needs-review

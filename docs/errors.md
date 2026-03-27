@@ -147,3 +147,15 @@ Entry format:
 - **What was tried:** Ran `supabase migration list` (migration detected locally), then ran `supabase db push`; command failed with password authentication error.
 - **Resolution:** Code/migration implementation completed locally; remote migration apply is pending credential fix or re-link by director.
 - **Docs updated as result:** `docs/errors.md`
+
+### ERR-004 · TASK-036W invite function deploy blocked by missing Supabase access token
+- **Date:** 2026-03-26
+- **Status:** Blocked
+- **Feature area:** Employees web invite flow
+- **Module:** employees_web
+- **What was reported:** `@CODEX.md phase 7` execution required deploying `send-employee-invite` with `supabase functions deploy send-employee-invite`.
+- **Clarifying questions asked / answers received:** N/A (direct phase execution in this environment)
+- **Root cause:** Supabase CLI is not authenticated in this workspace. Deploy command failed with: `Access token not provided`.
+- **What was tried:** Confirmed function exists at `supabase/functions/send-employee-invite/index.ts`, then ran deploy command; checked `.env` for `SUPABASE_ACCESS_TOKEN` (not present).
+- **Resolution:** TASK-036W remains blocked until Supabase CLI auth is provided (`supabase login` or `SUPABASE_ACCESS_TOKEN` env var) and deploy is rerun.
+- **Docs updated as result:** `docs/errors.md`, `docs/tasks.md`, `index.json`

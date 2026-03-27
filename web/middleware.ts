@@ -17,17 +17,22 @@ export async function middleware(request: NextRequest) {
   const pathname = normalizePathname(request.nextUrl.pathname);
   const authPath = isAuthRoute(pathname);
   const onboardingPath = pathname === ONBOARDING_ROUTE;
+  const inviteAcceptPath = pathname === "/invite/accept";
   const rootPath = pathname === "/";
 
   let snapshot;
   try {
     snapshot = await getSessionSnapshot(request);
   } catch {
-    return authPath ? NextResponse.next() : redirectTo(request, LOGIN_ROUTE);
+    return authPath || inviteAcceptPath ? NextResponse.next() : redirectTo(request, LOGIN_ROUTE);
   }
 
   if (!snapshot.user) {
-    return authPath ? snapshot.response : redirectTo(request, LOGIN_ROUTE);
+    return authPath || inviteAcceptPath ? snapshot.response : redirectTo(request, LOGIN_ROUTE);
+  }
+
+  if (inviteAcceptPath) {
+    return snapshot.response;
   }
 
   if (!snapshot.hasOrg) {
@@ -46,4 +51,3 @@ export const config = {
     "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };
-

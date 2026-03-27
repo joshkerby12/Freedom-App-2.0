@@ -111,8 +111,8 @@ Deno.serve(async (req) => {
       });
     }
 
-    const appBaseUrl = Deno.env.get('APP_BASE_URL') ?? 'freedomapp://invite';
-    const inviteLink = `${appBaseUrl}/accept?token=${encodeURIComponent(token)}`;
+    const appBaseUrl = (Deno.env.get('APP_BASE_URL') ?? 'http://localhost:3000').replace(/\/+$/, '');
+    const inviteLink = `${appBaseUrl}/invite/accept?token=${encodeURIComponent(token)}`;
 
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
     const resendFrom = Deno.env.get('RESEND_FROM_EMAIL') ?? 'noreply@freedomapp.local';

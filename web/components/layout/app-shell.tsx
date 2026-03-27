@@ -11,8 +11,10 @@ const navigationItems = [
   { href: "/dashboard", label: "Dashboard", abbr: "DB" },
   { href: "/clients", label: "Clients", abbr: "CL" },
   { href: "/employees", label: "Employees", abbr: "EM" },
+  { href: "/settings/roles", label: "Roles", abbr: "RL" },
   { href: "/crews", label: "Crews", abbr: "CR" },
   { href: "/fleet/equipment", label: "Fleet", abbr: "FL" },
+  { href: "/catalog/items", label: "Catalog", abbr: "CA" },
 ];
 
 export function AppShell({ children, onSignOut }: AppShellProps) {
