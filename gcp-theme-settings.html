@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCP · Theme Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gcp-surface:    #F2E8D9;
+    --gcp-surface2:   #E6D5BE;
+    --gcp-primary:    #3D2B1F;
+    --gcp-accent:     #1E3A2F;
+    --gcp-black:      #0D0D0B;
+    --gcp-green-lt:   #7AB87A;
+    --ui-bg:          #0D0D0B;
+    --ui-surface:     #111110;
+    --ui-border:      #1e1e1a;
+    --ui-border2:     #252520;
+    --ui-text:        #E6D5BE;
+    --ui-muted:       #55554e;
+    --ui-subtle:      #2a2a26;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ui-bg);
+    color: var(--ui-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    height: 56px;
+    border-bottom: 1px solid var(--ui-border);
+    background: var(--ui-surface);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .topbar-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 16px;
+    color: var(--ui-text);
+    letter-spacing: 0.01em;
+  }
+  .topbar-sep {
+    width: 1px;
+    height: 18px;
+    background: var(--ui-border2);
+  }
+  .topbar-page {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ui-muted);
+  }
+  .topbar-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--ui-border2);
+    color: var(--ui-muted);
+  }
+  .btn-ghost:hover { border-color: var(--ui-muted); color: var(--ui-text); }
+  .btn-primary {
+    background: var(--gcp-green-lt);
+    color: var(--gcp-black);
+  }
+  .btn-primary:hover { opacity: 0.88; }
+  .btn-danger {
+    background: transparent;
+    border: 1px solid #3a1a1a;
+    color: #c07070;
+  }
+  .btn-danger:hover { border-color: #c07070; }
+
+  /* ── LAYOUT ── */
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 0;
+    flex: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 40px 32px;
+    align-items: start;
+    gap: 40px;
+  }
+
+  @media (max-width: 780px) {
+    .layout { grid-template-columns: 1fr; padding: 24px 16px; }
+    .preview-col { order: -1; }
+  }
+
+  /* ── FORM COL ── */
+  .form-col { display: flex; flex-direction: column; gap: 28px; }
+
+  .page-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .page-heading h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--ui-text);
+    letter-spacing: -0.3px;
+  }
+  .page-heading p {
+    font-size: 13px;
+    color: var(--ui-muted);
+    line-height: 1.5;
+  }
+
+  /* ── FORM SECTION ── */
+  .form-section {
+    background: var(--ui-surface);
+    border: 1px solid var(--ui-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .form-section-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--ui-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .form-section-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--ui-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+  .form-section-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ui-muted);
+  }
+  .form-section-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ── FIELD ── */
+  .field { display: flex; flex-direction: column; gap: 7px; }
+  .field label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--ui-muted);
+    text-transform: uppercase;
+  }
+  .field input[type="text"] {
+    background: var(--ui-bg);
+    border: 1px solid var(--ui-border2);
+    border-radius: 7px;
+    padding: 9px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--ui-text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .field input[type="text"]:focus { border-color: var(--ui-muted); }
+
+  /* ── COLOR FIELD ── */
+  .color-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ui-bg);
+    border: 1px solid var(--ui-border2);
+    border-radius: 7px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .color-field:hover { border-color: var(--ui-muted); }
+  .color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .color-swatch input[type="color"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+  .color-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ui-text);
+    flex: 1;
+    letter-spacing: 0.05em;
+  }
+  .color-label-desc {
+    font-size: 10px;
+    color: var(--ui-muted);
+    margin-top: 3px;
+  }
+
+  /* color row for mode toggle */
+  .color-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* ── LOGO UPLOAD ── */
+  .logo-upload-area {
+    border: 1.5px dashed var(--ui-border2);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    position: relative;
+  }
+  .logo-upload-area:hover { border-color: var(--ui-muted); background: var(--ui-subtle); }
+  .logo-upload-area input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .logo-preview {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background: var(--ui-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    overflow: hidden;
+  }
+  .logo-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .logo-upload-text {
+    font-size: 12px;
+    color: var(--ui-muted);
+    text-align: center;
+    line-height: 1.5;
+  }
+  .logo-upload-text strong { color: var(--ui-text); font-weight: 600; }
+
+  /* ── RESET ROW ── */
+  .reset-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-top: 1px solid var(--ui-border);
+    background: #0f0f0d;
+  }
+  .reset-info { display: flex; flex-direction: column; gap: 3px; }
+  .reset-info span {
+    font-size: 12px;
+    color: var(--ui-muted);
+  }
+  .reset-info strong {
+    font-size: 11px;
+    font-weight: 600;
+    color: #c07070;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── SAVE BAR ── */
+  .save-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--ui-surface);
+    border: 1px solid var(--ui-border);
+    border-radius: 12px;
+  }
+  .save-bar-info {
+    font-size: 12px;
+    color: var(--ui-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .save-bar-info .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gcp-green-lt);
+  }
+  .save-bar-info .dot.dirty { background: #c0a070; }
+  .save-btns { display: flex; gap: 8px; }
+
+  /* ── PREVIEW COL ── */
+  .preview-col {
+    position: sticky;
+    top: 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .preview-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ui-muted);
+  }
+
+  /* ── PREVIEW CARD (LIGHT) ── */
+  .preview-card {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+  }
+  .preview-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+  }
+  .preview-nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+  }
+  .preview-nav-links { display: flex; gap: 12px; }
+  .preview-nav-link {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+  .preview-nav-link.active { opacity: 1; }
+
+  .preview-body { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  .preview-hero {
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .preview-hero-logo {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .preview-hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+  .preview-hero-text {}
+  .preview-hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 15px;
+  }
+  .preview-hero-sub {
+    font-size: 10px;
+    opacity: 0.55;
+    margin-top: 2px;
+  }
+
+  .preview-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .preview-mini-card {
+    border-radius: 8px;
+    padding: 12px;
+  }
+  .preview-mini-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-bottom: 6px;
+  }
+  .preview-mini-title { font-size: 11px; font-weight: 600; }
+  .preview-mini-meta { font-size: 9px; opacity: 0.5; margin-top: 3px; }
+
+  .preview-cta-row { display: flex; gap: 8px; }
+  .preview-btn {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 6px;
+    border: none;
+    cursor: default;
+  }
+  .preview-btn-ghost {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: transparent;
+    border: none;
+    cursor: default;
+    padding: 7px 10px;
+    opacity: 0.5;
+  }
+
+  /* ── PREVIEW DARK ── */
+  .preview-dark-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--ui-muted);
+    cursor: pointer;
+    user-select: none;
+  }
+  .toggle-track {
+    width: 32px; height: 18px;
+    border-radius: 9px;
+    background: var(--ui-border2);
+    position: relative;
+    transition: background 0.2s;
+  }
+  .toggle-track.on { background: var(--gcp-green-lt); }
+  .toggle-thumb {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #fff;
+    transition: left 0.2s;
+  }
+  .toggle-track.on .toggle-thumb { left: 17px; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--gcp-green-lt);
+    color: var(--gcp-black);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+    z-index: 999;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.error { background: #c07070; color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-logo">Ground Control</span>
+    <div class="topbar-sep"></div>
+    <span class="topbar-page">Theme Settings</span>
+  </div>
+  <div class="topbar-right">
+    <button class="btn btn-ghost" onclick="resetToDefaults()">Reset to GCP Defaults</button>
+    <button class="btn btn-primary" onclick="saveTheme()">Save Theme</button>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- FORM -->
+  <div class="form-col">
+
+    <div class="page-heading">
+      <h2>Company Theme</h2>
+      <p>Customize Ground Control Pro to match your brand. Changes apply company-wide for all users in your account.</p>
+    </div>
+
+    <!-- IDENTITY -->
+    <div class="form-section">
+      <div class="form-section-header">
+        <div class="form-section-icon">🏢</div>
+        <span class="form-section-title">Company Identity</span>
+      </div>
+      <div class="form-section-body">
+
+        <div class="field">
+          <label>Company Name</label>
+          <input type="text" id="companyName" value="Freedom Landscapes" placeholder="Your company name" oninput="updatePreview()">
+        </div>
+
+        <div class="field">
+          <label>Logo</label>
+          <div class="logo-upload-area" id="logoDropZone">
+            <input type="file" accept="image/*" id="logoInput" onchange="handleLogo(event)">
+            <div class="logo-preview" id="logoPreview">🌿</div>
+            <div class="logo-upload-text">
+              <strong>Click to upload</strong> or drag & drop<br>
+              PNG, JPG, SVG · Max 2MB
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- LIGHT MODE COLORS -->
+    <div class="form-section">
+      <div class="form-section-header">
+        <div class="form-section-icon">☀️</div>
+        <span class="form-section-title">Light Mode Colors</span>
+      </div>
+      <div class="form-section-body">
+
+        <div class="field">
+          <label>Surface / Background</label>
+          <div class="color-field" onclick="document.getElementById('c-surface').click()">
+            <div class="color-swatch" id="sw-surface">
+              <input type="color" id="c-surface" value="#F2E8D9" oninput="syncColor('surface', this.value)">
+            </div>
+            <span class="color-hex" id="hex-surface">#F2E8D9</span>
+          </div>
+          <span class="color-label-desc">Page & card background in light mode</span>
+        </div>
+
+        <div class="field">
+          <label>Primary (Dark Brown)</label>
+          <div class="color-field" onclick="document.getElementById('c-primary').click()">
+            <div class="color-swatch" id="sw-primary">
+              <input type="color" id="c-primary" value="#3D2B1F" oninput="syncColor('primary', this.value)">
+            </div>
+            <span class="color-hex" id="hex-primary">#3D2B1F</span>
+          </div>
+          <span class="color-label-desc">Nav bar, headings, primary buttons</span>
+        </div>
+
+        <div class="field">
+          <label>Accent (Dark Green)</label>
+          <div class="color-field" onclick="document.getElementById('c-accent').click()">
+            <div class="color-swatch" id="sw-accent">
+              <input type="color" id="c-accent" value="#1E3A2F" oninput="syncColor('accent', this.value)">
+            </div>
+            <span class="color-hex" id="hex-accent">#1E3A2F</span>
+          </div>
+          <span class="color-label-desc">CTA buttons, tags, highlights</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DARK MODE COLORS -->
+    <div class="form-section">
+      <div class="form-section-header">
+        <div class="form-section-icon">🌙</div>
+        <span class="form-section-title">Dark Mode Colors</span>
+      </div>
+      <div class="form-section-body">
+
+        <div class="field">
+          <label>Surface / Background</label>
+          <div class="color-field" onclick="document.getElementById('c-dark-surface').click()">
+            <div class="color-swatch" id="sw-dark-surface">
+              <input type="color" id="c-dark-surface" value="#0D0D0B" oninput="syncColor('dark-surface', this.value)">
+            </div>
+            <span class="color-hex" id="hex-dark-surface">#0D0D0B</span>
+          </div>
+          <span class="color-label-desc">Page background in dark mode</span>
+        </div>
+
+        <div class="field">
+          <label>Warm Accent (Brown)</label>
+          <div class="color-field" onclick="document.getElementById('c-dark-warm').click()">
+            <div class="color-swatch" id="sw-dark-warm">
+              <input type="color" id="c-dark-warm" value="#6B4A35" oninput="syncColor('dark-warm', this.value)">
+            </div>
+            <span class="color-hex" id="hex-dark-warm">#6B4A35</span>
+          </div>
+          <span class="color-label-desc">Cards, borders, decorative elements</span>
+        </div>
+
+        <div class="field">
+          <label>Primary Accent (Light Green)</label>
+          <div class="color-field" onclick="document.getElementById('c-dark-accent').click()">
+            <div class="color-swatch" id="sw-dark-accent">
+              <input type="color" id="c-dark-accent" value="#7AB87A" oninput="syncColor('dark-accent', this.value)">
+            </div>
+            <span class="color-hex" id="hex-dark-accent">#7AB87A</span>
+          </div>
+          <span class="color-label-desc">CTA buttons, active nav, badges</span>
+        </div>
+
+      </div>
+
+      <div class="reset-row">
+        <div class="reset-info">
+          <strong>Reset to GCP Defaults</strong>
+          <span>Restores the original Ground Control Pro color palette</span>
+        </div>
+        <button class="btn btn-danger" onclick="resetToDefaults()">Reset</button>
+      </div>
+    </div>
+
+    <!-- SAVE -->
+    <div class="save-bar">
+      <div class="save-bar-info">
+        <div class="dot" id="statusDot"></div>
+        <span id="statusText">No unsaved changes</span>
+      </div>
+      <div class="save-btns">
+        <button class="btn btn-ghost" onclick="discardChanges()">Discard</button>
+        <button class="btn btn-primary" onclick="saveTheme()">Save Theme</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PREVIEW -->
+  <div class="preview-col">
+
+    <div style="display:flex; align-items:center; justify-content:space-between;">
+      <span class="preview-label">Live Preview</span>
+      <div class="preview-dark-toggle" onclick="toggleDarkPreview()">
+        <div class="toggle-track" id="darkToggle">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span id="darkToggleLabel">Light</span>
+      </div>
+    </div>
+
+    <div class="preview-card" id="previewCard">
+      <!-- dynamically rendered -->
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  const DEFAULTS = {
+    companyName:  'Ground Control Pro',
+    logoSrc:      null,
+    surface:      '#F2E8D9',
+    primary:      '#3D2B1F',
+    accent:       '#1E3A2F',
+    darkSurface:  '#0D0D0B',
+    darkWarm:     '#6B4A35',
+    darkAccent:   '#7AB87A',
+  };
+
+  let state = { ...DEFAULTS, companyName: 'Freedom Landscapes' };
+  let saved = { ...state };
+  let darkPreview = false;
+  let dirty = false;
+
+  // ── INIT ──
+  function init() {
+    applyStateToForm();
+    renderPreview();
+  }
+
+  function applyStateToForm() {
+    document.getElementById('companyName').value = state.companyName;
+    setColorInput('surface',      state.surface);
+    setColorInput('primary',      state.primary);
+    setColorInput('accent',       state.accent);
+    setColorInput('dark-surface', state.darkSurface);
+    setColorInput('dark-warm',    state.darkWarm);
+    setColorInput('dark-accent',  state.darkAccent);
+  }
+
+  function setColorInput(key, val) {
+    const input = document.getElementById('c-' + key);
+    const swatch = document.getElementById('sw-' + key);
+    const hex = document.getElementById('hex-' + key);
+    if (input) input.value = val;
+    if (swatch) swatch.style.background = val;
+    if (hex) hex.textContent = val.toUpperCase();
+  }
+
+  // ── COLOR SYNC ──
+  function syncColor(key, val) {
+    const camel = {
+      'surface': 'surface',
+      'primary': 'primary',
+      'accent': 'accent',
+      'dark-surface': 'darkSurface',
+      'dark-warm': 'darkWarm',
+      'dark-accent': 'darkAccent',
+    }[key];
+    state[camel] = val;
+    setColorInput(key, val);
+    markDirty();
+    renderPreview();
+  }
+
+  function updatePreview() {
+    state.companyName = document.getElementById('companyName').value || 'My Company';
+    markDirty();
+    renderPreview();
+  }
+
+  // ── LOGO ──
+  function handleLogo(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (file.size > 2 * 1024 * 1024) { showToast('Logo must be under 2MB', true); return; }
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      state.logoSrc = ev.target.result;
+      const prev = document.getElementById('logoPreview');
+      prev.innerHTML = `<img src="${state.logoSrc}" alt="logo">`;
+      markDirty();
+      renderPreview();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── PREVIEW RENDER ──
+  function renderPreview() {
+    const dark = darkPreview;
+    const s = state;
+
+    const bg       = dark ? s.darkSurface : s.surface;
+    const nav      = dark ? adjustColor(s.darkSurface, -8) : s.primary;
+    const navText  = dark ? s.darkAccent  : lighten(s.surface, 0.85);
+    const navMuted = dark ? s.darkWarm    : lighten(s.surface, 0.5);
+    const heroBg   = dark ? adjustColor(s.darkSurface, 8) : lighten(s.surface, -10);
+    const cardBg   = dark ? adjustColor(s.darkSurface, 12) : '#ffffff';
+    const tagBg    = dark ? adjustColor(s.darkSurface, 20) : lighten(s.surface, -15);
+    const tagText  = dark ? s.darkAccent  : s.primary;
+    const titleCol = dark ? lighten(s.surface, 0.9)  : s.primary;
+    const btnBg    = dark ? s.darkAccent  : s.accent;
+    const btnText  = dark ? s.darkSurface : lighten(s.surface, 0.92);
+    const ghostCol = dark ? s.darkWarm    : s.primary;
+    const border   = dark ? adjustColor(s.darkSurface, 18) : 'transparent';
+
+    const logoHtml = s.logoSrc
+      ? `<img src="${s.logoSrc}" alt="logo" style="width:100%;height:100%;object-fit:contain;">`
+      : '🌿';
+
+    const html = `
+      <div style="background:${bg}; font-family:'DM Sans',sans-serif; transition: background 0.3s;">
+        <!-- Nav -->
+        <div style="background:${nav}; padding:11px 16px; display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'DM Serif Display',serif; font-size:14px; color:${navText}; letter-spacing:0.01em;">${escHtml(s.companyName)}</span>
+          <div style="display:flex;gap:12px;">
+            <span style="font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:${navText};">Jobs</span>
+            <span style="font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:${navMuted};opacity:0.7;">Crews</span>
+            <span style="font-size:10px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:${navMuted};opacity:0.7;">Reports</span>
+          </div>
+        </div>
+        <!-- Body -->
+        <div style="padding:14px;display:flex;flex-direction:column;gap:10px;">
+          <!-- Hero -->
+          <div style="background:${heroBg};border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;border:1px solid ${border};">
+            <div style="width:38px;height:38px;border-radius:8px;background:${nav};display:flex;align-items:center;justify-content:center;font-size:17px;overflow:hidden;flex-shrink:0;">${logoHtml}</div>
+            <div>
+              <div style="font-family:'DM Serif Display',serif;font-size:14px;color:${titleCol};">${escHtml(s.companyName)}</div>
+              <div style="font-size:10px;color:${titleCol};opacity:0.45;margin-top:2px;">Ground Control Pro · Active Account</div>
+            </div>
+          </div>
+          <!-- Mini cards -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:${cardBg};border-radius:8px;padding:12px;border:1px solid ${border};">
+              <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;background:${tagBg};color:${tagText};padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:6px;">Estimate</span>
+              <div style="font-size:11px;font-weight:600;color:${titleCol};">Johnson Backyard</div>
+              <div style="font-size:9px;color:${titleCol};opacity:0.45;margin-top:3px;">Crew 2 · Tue Apr 15</div>
+            </div>
+            <div style="background:${cardBg};border-radius:8px;padding:12px;border:1px solid ${border};">
+              <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.1em;text-transform:uppercase;background:${tagBg};color:${btnBg};padding:2px 7px;border-radius:3px;display:inline-block;margin-bottom:6px;">Active</span>
+              <div style="font-size:11px;font-weight:600;color:${titleCol};">Rivera Front Yard</div>
+              <div style="font-size:9px;color:${titleCol};opacity:0.45;margin-top:3px;">Crew 1 · In Progress</div>
+            </div>
+          </div>
+          <!-- CTA -->
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button style="background:${btnBg};color:${btnText};font-size:10px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:7px 14px;border-radius:6px;border:none;cursor:default;">New Job</button>
+            <button style="background:transparent;border:1.5px solid ${btnBg};color:${btnBg};font-size:10px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:6px 12px;border-radius:6px;cursor:default;opacity:0.75;">View All</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('previewCard').innerHTML = html;
+  }
+
+  // ── DARK TOGGLE ──
+  function toggleDarkPreview() {
+    darkPreview = !darkPreview;
+    const track = document.getElementById('darkToggle');
+    const label = document.getElementById('darkToggleLabel');
+    if (darkPreview) { track.classList.add('on'); label.textContent = 'Dark'; }
+    else { track.classList.remove('on'); label.textContent = 'Light'; }
+    renderPreview();
+  }
+
+  // ── SAVE / RESET / DISCARD ──
+  function saveTheme() {
+    saved = { ...state };
+    dirty = false;
+    updateStatus();
+    showToast('Theme saved successfully');
+  }
+
+  function discardChanges() {
+    if (!dirty) return;
+    state = { ...saved };
+    applyStateToForm();
+    dirty = false;
+    updateStatus();
+    renderPreview();
+    showToast('Changes discarded');
+  }
+
+  function resetToDefaults() {
+    state = { ...DEFAULTS };
+    applyStateToForm();
+
+    // reset logo
+    state.logoSrc = null;
+    document.getElementById('logoPreview').innerHTML = '🌿';
+
+    markDirty();
+    renderPreview();
+    showToast('Reset to GCP defaults');
+  }
+
+  function markDirty() {
+    dirty = true;
+    updateStatus();
+  }
+
+  function updateStatus() {
+    const dot = document.getElementById('statusDot');
+    const txt = document.getElementById('statusText');
+    if (dirty) {
+      dot.classList.add('dirty');
+      txt.textContent = 'Unsaved changes';
+    } else {
+      dot.classList.remove('dirty');
+      txt.textContent = 'All changes saved';
+    }
+  }
+
+  // ── TOAST ──
+  function showToast(msg, error = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast' + (error ? ' error' : '');
+    requestAnimationFrame(() => {
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2400);
+    });
+  }
+
+  // ── COLOR UTILS ──
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function adjustColor(hex, amount) {
+    const n = parseInt(hex.replace('#',''), 16);
+    let r = Math.max(0, Math.min(255, (n >> 16) + amount));
+    let g = Math.max(0, Math.min(255, ((n >> 8) & 0xff) + amount));
+    let b = Math.max(0, Math.min(255, (n & 0xff) + amount));
+    return '#' + [r, g, b].map(x => x.toString(16).padStart(2,'0')).join('');
+  }
+
+  function lighten(hex, pct) {
+    if (typeof pct === 'number' && pct < 1 && pct > 0) {
+      // blend toward white
+      const n = parseInt(hex.replace('#',''), 16);
+      const r = Math.round(((n >> 16)) + (255 - (n >> 16)) * pct);
+      const g = Math.round((((n >> 8) & 0xff)) + (255 - ((n >> 8) & 0xff)) * pct);
+      const b = Math.round(((n & 0xff)) + (255 - (n & 0xff)) * pct);
+      return '#' + [r, g, b].map(x => x.toString(16).padStart(2,'0')).join('');
+    }
+    return adjustColor(hex, pct);
+  }
+
+  init();
+</script>
+</body>
+</html>

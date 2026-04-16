@@ -5,8 +5,8 @@ import 'core/routing/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/theme/theme_provider.dart';
 
-class FreedomApp extends ConsumerWidget {
-  const FreedomApp({super.key});
+class GroundControlApp extends ConsumerWidget {
+  const GroundControlApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,7 +14,7 @@ class FreedomApp extends ConsumerWidget {
     final router = ref.watch(appRouterProvider);
 
     return MaterialApp.router(
-      title: 'Freedom App',
+      title: 'Ground Control Pro',
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,

@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:freedom_app/features/employees/models/employee.dart';
-import 'package:freedom_app/features/employees/services/employee_service.dart';
-import 'package:freedom_app/features/orgs/org_notifier.dart';
+import 'package:ground_control_pro/features/employees/models/employee.dart';
+import 'package:ground_control_pro/features/employees/services/employee_service.dart';
+import 'package:ground_control_pro/features/orgs/org_notifier.dart';
 
 part 'employee_list_provider.g.dart';
 

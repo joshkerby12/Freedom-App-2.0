@@ -1,4 +1,4 @@
-# Agents · Freedom App 2.0
+# Agents · Ground Control Pro
 
 > Who the agents are, what they own, and how they hand off.
 

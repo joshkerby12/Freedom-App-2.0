@@ -1,6 +1,8 @@
-# Tasks · Freedom App 2.0
+# Tasks · Ground Control Pro
 
 > Active task queue. Claude authors and scopes all tasks. Codex picks up `ready` tasks and implements them.
+>
+> **Note:** This project was rebranded from Freedom App 2.0 / Freedom Landscapes to Ground Control Pro on 2026-04-15. New Supabase project and GitHub repo are required before resuming backend work.
 
 ---
 

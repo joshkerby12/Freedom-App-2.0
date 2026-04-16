@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supa;
 
-import 'package:freedom_app/core/network/supabase_client_provider.dart';
-import 'package:freedom_app/features/employees/models/employee_invite.dart';
+import 'package:ground_control_pro/core/network/supabase_client_provider.dart';
+import 'package:ground_control_pro/features/employees/models/employee_invite.dart';
 
 part 'invite_service.g.dart';
 

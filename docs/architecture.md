@@ -1,4 +1,4 @@
-# Architecture · Freedom App 2.0
+# Architecture · Ground Control Pro
 
 > Every agent reads this file first at the start of every session. The doc tree, spec sheet index, and folder conventions must be kept current at all times. A task is not done until this file reflects the current state of the codebase.
 
@@ -6,25 +6,26 @@
 
 ## System Overview
 
-**App Name:** Freedom App 2.0
-**Company:** Freedom Landscapes
-**Platform:** iOS + Android (Flutter/Dart) · Web (Next.js — `web/` subfolder, active)
+**App Name:** Ground Control Pro
+**Company:** Ground Control Pro
+**Platform:** Mobile web + Desktop (Next.js — primary, deployed to Vercel) · iOS + Android native (Flutter — Phase 2, future)
 **State Management:** Riverpod (@riverpod annotation only) — Flutter only
 **Navigation:** GoRouter (Flutter) · Next.js App Router (web)
 **Backend:** Supabase (Auth + Postgres + Storage + Edge Functions)
-**Bank Integration:** Plaid (expense tracking / transaction import)
+**Bank Integration:** Teller.io (expense tracking / transaction import)
 **QB Integration:** QuickBooks API (customer, payment terms, invoice sync)
 **AI:** Anthropic Claude API
-**Voice:** Deepgram (STT) + flutter_tts (TTS)
-**Push Notifications:** Firebase Cloud Messaging (FCM)
-**Supabase Project Ref:** `dhkqhctriihbdzprxqnk`
-**Supabase URL:** `https://dhkqhctriihbdzprxqnk.supabase.co`
+**Voice:** Deepgram (STT) + flutter_tts (TTS) — Phase 2
+**Push Notifications:** Firebase Cloud Messaging (FCM) — Phase 2
+**Deployment:** Vercel (Next.js web app — active) · App Store / Play Store (Flutter — Phase 2)
+**Supabase Project Ref:** `ioxkkeualrrvxsdccswf`
+**Supabase URL:** `https://ioxkkeualrrvxsdccswf.supabase.co`
 **Supabase Anon Key:** in `.env` — `SUPABASE_ANON_KEY`
 
 **Build Track Convention:**
-- Phases 0–999: Shared (schema + services) + Web (Next.js UI)
-- Phases 1000–1999: Mobile (Flutter UI)
-- Web is built first. Mobile phases are placeholders until director signs off on web and confirms mobile direction.
+- Phases 0–999: Shared (schema + services) + Web (Next.js UI, mobile-responsive)
+- Phases 1000–1999: Native Mobile (Flutter UI) — Phase 2, not started
+- Web is built first and optimized for mobile browsers. All pages must work at 390px viewport. Flutter native is a future phase for offline, push notifications, and App Store presence.
 - Next.js auth: `@supabase/ssr` (App Router) — sessions via HTTP-only cookies, same Supabase project as Flutter.
 
 **Core Principles:**
@@ -252,13 +253,14 @@ These items are not blocking scaffold but must be completed before launch:
 
 | Item | Owner | Notes |
 |---|---|---|
-| Supabase project creation | Director | ✅ Done — `dhkqhctriihbdzprxqnk` |
-| `supabase login && supabase link` | Director + Claude | ✅ Done — linked 2026-03-25 |
-| Remote git repository | Director | ✅ Done — https://github.com/joshkerby12/Freedom-App-2.0.git |
-| Apple Developer account | Director | Required for iOS App Store / TestFlight |
-| Google Play Console account | Director | Required for Android distribution |
-| Firebase project + FCM setup | Director + Claude | Create Firebase project, add `google-services.json` and `GoogleService-Info.plist` before any notification work |
+| Supabase project creation | Director | ✅ Done — `ioxkkeualrrvxsdccswf` |
+| `supabase login && supabase link` | Director + Claude | ✅ Done — linked 2026-04-15 |
+| Remote git repository | Director | ✅ Done — https://github.com/joshkerby12/Ground-Control-Pro.git |
+| Vercel deployment | Director + Claude | ✅ Done — `web/` connected and deployed |
+| Apple Developer account | Director | Phase 2 — required for iOS App Store / TestFlight |
+| Google Play Console account | Director | Phase 2 — required for Android distribution |
+| Firebase project + FCM setup | Director + Claude | Phase 2 — Create Firebase project, add `google-services.json` and `GoogleService-Info.plist` before any notification work |
 | Email confirmation | Director | Disable in Supabase Auth settings for dev. **Re-enable before production launch.** |
-| Plaid account + API keys | Director | Sign up at plaid.com, obtain client_id and secret |
+| Teller.io account + API keys | Director | Sign up at teller.io, obtain application_id and certificate |
 | Anthropic API key | Director | Obtain from console.anthropic.com |
 | Deepgram API key | Director | Obtain from deepgram.com |

@@ -1,4 +1,4 @@
-# CLAUDE.md · Freedom App 2.0
+# CLAUDE.md · Ground Control Pro
 
 > **On invocation:** Read the following in order before responding:
 > 1. `docs/architecture.md` — project map and current state
@@ -26,12 +26,12 @@ This is a trusted solo-developer project. All tool calls are auto-approved:
 
 | Field | Value |
 |---|---|
-| App Name | Freedom App 2.0 |
-| Company | Freedom Landscapes |
-| Working Directory | `/Users/joshkerby/Documents/Apps/Freedom App 2.0` |
-| Bundle ID | `com.freedomlandscapes.app` |
-| Flutter Project Name | `freedom_app` |
-| Platform | iOS + Android (Flutter) · Web (Next.js — future) |
+| App Name | Ground Control Pro |
+| Company | Ground Control Pro |
+| Working Directory | `/Users/joshkerby/Documents/Apps/Ground Control Pro` |
+| Bundle ID | `com.groundcontrolpro.app` |
+| Flutter Project Name | `ground_control_pro` |
+| Platform | Mobile web + Desktop (Next.js — primary, Vercel) · iOS + Android native (Flutter — Phase 2) |
 | Backend | Supabase |
 | Branch | Always work on `dev` or feature branches — never `main` |
 
@@ -108,12 +108,14 @@ Access values via `dotenv.env['KEY_NAME']`. All keys centralized in `lib/core/co
 
 ## Pre-Launch Dependencies (Not Yet Complete)
 
-- Supabase project creation + CLI link
-- Remote GitHub repo
+**Phase 1 (web):**
+- ✅ Vercel deployment — `web/` connected and live
+- Teller.io account + API keys — needed for Phase 10 (expenses)
+- Anthropic API key — needed for Phase 13 (AI)
+- Re-enable email confirmation in Supabase Auth before production
+
+**Phase 2 (Flutter native — future):**
 - Apple Developer account
 - Google Play Console account
 - Firebase project + FCM config files
-- Plaid account + API keys
-- Anthropic API key
 - Deepgram API key
-- Re-enable email confirmation in Supabase Auth before production

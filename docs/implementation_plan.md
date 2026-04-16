@@ -1,4 +1,4 @@
-# Implementation Plan · Freedom App 2.0
+# Implementation Plan · Ground Control Pro
 
 > Ordered build roadmap. Codex must not start a phase until the previous phase's acceptance criteria are met.
 > Current phase is marked ← CURRENT.
@@ -9,12 +9,14 @@
 
 | Range | Track | Description |
 |---|---|---|
-| 0–999 | Shared + Web | Schema, services, and Next.js web UI |
-| 1000–1999 | Mobile | Flutter mobile UI |
+| 0–999 | Shared + Web | Schema, services, and Next.js web UI (mobile-responsive) |
+| 1000–1999 | Native Mobile | Flutter iOS/Android — Phase 2, not started |
 
-**Build order:** Web-first. Each mobile phase is a placeholder until the corresponding web phase is director-approved and direction for mobile is confirmed. Mobile tasks are not written until the web phase is signed off.
+**Build order:** Mobile-web-first. The Next.js app is the primary product — built, deployed to Vercel, and tested on real mobile browsers throughout development. Every page must work at 390px viewport. Flutter native is Phase 2 and covers the subset of workflows that genuinely benefit from native (offline, push notifications, DVIR, App Store presence). Mobile tasks are not written until director confirms Phase 2 scope.
 
 **Next.js project location:** `web/` subfolder in this repo.
+
+**Deployment:** Vercel. The web app is deployed and live during active development so the director can test on real mobile devices at any point.
 
 **Auth strategy:** Supabase Auth via `@supabase/ssr` (Next.js App Router). Same Supabase project, same users, same RLS. Flutter and Next.js share one backend.
 
@@ -43,12 +45,12 @@
 - [ ] `@supabase/ssr` auth configured — session via HTTP-only cookies
 - [ ] Middleware for route protection (unauthenticated → /login, no org → /onboarding)
 - [ ] Design system scaffold — Montserrat font, brand color tokens, base component set
-- [ ] App shell — top nav / sidebar layout, responsive breakpoints
+- [ ] App shell — top nav / sidebar layout, responsive breakpoints (390px mobile through desktop)
 - [ ] Login + sign-up pages wired to Supabase Auth
 - [ ] Dashboard placeholder (authenticated landing page)
-- [ ] Deployment config (Vercel or equivalent) — TBD by director
+- [ ] Vercel deployment configured and live
 
-**Acceptance:** Developer can `cd web && npm run dev`, sign in with a Supabase account, and land on a dashboard placeholder. Unauthenticated users are redirected to /login.
+**Acceptance:** Developer can `cd web && npm run dev`, sign in with a Supabase account, and land on a dashboard placeholder. Unauthenticated users are redirected to /login. App is deployed to Vercel and accessible from a real mobile browser.
 
 ---
 
@@ -79,13 +81,13 @@ TASK-014 (schema — shared)
 
 ---
 
-## Phase 1001 · Mobile — Clients
+## Phase 1001 · Native Mobile — Clients
 
-**Track:** Mobile (Flutter)
-**Depends on:** Phase 4 complete + director sign-off on web version + mobile direction confirmed
+**Track:** Native Mobile (Flutter) — Phase 2
+**Depends on:** Phase 4 complete + director sign-off + Phase 2 mobile decision confirmed
 **Status:** Placeholder — tasks not yet written
 
-> Tasks will be scoped after director reviews Phase 4 web and confirms mobile scope and UX direction.
+> Flutter native Phase 2. Mobile web (Next.js) covers this use case in Phase 1.
 
 ---
 
@@ -243,16 +245,16 @@ TASK-019 (schema — shared)
 ## Phase 10 · Web — Expenses, Timesheets & Expense Buckets
 
 **Track:** Web
-**Depends on:** Phase 8 complete, Plaid keys configured
+**Depends on:** Phase 8 complete, Teller.io keys configured
 
 **What gets built:**
-- [ ] Plaid integration: bank account link, transaction import
-- [ ] Expense entry UI (manual + from Plaid) — Next.js
+- [ ] Teller.io integration: bank account link (Teller Connect), transaction import via webhook
+- [ ] Expense entry UI (manual + from Teller) — Next.js
 - [ ] Expense split UI (bucket or project product line) — Next.js
 - [ ] Timesheet UI — Next.js
 - [ ] Expense bucket overview — Next.js
 
-**Acceptance:** Admin can import bank transactions and split expenses. Employee can log time to a project line.
+**Acceptance:** Admin can link a bank account via Teller Connect, import transactions, and split expenses. Employee can log time to a project line.
 
 ---
 

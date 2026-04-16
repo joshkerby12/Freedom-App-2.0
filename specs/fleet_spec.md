@@ -1,4 +1,4 @@
-# Fleet + Crews Spec · Freedom App 2.0
+# Fleet + Crews Spec · Ground Control Pro
 
 > Covers: TASK-019, TASK-020, TASK-021, TASK-022, TASK-023
 > Phase 4 — depends on Phase 2 (employees + permissions) completing first.

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:freedom_app/core/extensions/async_value_extensions.dart';
-import 'package:freedom_app/core/routing/app_routes.dart';
-import 'package:freedom_app/features/employees/models/employee_invite.dart';
-import 'package:freedom_app/features/employees/helpers/employee_calculations.dart';
-import 'package:freedom_app/features/employees/models/employee_permission_override.dart';
-import 'package:freedom_app/features/employees/providers/current_employee_provider.dart';
-import 'package:freedom_app/features/employees/providers/employee_detail_provider.dart';
-import 'package:freedom_app/features/employees/providers/permission_provider.dart';
-import 'package:freedom_app/features/employees/providers/role_list_provider.dart';
-import 'package:freedom_app/features/employees/services/employee_service.dart';
-import 'package:freedom_app/features/employees/services/invite_service.dart';
-import 'package:freedom_app/features/employees/services/permission_service.dart';
-import 'package:freedom_app/features/employees/widgets/compensation_section_widget.dart';
-import 'package:freedom_app/features/orgs/org_notifier.dart';
+import 'package:ground_control_pro/core/extensions/async_value_extensions.dart';
+import 'package:ground_control_pro/core/routing/app_routes.dart';
+import 'package:ground_control_pro/features/employees/models/employee_invite.dart';
+import 'package:ground_control_pro/features/employees/helpers/employee_calculations.dart';
+import 'package:ground_control_pro/features/employees/models/employee_permission_override.dart';
+import 'package:ground_control_pro/features/employees/providers/current_employee_provider.dart';
+import 'package:ground_control_pro/features/employees/providers/employee_detail_provider.dart';
+import 'package:ground_control_pro/features/employees/providers/permission_provider.dart';
+import 'package:ground_control_pro/features/employees/providers/role_list_provider.dart';
+import 'package:ground_control_pro/features/employees/services/employee_service.dart';
+import 'package:ground_control_pro/features/employees/services/invite_service.dart';
+import 'package:ground_control_pro/features/employees/services/permission_service.dart';
+import 'package:ground_control_pro/features/employees/widgets/compensation_section_widget.dart';
+import 'package:ground_control_pro/features/orgs/org_notifier.dart';
 
 class EmployeeDetailScreenMobile extends ConsumerWidget {
   const EmployeeDetailScreenMobile({super.key, required this.employeeId});

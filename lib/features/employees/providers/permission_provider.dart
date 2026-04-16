@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:freedom_app/features/employees/providers/current_employee_provider.dart';
-import 'package:freedom_app/features/employees/services/permission_service.dart';
-import 'package:freedom_app/features/orgs/org_notifier.dart';
+import 'package:ground_control_pro/features/employees/providers/current_employee_provider.dart';
+import 'package:ground_control_pro/features/employees/services/permission_service.dart';
+import 'package:ground_control_pro/features/orgs/org_notifier.dart';
 
 part 'permission_provider.g.dart';
 

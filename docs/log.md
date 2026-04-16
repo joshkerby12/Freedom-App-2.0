@@ -1,4 +1,4 @@
-# Session Log · Freedom App 2.0
+# Session Log · Ground Control Pro
 
 > Claude writes full entries after each director session.
 > Codex appends a single line after each task: `[DATE] · TASK-[N] · [description] · [status]`

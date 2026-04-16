@@ -1,8 +1,8 @@
-# Freedom App 2.0 — EOS / Traction Integration Guide
+# Ground Control Pro — EOS / Traction Integration Guide
 
 ## Overview
 
-This document defines how the Entrepreneurial Operating System (EOS) from the book *Traction* is built into Freedom App 2.0. Every module in the app is designed to feed EOS data automatically — metrics surface on the Scorecard, issues capture to the Issues List, tasks sync to the To-Do list, and Rocks track 90-day priorities.
+This document defines how the Entrepreneurial Operating System (EOS) from the book *Traction* is built into Ground Control Pro. Every module in the app is designed to feed EOS data automatically — metrics surface on the Scorecard, issues capture to the Issues List, tasks sync to the To-Do list, and Rocks track 90-day priorities.
 
 The goal: the app runs the business, and EOS runs on top of it with minimal manual entry.
 

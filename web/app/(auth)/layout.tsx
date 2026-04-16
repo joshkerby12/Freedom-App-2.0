@@ -6,10 +6,10 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       <div className="auth-panel">
         <div className="mb-8 text-center">
           <p className="text-xs uppercase tracking-[0.14em] text-[var(--text-secondary)]">
-            Freedom Landscapes
+            Field Service Management
           </p>
           <h1 className="mt-2 text-3xl font-bold text-[var(--text-primary)]">
-            Freedom App 2.0
+            Ground Control Pro
           </h1>
         </div>
         {children}

@@ -1,4 +1,4 @@
-# Employees Spec · Freedom App 2.0
+# Employees Spec · Ground Control Pro
 
 > Covers: TASK-008, TASK-009, TASK-010, TASK-011, TASK-012, TASK-013
 > Phase 2 — depends on Phase 1 (auth + app shell) completing first.

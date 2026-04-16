@@ -19,7 +19,7 @@ export default function OnboardingPage() {
             Set up your company
           </h1>
           <p className="text-sm text-[var(--text-secondary)]">
-            Create your organization to get started with Freedom App.
+            Create your organization to get started with Ground Control Pro.
           </p>
         </div>
 
@@ -32,7 +32,7 @@ export default function OnboardingPage() {
               required
               maxLength={100}
               autoFocus
-              placeholder="Freedom Landscapes"
+              placeholder="Acme Landscaping"
               className="mt-1 h-11 w-full rounded-lg border border-[var(--divider)] bg-[var(--surface-elevated)] px-3 text-sm text-[var(--text-body)] placeholder:text-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--brand-primary)]"
             />
           </label>

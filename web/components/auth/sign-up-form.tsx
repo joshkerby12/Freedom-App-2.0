@@ -18,7 +18,7 @@ export function SignUpForm() {
     <Card className="w-full max-w-md p-6">
       <CardHeader className="mb-2 px-0">
         <CardTitle>Create account</CardTitle>
-        <CardDescription>Set up your Freedom App access.</CardDescription>
+        <CardDescription>Set up your Ground Control Pro access.</CardDescription>
       </CardHeader>
       <CardContent className="px-0">
         <form action={formAction} className="space-y-4">

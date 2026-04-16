@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:freedom_app/features/employees/models/employee_compensation.dart';
+import 'package:ground_control_pro/features/employees/models/employee_compensation.dart';
 
 class CompensationSectionWidget extends StatelessWidget {
   const CompensationSectionWidget({

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:freedom_app/core/extensions/async_value_extensions.dart';
-import 'package:freedom_app/core/routing/app_routes.dart';
-import 'package:freedom_app/features/employees/providers/permission_provider.dart';
-import 'package:freedom_app/features/employees/providers/role_list_provider.dart';
+import 'package:ground_control_pro/core/extensions/async_value_extensions.dart';
+import 'package:ground_control_pro/core/routing/app_routes.dart';
+import 'package:ground_control_pro/features/employees/providers/permission_provider.dart';
+import 'package:ground_control_pro/features/employees/providers/role_list_provider.dart';
 
 class RoleListScreenMobile extends ConsumerWidget {
   const RoleListScreenMobile({super.key});

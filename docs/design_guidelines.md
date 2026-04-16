@@ -1,4 +1,4 @@
-# Design Guidelines · Freedom App 2.0
+# Design Guidelines · Ground Control Pro
 
 > Every agent reads this before building any UI. These are the rules — not suggestions.
 > Updated whenever the director approves a new pattern or rejects something.
@@ -17,73 +17,68 @@
 
 ## Typography
 
-**Primary font: Montserrat** — sourced from Google Fonts. Used across all UI.
+**Display font: DM Serif Display** — Google Fonts. Headings, logo wordmarks, hero text.
+**Mono font: DM Mono** — Google Fonts. Tags, labels, status chips, monospaced data.
+**Body font: DM Sans** — Google Fonts. All body copy, inputs, buttons, nav.
 
 | Role | Font | Weight | Size |
 |---|---|---|---|
-| Display / Headings | Montserrat | 700 (Bold) | 24–32sp |
-| Section Titles | Montserrat | 600 (SemiBold) | 18–20sp |
-| Body | Montserrat | 300 (Light) | 14–16sp |
-| Labels / Captions | Montserrat | 400 (Regular) | 12sp |
-| Financial figures | Montserrat | 500 (Medium) | 14sp |
+| Display / Headings | DM Serif Display | Regular (400) | 24–32sp |
+| Section Titles | DM Sans | SemiBold (600) | 18–20sp |
+| Body | DM Sans | Light (300) | 14–16sp |
+| Labels / Captions | DM Sans | Regular (400) | 12sp |
+| Financial figures | DM Sans | Medium (500) | 14sp |
+| Tags / Status | DM Mono | Regular (400) | 10–12sp |
 
 **Rules:**
 - Never use more than 3 type sizes on one screen
 - Financial figures (dollar amounts, quantities) always in Medium weight
-- All-caps sparingly — status chips only
+- All-caps via DM Mono only — status chips, page labels, section headers
+- Serif (DM Serif Display) used for brand moments only — not body text
 
 ---
 
 ## Color Palette
 
-Sourced directly from freedomlandscapes.co. Confirmed brand values — do not substitute.
+Ground Control Pro uses an earthy, professional palette built around warm creams, deep browns, and natural greens. Do not substitute without director approval.
 
 ### Light Mode
 
-| Role | Hex | Notes |
+| Token | Hex | Role |
 |---|---|---|
-| Primary | `#42AAE2` | Cyan-blue — main brand color, links, active states |
-| Primary Dark | `#243252` | Dark navy — headers, strong emphasis |
-| Accent Green | `#0B3D2C` | Forest green — success, link hover |
-| Background | `#EDEDED` | Off-white — screen background |
-| Surface | `#FFFFFF` | Cards, sheets, inputs |
-| Surface Elevated | `#F5F5F5` | Slightly elevated surfaces |
-| Divider | `#D8D8D8` | List dividers, borders |
-| Error | `#D32F2F` | Red — standard |
-| Warning | `#F57C00` | Orange |
-| Success | `#0B3D2C` | Forest green (matches brand) |
-| Text Primary | `#023D52` | Dark teal — headings |
-| Text Body | `#2F2F2F` | Charcoal — body text |
-| Text Secondary | `#7E7E7E` | Muted labels, captions |
-| Text Disabled | `#BDBDBD` | Disabled state |
-| Text On Primary | `#FFFFFF` | Text on primary-colored buttons/backgrounds |
+| `cream-base` | `#F2E8D9` | Page background |
+| `cream-deep` | `#E6D5BE` | Cards, inputs, dividers |
+| `brown-dark` | `#3D2B1F` | Nav bar, headings, primary buttons |
+| `brown-mid` | `#6B4A35` | Secondary text, hover states |
+| `green-dark` | `#1E3A2F` | CTA buttons, tags, highlights |
 
 ### Dark Mode
 
-| Role | Hex | Notes |
+| Token | Hex | Role |
 |---|---|---|
-| Primary | `#42AAE2` | Same brand blue — stays consistent |
-| Primary Dark | `#5B7FBF` | Lightened navy for dark surfaces |
-| Background | `#0F1923` | Very dark navy — consistent with brand dark tones |
-| Surface | `#1A2535` | Dark card/sheet surface |
-| Surface Elevated | `#243048` | Slightly lifted surface in dark mode |
-| Divider | `#2E3D52` | Subtle dark divider |
-| Error | `#EF5350` | Lightened red for dark backgrounds |
-| Warning | `#FFB74D` | Lightened orange |
-| Success | `#66BB6A` | Lightened green |
-| Text Primary | `#FFFFFF` | White — primary text |
-| Text Body | `#E0E0E0` | Slightly muted body text |
-| Text Secondary | `#9E9E9E` | Muted labels, captions |
-| Text Disabled | `#4A4A4A` | Disabled state |
-| Text On Primary | `#FFFFFF` | Text on primary-colored buttons |
+| `black-base` | `#0D0D0B` | Page background |
+| `near-black` | `#161612` | Cards, elevated surfaces |
+| `brown-mid` | `#6B4A35` | Warm accent, borders, decorative elements |
+| `green-light` | `#7AB87A` | CTA buttons, active nav, badges |
+| `cream-base` | `#F2E8D9` | Body text, subtle UI elements |
 
-### Dark Mode Toggle
+### Status Colors (never theme-overridable)
 
-- User-accessible toggle in app settings (Settings screen)
-- Persists to `employee_preferences.notification_config` (jsonb — add `theme_mode` key)
-- Default: follows system (`ThemeMode.system`)
-- Options: System / Light / Dark
-- Implemented via Riverpod provider watching `ThemeMode` — `MaterialApp.themeMode` wired to provider
+| Role | Light | Dark |
+|---|---|---|
+| Error | `#D32F2F` | `#EF5350` |
+| Warning | `#F57C00` | `#FFB74D` |
+| Success | `#1E3A2F` (green-dark) | `#7AB87A` (green-light) |
+
+### Do / Don't — Colors
+
+- **Do:** Use `brown-dark` as the primary nav and header color in light mode
+- **Do:** Use `green-light` (`#7AB87A`) as the primary CTA and interactive color in dark mode
+- **Do:** Use `cream-base` as a warm near-white — never pure `#FFFFFF`
+- **Do:** Keep `brown-mid` for decorative elements, borders, and warm hover states in dark mode
+- **Don't:** Use `green-dark` on dark backgrounds — contrast is insufficient
+- **Don't:** Use pure black (`#000000`) — always use `black-base` (`#0D0D0B`) for warmth
+- **Don't:** Allow user-customized colors to override system status colors (error, warning)
 
 ---
 
@@ -111,7 +106,7 @@ Sourced directly from freedomlandscapes.co. Confirmed brand values — do not su
 ## Component Rules
 
 ### Buttons
-- Primary: filled, rounded (radius 8), primary color, white text
+- Primary: filled, rounded (radius 8), `brown-dark` (light) / `green-light` (dark), contrasting text
 - Secondary: outlined, primary color border and text
 - Destructive: filled red (`error` color)
 - Text button: for low-emphasis actions only (cancel, skip)
@@ -127,7 +122,7 @@ Sourced directly from freedomlandscapes.co. Confirmed brand values — do not su
 - Never disable a field without explaining why nearby
 
 ### Cards
-- Background: `surface` color
+- Background: `cream-deep` (light) / `near-black` (dark)
 - Border radius: 12dp
 - Elevation: subtle shadow (elevation 1–2)
 - Padding: 16dp
@@ -148,12 +143,12 @@ Sourced directly from freedomlandscapes.co. Confirmed brand values — do not su
 ### Chips / Status Tags
 - Height: 24dp
 - Border radius: 12dp (pill)
-- Font: 11sp, medium weight, all caps
+- Font: DM Mono, 10–11sp, all caps
 - Background: status color at 15% opacity, text at full color
 - Status colors defined per feature (see specs)
 
 ### Lists
-- Dividers between items: 1dp, divider color
+- Dividers between items: 1dp, `cream-deep` (light) / `near-black` border (dark)
 - Empty state: centered icon + message + action button (never just "No items")
 - Loading state: shimmer placeholders matching item height
 

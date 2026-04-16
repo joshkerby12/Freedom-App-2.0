@@ -21,7 +21,7 @@ export function AppShell({ children, onSignOut }: AppShellProps) {
   return (
     <div className="app-shell">
       <aside className="app-shell-sidebar">
-        <div className="app-shell-sidebar-title">Freedom App</div>
+        <div className="app-shell-sidebar-title">Ground Control</div>
         <nav className="app-shell-sidebar-nav">
           {navigationItems.map((item) => (
             <Link key={item.href} href={item.href} className="app-shell-link">
@@ -34,10 +34,10 @@ export function AppShell({ children, onSignOut }: AppShellProps) {
 
       <header className="app-shell-top">
         <div>
-          <p className="text-xs uppercase tracking-[0.12em] text-[var(--text-secondary)]">
-            Freedom Landscapes
+          <p className="text-xs uppercase tracking-[0.12em] text-[var(--color-primary-mid)]">
+            Ground Control Pro
           </p>
-          <h1 className="text-lg font-semibold text-[var(--text-primary)]">
+          <h1 className="text-lg font-semibold text-[var(--text-on-primary)]">
             Operations Dashboard
           </h1>
         </div>

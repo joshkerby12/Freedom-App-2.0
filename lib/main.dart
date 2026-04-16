@@ -15,5 +15,5 @@ Future<void> main() async {
     anonKey: AppConstants.supabaseAnonKey,
   );
 
-  runApp(const ProviderScope(child: FreedomApp()));
+  runApp(const ProviderScope(child: GroundControlApp()));
 }

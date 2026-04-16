@@ -1,4 +1,4 @@
-# Errors · Freedom App 2.0
+# Errors · Ground Control Pro
 
 > Error triage process and error log. When told to reference `errors.md`, follow the full triage process before attempting any fix.
 

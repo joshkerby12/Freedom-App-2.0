@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(supabase projects:*)",
+      "Bash(supabase link:*)",
+      "Bash(dart analyze:*)",
+      "Bash(ps -p 74766 -o pid,command)",
+      "Bash(find '/Users/joshkerby/Documents/Apps/Freedom App 2.0/supabase/migrations' -name *.sql)",
+      "Bash(node -e \"require\\(''''uuid''''\\)\")",
+      "Bash(supabase db:*)",
+      "Bash(supabase --help)",
+      "Bash(ls \"/Users/joshkerby/Documents/Apps/Freedom App 2.0/web/app/\\(app\\)/\")",
+      "Bash(python3 -c \":*)",
+      "WebFetch(domain:supabase.com)",
+      "WebSearch",
+      "Bash(supabase --version)",
+      "Bash(brew upgrade *)",
+      "Bash(xargs sed *)",
+      "Bash(supabase functions *)"
+    ],
+    "additionalDirectories": [
+      "/Users/joshkerby/.claude/projects/-Users-joshkerby-Documents-Apps-Ground-Control-Pro"
+    ]
+  }
+}

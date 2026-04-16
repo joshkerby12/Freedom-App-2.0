@@ -7,12 +7,12 @@ class AppTheme {
 
   static ThemeData get light => ThemeData(
     useMaterial3: true,
-    fontFamily: 'Montserrat',
+    fontFamily: 'DMSans',
     brightness: Brightness.light,
     colorScheme: const ColorScheme.light(
-      primary: AppColors.primary,
-      primaryContainer: AppColors.primaryDark,
-      secondary: AppColors.accentGreen,
+      primary: AppColors.brownDark,
+      primaryContainer: AppColors.brownMid,
+      secondary: AppColors.greenDark,
       surface: AppColors.surfaceLight,
       error: AppColors.error,
       onPrimary: AppColors.textOnPrimary,
@@ -21,8 +21,8 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: AppColors.backgroundLight,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.surfaceLight,
-      foregroundColor: AppColors.textPrimaryLight,
+      backgroundColor: AppColors.brownDark,
+      foregroundColor: AppColors.creamBase,
       elevation: 0,
       centerTitle: false,
       titleTextStyle: AppTextStyles.sectionTitle,
@@ -44,7 +44,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.primary, width: 2),
+        borderSide: const BorderSide(color: AppColors.brownDark, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
@@ -55,12 +55,12 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.greenDark,
         foregroundColor: AppColors.textOnPrimary,
         minimumSize: const Size(88, 44),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         textStyle: const TextStyle(
-          fontFamily: 'Montserrat',
+          fontFamily: 'DMSans',
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
@@ -68,9 +68,9 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.primary,
+        foregroundColor: AppColors.brownDark,
         minimumSize: const Size(88, 44),
-        side: const BorderSide(color: AppColors.primary),
+        side: const BorderSide(color: AppColors.brownDark),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
@@ -80,9 +80,9 @@ class AppTheme {
       space: 1,
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: AppColors.surfaceLight,
-      selectedItemColor: AppColors.primary,
-      unselectedItemColor: AppColors.textSecondaryLight,
+      backgroundColor: AppColors.brownDark,
+      selectedItemColor: AppColors.creamBase,
+      unselectedItemColor: AppColors.brownMid,
       type: BottomNavigationBarType.fixed,
       elevation: 8,
     ),
@@ -90,22 +90,22 @@ class AppTheme {
 
   static ThemeData get dark => ThemeData(
     useMaterial3: true,
-    fontFamily: 'Montserrat',
+    fontFamily: 'DMSans',
     brightness: Brightness.dark,
     colorScheme: const ColorScheme.dark(
-      primary: AppColors.primary,
-      primaryContainer: AppColors.primaryDarkMode,
-      secondary: AppColors.successDark,
+      primary: AppColors.greenLight,
+      primaryContainer: AppColors.brownMid,
+      secondary: AppColors.brownMid,
       surface: AppColors.surfaceDark,
       error: AppColors.errorDark,
-      onPrimary: AppColors.textOnPrimary,
+      onPrimary: AppColors.textOnAccentDark,
       onSurface: AppColors.textBodyDark,
       onError: AppColors.textOnPrimary,
     ),
     scaffoldBackgroundColor: AppColors.backgroundDark,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.surfaceDark,
-      foregroundColor: AppColors.textPrimaryDark,
+      backgroundColor: AppColors.nearBlack,
+      foregroundColor: AppColors.creamBase,
       elevation: 0,
       centerTitle: false,
       titleTextStyle: AppTextStyles.sectionTitle,
@@ -130,7 +130,7 @@ class AppTheme {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: const BorderSide(color: AppColors.primary, width: 2),
+        borderSide: const BorderSide(color: AppColors.greenLight, width: 2),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
@@ -143,12 +143,12 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.textOnPrimary,
+        backgroundColor: AppColors.greenLight,
+        foregroundColor: AppColors.textOnAccentDark,
         minimumSize: const Size(88, 44),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         textStyle: const TextStyle(
-          fontFamily: 'Montserrat',
+          fontFamily: 'DMSans',
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
@@ -156,9 +156,9 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: AppColors.primary,
+        foregroundColor: AppColors.greenLight,
         minimumSize: const Size(88, 44),
-        side: const BorderSide(color: AppColors.primary),
+        side: const BorderSide(color: AppColors.greenLight),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
@@ -168,9 +168,9 @@ class AppTheme {
       space: 1,
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-      backgroundColor: AppColors.surfaceDark,
-      selectedItemColor: AppColors.primary,
-      unselectedItemColor: AppColors.textSecondaryDark,
+      backgroundColor: AppColors.nearBlack,
+      selectedItemColor: AppColors.greenLight,
+      unselectedItemColor: AppColors.brownMid,
       type: BottomNavigationBarType.fixed,
       elevation: 0,
     ),

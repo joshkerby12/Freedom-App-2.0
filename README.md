@@ -1,6 +1,6 @@
-# Freedom App 2.0
+# Ground Control Pro
 
-Full business management platform for Freedom Landscapes — replacing a legacy AppSheet build.
+Full-stack field service management platform — mobile (Flutter) + web (Next.js) + Supabase backend.
 
 ---
 
@@ -8,7 +8,7 @@ Full business management platform for Freedom Landscapes — replacing a legacy 
 
 | Field | Value |
 |---|---|
-| Company | Freedom Landscapes |
+| App | Ground Control Pro |
 | Platform | iOS + Android (Flutter/Dart) · Web (Next.js — future phase) |
 | Backend | Supabase (Auth + Postgres + Storage + Edge Functions) |
 | State Management | Riverpod |
@@ -128,4 +128,4 @@ assets/
 
 ---
 
-**Status:** Planning complete · Phase 0 scaffold in progress
+**Status:** Phases 0–7 complete · Phase 8 (Estimates) next · Rebranded to Ground Control Pro 2026-04-15

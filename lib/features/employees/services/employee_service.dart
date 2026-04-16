@@ -1,13 +1,13 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:freedom_app/core/network/supabase_client_provider.dart';
-import 'package:freedom_app/features/employees/models/employee.dart';
-import 'package:freedom_app/features/employees/models/employee_compensation.dart';
-import 'package:freedom_app/features/employees/models/employee_invite.dart';
-import 'package:freedom_app/features/employees/models/employee_permission_override.dart';
-import 'package:freedom_app/features/employees/models/role.dart';
-import 'package:freedom_app/features/employees/models/role_permission.dart';
+import 'package:ground_control_pro/core/network/supabase_client_provider.dart';
+import 'package:ground_control_pro/features/employees/models/employee.dart';
+import 'package:ground_control_pro/features/employees/models/employee_compensation.dart';
+import 'package:ground_control_pro/features/employees/models/employee_invite.dart';
+import 'package:ground_control_pro/features/employees/models/employee_permission_override.dart';
+import 'package:ground_control_pro/features/employees/models/role.dart';
+import 'package:ground_control_pro/features/employees/models/role_permission.dart';
 
 part 'employee_service.g.dart';
 

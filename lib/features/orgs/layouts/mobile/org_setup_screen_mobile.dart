@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:freedom_app/core/routing/app_routes.dart';
-import 'package:freedom_app/features/orgs/org_notifier.dart';
+import 'package:ground_control_pro/core/routing/app_routes.dart';
+import 'package:ground_control_pro/features/orgs/org_notifier.dart';
 
 class OrgSetupScreenMobile extends ConsumerStatefulWidget {
   const OrgSetupScreenMobile({super.key});

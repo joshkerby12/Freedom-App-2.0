@@ -1,4 +1,4 @@
-# Clients Spec · Freedom App 2.0
+# Clients Spec · Ground Control Pro
 
 > Covers: TASK-014, TASK-015, TASK-016, TASK-017, TASK-018
 > Phase 3 — depends on Phase 2 (employees + permissions) completing first.

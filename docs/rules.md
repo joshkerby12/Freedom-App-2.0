@@ -1,4 +1,4 @@
-# Rules · Freedom App 2.0
+# Rules · Ground Control Pro
 
 > How every agent must behave at all times. Applies to Claude, Codex, and Copilot.
 > These rules are not negotiable and do not change per task.
@@ -70,7 +70,7 @@
 - RLS must be enabled on every table
 - Never change the Supabase schema without explicit instruction from the director
 - Never modify schema to fix an app-layer problem
-- Plaid integration: raw transaction data treated as read-only — never mutate Plaid data
+- Teller.io integration: raw transaction data treated as read-only — never mutate Teller data
 - All financial amounts stored as `numeric` (not `float`) to avoid precision errors
 
 ---

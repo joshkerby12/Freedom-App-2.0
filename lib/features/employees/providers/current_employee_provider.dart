@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:freedom_app/features/auth/auth_notifier.dart';
-import 'package:freedom_app/features/employees/models/employee.dart';
-import 'package:freedom_app/features/employees/services/employee_service.dart';
-import 'package:freedom_app/features/orgs/org_notifier.dart';
+import 'package:ground_control_pro/features/auth/auth_notifier.dart';
+import 'package:ground_control_pro/features/employees/models/employee.dart';
+import 'package:ground_control_pro/features/employees/services/employee_service.dart';
+import 'package:ground_control_pro/features/orgs/org_notifier.dart';
 
 part 'current_employee_provider.g.dart';
 

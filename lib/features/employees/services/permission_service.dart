@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:freedom_app/core/network/supabase_client_provider.dart';
+import 'package:ground_control_pro/core/network/supabase_client_provider.dart';
 
 part 'permission_service.g.dart';
 

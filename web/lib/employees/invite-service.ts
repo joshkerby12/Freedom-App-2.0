@@ -99,7 +99,7 @@ export async function sendInvite(
         employee_id: employeeId,
         email: email.trim(),
         token,
-        org_name: readRequiredString(orgRow?.name, "Freedom Landscapes"),
+        org_name: readRequiredString(orgRow?.name, "Ground Control Pro"),
       },
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -142,7 +142,7 @@ export async function getInviteByToken(token: string): Promise<InviteLookupRecor
     return null;
   }
 
-  let orgName = "Freedom Landscapes";
+  let orgName = "Ground Control Pro";
   const { data: orgRow, error: orgError } = await supabase
     .from("organizations")
     .select("name")

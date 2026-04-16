@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 void main() {
   testWidgets('Basic widget smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const MaterialApp(home: Scaffold(body: Text('Freedom App 2.0'))),
+      const MaterialApp(home: Scaffold(body: Text('Ground Control Pro'))),
     );
 
-    expect(find.text('Freedom App 2.0'), findsOneWidget);
+    expect(find.text('Ground Control Pro'), findsOneWidget);
   });
 }

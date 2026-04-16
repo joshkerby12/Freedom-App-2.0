@@ -1,4 +1,4 @@
-# Item Catalog + Product Catalog Spec · Freedom App 2.0
+# Item Catalog + Product Catalog Spec · Ground Control Pro
 
 > Covers: TASK-024, TASK-025, TASK-026, TASK-027, TASK-028
 > Phase 5 — runs parallel to Phases 2, 3, and 4. Only requires Phase 1 (org context).

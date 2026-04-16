@@ -1,10 +1,10 @@
 {
-  "project": "Freedom App 2.0",
+  "project": "Ground Control Pro",
   "phase_convention": {
     "0-999": "Shared (schema + services) + Web (Next.js UI)",
     "1000-1999": "Mobile (Flutter UI) \u2014 placeholder until director signs off on corresponding web phase"
   },
-  "active_phase": 6,
+  "active_phase": 8,
   "modules": [
     {
       "name": "scaffold",
@@ -254,7 +254,7 @@
       ]
     },
     {
-      "name": "expenses_plaid",
+      "name": "expenses_teller",
       "track": "shared+web",
       "status": "not-started",
       "phase": 10,

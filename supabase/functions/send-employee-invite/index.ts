@@ -115,8 +115,8 @@ Deno.serve(async (req) => {
     const inviteLink = `${appBaseUrl}/invite/accept?token=${encodeURIComponent(token)}`;
 
     const resendApiKey = Deno.env.get('RESEND_API_KEY');
-    const resendFrom = Deno.env.get('RESEND_FROM_EMAIL') ?? 'noreply@freedomapp.local';
-    const orgName = body.org_name?.trim() || 'Freedom Landscapes';
+    const resendFrom = Deno.env.get('RESEND_FROM_EMAIL') ?? 'noreply@groundcontrolpro.app';
+    const orgName = body.org_name?.trim() || 'Ground Control Pro';
 
     if (resendApiKey) {
       const resendResponse = await fetch('https://api.resend.com/emails', {
@@ -130,7 +130,7 @@ Deno.serve(async (req) => {
           to: [email],
           subject: `You are invited to join ${orgName}`,
           text: [
-            `You were invited to join ${orgName} on Freedom App.`,
+            `You were invited to join ${orgName} on Ground Control Pro.`,
             `Accept invite: ${inviteLink}`,
             'This link expires in 7 days.',
           ].join('\n\n'),

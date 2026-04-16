@@ -1,4 +1,4 @@
-# Auth + Orgs Spec · Freedom App 2.0
+# Auth + Orgs Spec · Ground Control Pro
 
 > Covers: TASK-003, TASK-004, TASK-005, TASK-006, TASK-007
 > Phase 1 — prerequisite for every other module.

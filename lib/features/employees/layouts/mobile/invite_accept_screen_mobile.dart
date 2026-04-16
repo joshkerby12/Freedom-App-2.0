@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:freedom_app/core/routing/app_routes.dart';
-import 'package:freedom_app/features/employees/providers/invite_provider.dart';
-import 'package:freedom_app/features/employees/services/invite_service.dart';
+import 'package:ground_control_pro/core/routing/app_routes.dart';
+import 'package:ground_control_pro/features/employees/providers/invite_provider.dart';
+import 'package:ground_control_pro/features/employees/services/invite_service.dart';
 
 class InviteAcceptScreenMobile extends ConsumerStatefulWidget {
   const InviteAcceptScreenMobile({super.key, required this.token});
@@ -68,7 +68,7 @@ class _InviteAcceptScreenMobileState
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'Welcome to Freedom Landscapes',
+                      'Welcome to Ground Control Pro',
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 8),

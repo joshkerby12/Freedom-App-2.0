@@ -1,4 +1,4 @@
-# CODEX.md · Freedom App 2.0
+# CODEX.md · Ground Control Pro
 
 > Codex's permanent operator manual. Read this at the start of every session.
 

@@ -1,4 +1,4 @@
-# Data Structure · Freedom App 2.0
+# Data Structure · Ground Control Pro
 
 > Full Supabase schema and RLS patterns. Claude reviews all schema changes before execution.
 > Reference this before any DB interaction — RLS silently blocks writes.

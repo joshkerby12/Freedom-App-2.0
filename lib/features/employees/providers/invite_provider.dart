@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'package:freedom_app/features/employees/models/employee_invite.dart';
-import 'package:freedom_app/features/employees/services/invite_service.dart';
+import 'package:ground_control_pro/features/employees/models/employee_invite.dart';
+import 'package:ground_control_pro/features/employees/services/invite_service.dart';
 
 part 'invite_provider.g.dart';
 
